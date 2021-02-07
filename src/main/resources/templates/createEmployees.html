@@ -1,0 +1,38 @@
+<div th:if="${#lists.size(teams)} > 0" class="container mt-3">
+    <form th:action="@{/employee/add}" th:object="${employee}" method="POST">
+        <div class="row g-3 mb-3">
+            <div class="col-sm-4">
+                <label for="firstName" class="form-label">First name</label>
+                <input th:field="*{firstName}" value="okok" type="text" class="form-control" id="firstName">
+            </div>
+            <div class="col-sm-4">
+                <label for="lastName" class="form-label">Last name</label>
+                <input th:field="*{lastName}" type="text" class="form-control" id="lastName">
+            </div>
+            <div class="col-sm-4">
+                <label for="jobTitle" class="form-label">Job Title</label>
+                <input th:field="*{jobTitle}" type="text" class="form-control" id="jobTitle">
+            </div>
+            <div class="col-sm-4">
+                <label for="phoneNumber" class="form-label">Phone number</label>
+                <input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber">
+            </div>
+            <div class="col-sm-4">
+                <label for="email" class="form-label">Email</label>
+                <input th:field="*{email}" type="text" class="form-control" id="email">
+            </div>
+            <div class="col-sm-4">
+                <label for="team" class="form-label">Team</label>
+                <select th:field="*{team}" class="form-select" id="team">
+                    <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}"></option>
+                </select>
+            </div>
+            <div class="col-sm-4" style="display: flex; justify-content: flex-start; align-items: flex-end;">
+                <button type="submit" class="btn btn-primary" style="height: fit-content;">Create Employee</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div th:unless="${#lists.size(teams)} > 0">
+    Need to add 1 team at least! Add a team <a th:href="@{/team}">here</a>.
+</div>

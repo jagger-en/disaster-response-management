@@ -1,0 +1,34 @@
+<div th:if="${#lists.size(teams)} > 0" class="container mt-3">
+    <table class="table table-striped table-hover table-sm table-bordered table-responsive-md">
+        <thead>
+            <tr class="text-center">
+                <th>Employee Id</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Job title</th>
+                <th>Phone number</th>
+                <th>Email</th>
+                <th>Team</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.id}"></td>
+                <td th:text="${employee.firstName}"></td>
+                <td th:text="${employee.lastName}"></td>
+                <td th:text="${employee.jobTitle}"></td>
+                <td th:text="${employee.phoneNumber}"></td>
+                <td th:text="${employee.email}"></td>
+                <td th:if="${employee.team != null}" th:text="${employee.team.name}"></td>
+                <td th:unless="${employee.team != null}">No Team</td>
+                <td style="display: flex; justify-content: center;"><a
+                    th:href="@{/employee/delete/{id}(id=${employee.id})}"
+                    class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div th:unless="${#lists.size(teams)} > 0">
+    Need to add 1 team at least! Add a team <a th:href="@{/team}">here</a>.
+</div>
