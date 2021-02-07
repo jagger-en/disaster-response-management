@@ -1,5 +1,6 @@
 # HRManager-App
 A human resource manager app.
+Latest version: v1.0
 
 ## How to build:
 
