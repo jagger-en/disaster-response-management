@@ -23,7 +23,7 @@ public class Person implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "gender_id")
-    private Gender gender; // TODO: add Gender table
+    private Gender gender;
 
     @ManyToOne
     @JoinColumn(name = "location_id")
