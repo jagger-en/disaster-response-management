@@ -27,7 +27,7 @@ public class Person implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "location_id")
-    private Location location; // TODO: add Location table
+    private Location location;
 
     public Person() {}
 
