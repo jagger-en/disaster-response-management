@@ -4,27 +4,26 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "location")
-public class Location implements Serializable {
+@Table(name = "city")
+public class City implements Serializable {
     /**
      * A serial was added
      */
-    private static final long serialVersionUID = 1002L;
+    private static final long serialVersionUID = 4112956760199798147L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
     private String name;
-    private String zipCode;
     private String centerCoordinate; // TODO: do we need to have geo coordinate type?
 
     @ManyToOne
-    @JoinColumn(name = "city_id")
-    private City city;
+    @JoinColumn(name = "country_id")
+    private Country country; // TODO: add country table
 
-    public Location() {}
+    public City() {}
 
-    public Location(String name) {
+    public City(String name) {
         this.name = name;
     }
 
@@ -44,14 +43,6 @@ public class Location implements Serializable {
         this.name = name;
     }
 
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
     public String getCenterCoordinate() {
         return centerCoordinate;
     }
@@ -59,24 +50,23 @@ public class Location implements Serializable {
     public void setCenterCoordinate(String centerCoordinate) {
         this.centerCoordinate = centerCoordinate;
     }
-
-    public String getCity() {
-        return city;
+    
+    public String getCountry() {
+        return country;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
 
     @Override
     public String toString() {
-        return "Location {" +
+        return "City {" +
         "id=" + id +
         ", name=" + name +
-        ", zipCode=" + zipCode +
         ", centerCoordinate=" + centerCoordinate +
-        ", city=" + city +
+        ", country=" + country +
         "}";
 
     }
