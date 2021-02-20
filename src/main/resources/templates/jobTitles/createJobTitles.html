@@ -3,19 +3,19 @@
     <table class="table table-striped table-hover table-sm table-bordered table-responsive-md">
         <thead>
             <tr class="text-center">
-                <th>Functionality Id</th>
-                <th>Functionality</th>
+                <th>Jobtitle Id</th>
+                <th>Jobtitle name</th>
                 <th>Description</th>
                 <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="teamFunctionality : ${teamFunctionalities}">
-                <td th:text="${teamFunctionality.id}"></td>
-                <td th:text="${teamFunctionality.name}"></td>
-                <td th:text="${teamFunctionality.description}"></td>
+            <tr th:each="jobtitle : ${jobtitles}">
+                <td th:text="${jobtitle.id}"></td>
+                <td th:text="${jobtitle.name}"></td>
+                <td th:text="${jobtitle.description}"></td>
                 <td style="display: flex; justify-content: center;"><a
-                    th:href="@{/teamFunctionalities/delete/{id}(id=${teamFunctionality.id})}"
+                    th:href="@{/jobtitles/delete/{id}(id=${jobtitle.id})}"
                     class="btn btn-danger btn-sm">Delete</a></td>
             </tr>
         </tbody>
@@ -23,10 +23,10 @@
 
 
 
-    <form th:action="@{/teamFunctionalities/add}" th:object="${teamFunctionality}" method="POST">
+    <form th:action="@{/jobtitles/add}" th:object="${jobtitle}" method="POST">
         <div class="row g-3 mb-3">
             <div class="col-sm-4">
-                <label for="name" class="form-label">Functionality name</label>
+                <label for="name" class="form-label">Jobtitle name</label>
                 <input th:field="*{name}" value="okok" type="text" class="form-control" id="name">
             </div>
             <div class="col-sm-4">
@@ -35,7 +35,7 @@
             </div>
 
             <div class="col-sm-4" style="display: flex; justify-content: flex-start; align-items: flex-end;">
-                <button type="submit" class="btn btn-primary" style="height: fit-content;">Create Functionality</button>
+                <button type="submit" class="btn btn-primary" style="height: fit-content;">Create Jobtitle</button>
             </div>
         </div>
     </form>
