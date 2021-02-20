@@ -27,7 +27,8 @@ public class TeamController {
     public String getAllTeams(Team team, Model model) {
         List<Team> teams = teamService.findAllTeams();
         model.addAttribute("teams", teams);
-        model.addAttribute("pageToRender", "createTeams");
+        // model.addAttribute("pageToRender", "createTeams");
+        model.addAttribute("pageToRender", "/dashboard/dashboardIndex");
         return "base";
     }
 

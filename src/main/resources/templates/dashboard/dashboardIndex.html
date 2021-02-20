@@ -7,7 +7,16 @@
         <link th:href="@{/css/style.css}" rel="stylesheet">
     </head>
     <body>
-        <div th:insert="@{/navigation}"></div>
-        <div th:insert="@{${pageToRender}}"></div>
+        <div th:insert="@{/dashboard/dashboardHeader}"></div>
+        <h1>-------------------------------</h1>
+        <div th:insert="@{/dashboard/dashboardLatestUsers}"></div>
+        <h1>-------------------------------</h1>
+        <div th:insert="@{/dashboard/dashboardLogin}"></div>
+        <h1>-------------------------------</h1>
+        <div th:insert="@{/dashboard/dashboardNav}"></div>
+        <h1>-------------------------------</h1>
+        <div th:insert="@{/dashboard/dashboardSide}"></div>
+        <h1>-------------------------------</h1>
+        <div th:insert="@{/dashboard/dashboardWebsiteOverview}"></div>
     </body>
 </html>
