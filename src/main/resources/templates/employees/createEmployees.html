@@ -1,32 +1,33 @@
 <div th:if="${#lists.size(teams)} > 0" class="container mt-3">
-    <form th:action="@{/employee/add}" th:object="${employee}" method="POST">
+    <form th:action="@{/employees/add}" th:object="${employee}" method="POST">
         <div class="row g-3 mb-3">
+
             <div class="col-sm-4">
-                <label for="firstName" class="form-label">First name</label>
-                <input th:field="*{firstName}" value="okok" type="text" class="form-control" id="firstName">
+                <label for="person" class="form-label">Person</label>
+                <select th:field="*{person}" class="form-select" id="person">
+                    <option th:each="person : ${persons}" th:value="${person.id}" th:text="${person.name}"></option>
+                </select>
             </div>
+
             <div class="col-sm-4">
-                <label for="lastName" class="form-label">Last name</label>
-                <input th:field="*{lastName}" type="text" class="form-control" id="lastName">
+                <label for="jobTitle" class="form-label">JobTitle</label>
+                <select th:field="*{jobTitle}" class="form-select" id="jobTitle">
+                    <option th:each="jobTitle : ${jobTitles}" th:value="${jobTitle.id}" th:text="${jobTitle.name}"></option>
+                </select>
             </div>
-            <div class="col-sm-4">
-                <label for="jobTitle" class="form-label">Job Title</label>
-                <input th:field="*{jobTitle}" type="text" class="form-control" id="jobTitle">
-            </div>
-            <div class="col-sm-4">
-                <label for="phoneNumber" class="form-label">Phone number</label>
-                <input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber">
-            </div>
-            <div class="col-sm-4">
-                <label for="email" class="form-label">Email</label>
-                <input th:field="*{email}" type="text" class="form-control" id="email">
-            </div>
+
             <div class="col-sm-4">
                 <label for="team" class="form-label">Team</label>
                 <select th:field="*{team}" class="form-select" id="team">
                     <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}"></option>
                 </select>
             </div>
+            
+            <div class="col-sm-4">
+                <label for="joinDate" class="form-label">Join date</label>
+                <input th:field="*{joinDate}" type="text" class="form-control" id="joinDate">
+            </div>
+
             <div class="col-sm-4" style="display: flex; justify-content: flex-start; align-items: flex-end;">
                 <button type="submit" class="btn btn-primary" style="height: fit-content;">Create Employee</button>
             </div>
@@ -34,5 +35,39 @@
     </form>
 </div>
 <div th:unless="${#lists.size(teams)} > 0">
-    Need to add 1 team at least! Add a team <a th:href="@{/team}">here</a>.
+    Need to add 1 team at least! Add a team <a th:href="@{/teams}">here</a>.
+</div>
+
+
+<div th:if="${#lists.size(teams)} > 0" class="container mt-3">
+    <table class="table table-striped table-hover table-sm table-bordered table-responsive-md">
+        <thead>
+            <tr class="text-center">
+                <th>Employee Id</th>
+                <th>First name</th>
+                <!-- <th>Last name</th> -->
+                <th>Job title</th>
+                <th>Team</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.id}"></td>
+                <td th:if="${employee.person != null}" th:text="${employee.person.firstName}"></td>
+                    <td th:unless="${employee.person != null}">No Person</td>
+                <td th:if="${employee.jobTitle != null}" th:text="${employee.jobTitle.name}"></td>
+                    <td th:unless="${employee.jobTitle != null}">No JobTitle</td>
+                <td th:if="${employee.team != null}" th:text="${employee.team.name}"></td>
+                    <td th:unless="${employee.team != null}">No Team</td>
+                <td th:text="${employee.joinDate}"></td>
+                <td style="display: flex; justify-content: center;"><a
+                    th:href="@{/employees/delete/{id}(id=${employee.id})}"
+                    class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div th:unless="${#lists.size(teams)} > 0">
+    Need to add 1 team at least! Add a team <a th:href="@{/teams}">here</a>.
 </div>

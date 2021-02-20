@@ -16,7 +16,7 @@
                 <td th:if="${team.teamFunctionality != null}" th:text="${team.teamFunctionality.name}"></td>
                     <td th:unless="${team.teamFunctionality != null}">No TeamFunctionality</td>
                 <td style="display: flex; justify-content: center;"><a
-                    th:href="@{/team/delete/{id}(id=${team.id})}"
+                    th:href="@{/teams/delete/{id}(id=${team.id})}"
                     class="btn btn-danger btn-sm">Delete</a></td>
             </tr>
         </tbody>
@@ -24,7 +24,7 @@
 
 
 
-    <form th:action="@{/team/add}" th:object="${team}" method="POST">
+    <form th:action="@{/teams/add}" th:object="${team}" method="POST">
         <div class="row g-3 mb-3">
             <div class="col-sm-4">
                 <label for="name" class="form-label">Team name</label>

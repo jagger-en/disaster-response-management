@@ -27,19 +27,7 @@ public class EmployeeController {
         this.teamService = teamService;
     }
 
-    
     @GetMapping("")
-    public String getAllEmployees(Employee employee, Model model) {
-        List<Employee> employees = employeeService.findAllEmployees();
-        model.addAttribute("employees", employees);
-        model.addAttribute("pageToRender", "/employees/showEmployees");
-
-        List<Team> teams = teamService.findAllTeams();
-        model.addAttribute("teams", teams);
-        return "base";
-    }
-
-    @GetMapping("/create")
     public String createEmployees(Employee employee, Model model) {
         List<Employee> employees = employeeService.findAllEmployees();
         model.addAttribute("employees", employees);
@@ -53,13 +41,13 @@ public class EmployeeController {
     @PostMapping("/add")
     public String addEmployee(Employee employee, Model model) {
         employeeService.addEmployee(employee);
-        return "redirect:/employee";
+        return "redirect:/employees";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable("id") Long id) {
         employeeService.deleteEmployee(id);
-        return "redirect:/employee";
+        return "redirect:/employees";
     }
 
     // @GetMapping("/find/{id}")
