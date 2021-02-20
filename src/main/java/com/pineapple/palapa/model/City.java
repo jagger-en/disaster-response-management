@@ -17,15 +17,7 @@ public class City implements Serializable {
     private String name;
     private String centerCoordinate; // TODO: do we need to have geo coordinate type?
 
-    @ManyToOne
-    @JoinColumn(name = "country_id")
-    private Country country; // TODO: add country table
-
     public City() {}
-
-    public City(String name) {
-        this.name = name;
-    }
 
     public Long getId() {
         return id;
@@ -50,15 +42,6 @@ public class City implements Serializable {
     public void setCenterCoordinate(String centerCoordinate) {
         this.centerCoordinate = centerCoordinate;
     }
-    
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
 
     @Override
     public String toString() {
@@ -66,7 +49,6 @@ public class City implements Serializable {
         "id=" + id +
         ", name=" + name +
         ", centerCoordinate=" + centerCoordinate +
-        ", country=" + country +
         "}";
 
     }

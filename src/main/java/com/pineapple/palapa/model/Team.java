@@ -16,11 +16,11 @@ public class Team implements Serializable {
     private Long id;
     private String name;
 
-    public Team() {}
+    @ManyToOne
+    @JoinColumn(name = "team_functionality_id")
+    private TeamFunctionality teamFunctionality;
 
-    public Team(String name) {
-        this.name = name;
-    }
+    public Team() {}
 
     public Long getId() {
         return id;
@@ -38,12 +38,21 @@ public class Team implements Serializable {
         this.name = name;
     }
 
+    public TeamFunctionality getTeamFunctionality() {
+        return teamFunctionality;
+    }
+
+    public void setTeamFunctionality(TeamFunctionality teamFunctionality) {
+        this.teamFunctionality = teamFunctionality;
+    }
+
 
     @Override
     public String toString() {
         return "Team {" +
         "id=" + id +
         ", name=" + name +
+        ", teamFunctionality=" + teamFunctionality +
         "}";
 
     }

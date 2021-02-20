@@ -24,10 +24,6 @@ public class Location implements Serializable {
 
     public Location() {}
 
-    public Location(String name) {
-        this.name = name;
-    }
-
     public Long getId() {
         return id;
     }
@@ -60,11 +56,11 @@ public class Location implements Serializable {
         this.centerCoordinate = centerCoordinate;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 

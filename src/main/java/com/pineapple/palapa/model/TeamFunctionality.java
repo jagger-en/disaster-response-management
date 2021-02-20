@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "gender")
-public class Gender implements Serializable {
+@Table(name = "teamFunctionality")
+public class TeamFunctionality implements Serializable {
     /**
      * A serial was added
      */
-    private static final long serialVersionUID = 1001L;
+    private static final long serialVersionUID = 415676199798147L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
@@ -17,7 +17,7 @@ public class Gender implements Serializable {
     private String name;
     private String description;
 
-    public Gender() {}
+    public TeamFunctionality() {}
 
     public Long getId() {
         return id;
@@ -46,7 +46,7 @@ public class Gender implements Serializable {
 
     @Override
     public String toString() {
-        return "Gender {" +
+        return "TeamFunctionality {" +
         "id=" + id +
         ", name=" + name +
         ", description=" + description +

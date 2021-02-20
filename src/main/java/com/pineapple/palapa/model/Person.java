@@ -19,21 +19,13 @@ public class Person implements Serializable {
     private String firstName;
     private String lastName;
     
-    private Date dateOfBirth; // TODO: confirm whether this is the correct format
-    
     @ManyToOne
     @JoinColumn(name = "gender_id")
     private Gender gender;
 
-    @ManyToOne
-    @JoinColumn(name = "location_id")
-    private Location location;
+    private String dateOfBirth;
 
     public Person() {}
-
-    public Person(String firstName) {
-        this.firstName = firstName;
-    }
 
     public Long getId() {
         return id;
@@ -59,6 +51,14 @@ public class Person implements Serializable {
         this.lastName = lastName;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     public String getDateOfBirth() {
         return dateOfBirth;
     }
@@ -67,31 +67,14 @@ public class Person implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     @Override
     public String toString() {
-        return "Team {" +
+        return "Person {" +
         "id=" + id +
         ", firstName=" + firstName +
         ", lastName=" + lastName +
-        ", dateOfBirth=" + dateOfBirth +
         ", gender=" + gender +
-        ", location=" + location +
+        ", dateOfBirth=" + dateOfBirth +
         "}";
 
     }
