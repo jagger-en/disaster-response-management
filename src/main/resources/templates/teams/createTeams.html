@@ -5,6 +5,7 @@
             <tr class="text-center">
                 <th>Team Id</th>
                 <th>Team name</th>
+                <th>Team Functionality</th>
                 <th>Delete</th>
             </tr>
         </thead>
@@ -12,6 +13,8 @@
             <tr th:each="team : ${teams}">
                 <td th:text="${team.id}"></td>
                 <td th:text="${team.name}"></td>
+                <td th:if="${team.teamFunctionality != null}" th:text="${team.teamFunctionality.name}"></td>
+                    <td th:unless="${team.teamFunctionality != null}">No TeamFunctionality</td>
                 <td style="display: flex; justify-content: center;"><a
                     th:href="@{/team/delete/{id}(id=${team.id})}"
                     class="btn btn-danger btn-sm">Delete</a></td>
@@ -19,11 +22,19 @@
         </tbody>
     </table>
 
+
+
     <form th:action="@{/team/add}" th:object="${team}" method="POST">
         <div class="row g-3 mb-3">
             <div class="col-sm-4">
                 <label for="name" class="form-label">Team name</label>
                 <input th:field="*{name}" value="okok" type="text" class="form-control" id="name">
+            </div>
+            <div class="col-sm-4">
+                <label for="team" class="form-label">Team Functionality</label>
+                <select th:field="*{teamFunctionality}" class="form-select" id="teamFunctionality">
+                    <option th:each="teamFunctionality : ${teamFunctionalities}" th:value="${teamFunctionality.id}" th:text="${teamFunctionality.name}"></option>
+                </select>
             </div>
             <div class="col-sm-4" style="display: flex; justify-content: flex-start; align-items: flex-end;">
                 <button type="submit" class="btn btn-primary" style="height: fit-content;">Create Team</button>

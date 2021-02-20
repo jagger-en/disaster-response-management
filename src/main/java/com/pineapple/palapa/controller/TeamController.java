@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pineapple.palapa.model.Team;
+import com.pineapple.palapa.model.TeamFunctionality;
 import com.pineapple.palapa.service.TeamService;
+import com.pineapple.palapa.service.TeamFunctionalityService;
 
 import java.util.List;
 
@@ -18,15 +20,19 @@ import java.util.List;
 public class TeamController {
 
     private final TeamService teamService;
+    private TeamFunctionalityService teamFunctionalityService;
 
-    public TeamController(TeamService teamService) {
+    public TeamController(TeamService teamService, TeamFunctionalityService teamFunctionalityService) {
         this.teamService = teamService;
+        this.teamFunctionalityService = teamFunctionalityService;
     }
 
     @GetMapping("")
-    public String getAllTeams(Team team, Model model) {
+    public String getAllTeams(Team team, TeamFunctionality teamFunctionality, Model model) {
         List<Team> teams = teamService.findAllTeams();
+        List<TeamFunctionality> teamFunctionalities = teamFunctionalityService.findAllTeamFunctionalities();
         model.addAttribute("teams", teams);
+        model.addAttribute("teamFunctionalities", teamFunctionalities);
         model.addAttribute("pageToRender", "/teams/createTeams");
         return "base";
     }
