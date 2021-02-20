@@ -4,23 +4,20 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "team")
-public class Team implements Serializable {
+@Table(name = "teamFunctionality")
+public class TeamFunctionality implements Serializable {
     /**
      * A serial was added
      */
-    private static final long serialVersionUID = 4112956760199798147L;
+    private static final long serialVersionUID = 415676199798147L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
     private String name;
+    private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "team_functionality_id")
-    private TeamFunctionality teamFunctionality;
-
-    public Team() {}
+    public TeamFunctionality() {}
 
     public Long getId() {
         return id;
@@ -38,21 +35,21 @@ public class Team implements Serializable {
         this.name = name;
     }
 
-    public TeamFunctionality getTeamFunctionality() {
-        return teamFunctionality;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTeamFunctionality(TeamFunctionality teamFunctionality) {
-        this.teamFunctionality = teamFunctionality;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 
     @Override
     public String toString() {
-        return "Team {" +
+        return "TeamFunctionality {" +
         "id=" + id +
         ", name=" + name +
-        ", teamFunctionality=" + teamFunctionality +
+        ", description=" + description +
         "}";
 
     }

@@ -19,29 +19,21 @@ public class Employee implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    private String firstName;
-    private String lastName;
-    private String jobTitle;
-    private String phoneNumber;
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
+
+    @ManyToOne
+    @JoinColumn(name = "job_title_id")
+    private JobTitle jobTitle;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
 
-
-
-
+    private String joinDate;
 
     public Employee() {}
-
-    public Employee(String firstName, String lastName, String jobTitle, String phoneNumber, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.jobTitle = jobTitle;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
 
     public Long getId() {
         return id;
@@ -51,46 +43,21 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getJobTitle() {
+    public JobTitle getJobTitle() {
         return jobTitle;
     }
 
-    public void setJobTitle(String jobTitle) {
+    public void setJobTitle(JobTitle jobTitle) {
         this.jobTitle = jobTitle;
     }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
 
     public Team getTeam() {
         return team;
@@ -100,18 +67,24 @@ public class Employee implements Serializable {
         this.team = team;
     }
 
+    public String getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(String joinDate) {
+        this.joinDate = joinDate;
+    }
+
 
     @Override
     public String toString() {
         return "Employee {" +
         "id=" + id +
-        ", firstName=" + firstName +
-        ", lastName=" + lastName +
-        ", jobTitle=" + jobTitle +
-        ", phoneNumber=" + phoneNumber +
-        ", email=" + email +
+        "person=" + person +
+        "jobTitle=" + jobTitle +
+        "team=" + team +
+        "joinDate=" + joinDate +
         "}";
-
     }
 
 }

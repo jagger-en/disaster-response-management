@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "team")
-public class Team implements Serializable {
+@Table(name = "city")
+public class City implements Serializable {
     /**
      * A serial was added
      */
@@ -15,12 +15,9 @@ public class Team implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
     private String name;
+    private String centerCoordinate; // TODO: do we need to have geo coordinate type?
 
-    @ManyToOne
-    @JoinColumn(name = "team_functionality_id")
-    private TeamFunctionality teamFunctionality;
-
-    public Team() {}
+    public City() {}
 
     public Long getId() {
         return id;
@@ -38,21 +35,20 @@ public class Team implements Serializable {
         this.name = name;
     }
 
-    public TeamFunctionality getTeamFunctionality() {
-        return teamFunctionality;
+    public String getCenterCoordinate() {
+        return centerCoordinate;
     }
 
-    public void setTeamFunctionality(TeamFunctionality teamFunctionality) {
-        this.teamFunctionality = teamFunctionality;
+    public void setCenterCoordinate(String centerCoordinate) {
+        this.centerCoordinate = centerCoordinate;
     }
-
 
     @Override
     public String toString() {
-        return "Team {" +
+        return "City {" +
         "id=" + id +
         ", name=" + name +
-        ", teamFunctionality=" + teamFunctionality +
+        ", centerCoordinate=" + centerCoordinate +
         "}";
 
     }
