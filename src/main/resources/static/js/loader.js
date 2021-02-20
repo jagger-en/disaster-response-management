@@ -7,12 +7,12 @@ function onReady(callback) {
     }, 1000);
   }
   
-  function setVisible(selector, visible) {
-    document.querySelector(selector).style.display = visible ? 'block' : 'none';
-  }
-  
-  onReady(function() {
-    setVisible('.page', true);
-    setVisible('#loading', false);
-  });
+function setVisible(selector, visible) {
+  document.querySelector(selector).style.display = visible ? 'block' : 'none';
+}
+
+onReady(function() {
+  setVisible('.page', true);
+  setVisible('#loading', false);
+});
  
