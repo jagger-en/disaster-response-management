@@ -17,8 +17,8 @@ public class GenderService {
         this.genderRepo = genderRepo;
     }
 
-    public Gender addGender(Gender Gender) {
-        return genderRepo.save(Gender);
+    public Gender addGender(Gender gender) {
+        return genderRepo.save(gender);
     }
 
     public List<Gender> findAllGenders() {

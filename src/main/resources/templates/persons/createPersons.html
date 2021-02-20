@@ -14,8 +14,8 @@
         <tbody>
             <tr th:each="person : ${persons}">
                 <td th:text="${person.id}"></td>
-                <td th:text="${person.firstname}"></td>
-                <td th:text="${person.lastname}"></td>
+                <td th:text="${person.firstName}"></td>
+                <td th:text="${person.lastName}"></td>
                 <td th:if="${person.gender != null}" th:text="${person.gender.name}"></td>
                     <td th:unless="${person.gender != null}">No gender</td>
                 <td th:text="${person.dateOfBirth}"></td>

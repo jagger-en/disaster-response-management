@@ -5,7 +5,7 @@
             <div class="col-sm-4">
                 <label for="person" class="form-label">Person</label>
                 <select th:field="*{person}" class="form-select" id="person">
-                    <option th:each="person : ${persons}" th:value="${person.id}" th:text="${person.name}"></option>
+                    <option th:each="person : ${persons}" th:value="${person.id}" th:text="${person.firstName}"></option>
                 </select>
             </div>
 

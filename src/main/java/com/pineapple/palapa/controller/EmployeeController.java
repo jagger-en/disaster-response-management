@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pineapple.palapa.model.Employee;
+import com.pineapple.palapa.model.Person;
+import com.pineapple.palapa.model.JobTitle;
 import com.pineapple.palapa.model.Team;
 import com.pineapple.palapa.service.EmployeeService;
 import com.pineapple.palapa.service.PersonService;
@@ -34,7 +36,7 @@ public class EmployeeController {
     }
 
     @GetMapping("")
-    public String createEmployees(Employee employee, Model model) {
+    public String createEmployees(Employee employee, Person person, JobTitle jobTitle, Team team, Model model) {
         
         List<Employee> employees = employeeService.findAllEmployees();
         model.addAttribute("employees", employees);

@@ -10,12 +10,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="jobtitle : ${jobtitles}">
-                <td th:text="${jobtitle.id}"></td>
-                <td th:text="${jobtitle.name}"></td>
-                <td th:text="${jobtitle.description}"></td>
+            <tr th:each="jobTitle : ${jobTitles}">
+                <td th:text="${jobTitle.id}"></td>
+                <td th:text="${jobTitle.name}"></td>
+                <td th:text="${jobTitle.description}"></td>
                 <td style="display: flex; justify-content: center;"><a
-                    th:href="@{/jobtitles/delete/{id}(id=${jobtitle.id})}"
+                    th:href="@{/jobTitles/delete/{id}(id=${jobTitle.id})}"
                     class="btn btn-danger btn-sm">Delete</a></td>
             </tr>
         </tbody>
@@ -23,7 +23,7 @@
 
 
 
-    <form th:action="@{/jobtitles/add}" th:object="${jobtitle}" method="POST">
+    <form th:action="@{/jobTitles/add}" th:object="${jobTitle}" method="POST">
         <div class="row g-3 mb-3">
             <div class="col-sm-4">
                 <label for="name" class="form-label">Jobtitle name</label>

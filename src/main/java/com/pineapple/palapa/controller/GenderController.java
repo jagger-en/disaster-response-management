@@ -26,8 +26,8 @@ public class GenderController {
     @GetMapping("")
     public String getAllGenders(Gender gender, Model model) {
         List<Gender> genders = genderService.findAllGenders();
-        model.addAttribute("gender", genders);
-        model.addAttribute("pageToRender", "/gender/createGenders");
+        model.addAttribute("genders", genders);
+        model.addAttribute("pageToRender", "/genders/createGenders");
         return "base";
     }
 

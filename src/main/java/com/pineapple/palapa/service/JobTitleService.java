@@ -17,8 +17,8 @@ public class JobTitleService {
         this.jobTitleRepo = jobTitleRepo;
     }
 
-    public JobTitle addJobTitle(JobTitle JobTitle) {
-        return jobTitleRepo.save(JobTitle);
+    public JobTitle addJobTitle(JobTitle jobTitle) {
+        return jobTitleRepo.save(jobTitle);
     }
 
     public List<JobTitle> findAllJobTitles() {

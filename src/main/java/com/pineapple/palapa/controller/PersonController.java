@@ -28,7 +28,7 @@ public class PersonController {
     }
 
     @GetMapping("")
-    public String getAllPersons(PersonService personService, GenderService genderService, Model model) {
+    public String getAllPersons(Person person, Gender gender, Model model) {
         List<Person> persons = personService.findAllPersons();
         List<Gender> genders = genderService.findAllGenders();
         model.addAttribute("persons", persons);
