@@ -14,7 +14,7 @@ import com.pineapple.palapa.service.TeamFunctionalityService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/teamFunctionality") 
+@RequestMapping("/teamFunctionalities") 
 public class TeamFunctionalityController {
 
     private final TeamFunctionalityService teamFunctionalityService;
@@ -34,12 +34,12 @@ public class TeamFunctionalityController {
     @PostMapping("/add")
     public String addTeamFunctionality(TeamFunctionality teamFunctionality, Model model) {
         teamFunctionalityService.addTeamFunctionality(teamFunctionality);
-        return "redirect:/teamFunctionality";
+        return "redirect:/teamFunctionalities";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteTeamFunctionality(@PathVariable("id") Long id) {
         teamFunctionalityService.deleteTeamFunctionality(id);
-        return "redirect:/teamFunctionality";
+        return "redirect:/teamFunctionalities";
     }
 }

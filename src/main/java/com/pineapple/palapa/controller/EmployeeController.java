@@ -11,30 +11,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.pineapple.palapa.model.Employee;
 import com.pineapple.palapa.model.Team;
 import com.pineapple.palapa.service.EmployeeService;
+import com.pineapple.palapa.service.PersonService;
+import com.pineapple.palapa.service.JobTitleService;
 import com.pineapple.palapa.service.TeamService;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
+    private PersonService personService;
+    private JobTitleService jobTitleService;
     private TeamService teamService;
 
-    public EmployeeController(EmployeeService employeeService, TeamService teamService) {
+    public EmployeeController(EmployeeService employeeService, PersonService personService, JobTitleService jobTitleService, TeamService teamService) {
         this.employeeService = employeeService;
+        this.personService = personService;
+        this.jobTitleService = jobTitleService;
         this.teamService = teamService;
     }
 
     @GetMapping("")
     public String createEmployees(Employee employee, Model model) {
+        
         List<Employee> employees = employeeService.findAllEmployees();
         model.addAttribute("employees", employees);
         model.addAttribute("pageToRender", "/employees/createEmployees");
 
+        List<Person> persons = personService.findAllPersons();
+        model.addAttribute("persons", persons);
+
+        List<JobTitle> jobTitles = jobTitleService.findAllJobTitles();
+        model.addAttribute("jobTitles", jobTitles);
+
         List<Team> teams = teamService.findAllTeams();
         model.addAttribute("teams", teams);
+
         return "base";
     }
 

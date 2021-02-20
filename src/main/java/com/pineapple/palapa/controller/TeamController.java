@@ -16,7 +16,7 @@ import com.pineapple.palapa.service.TeamFunctionalityService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/team") // remember to write @{/team/add} instead of @{team/add}!!!! a "/" makes a difference!
+@RequestMapping("/teams") // remember to write @{/team/add} instead of @{team/add}!!!! a "/" makes a difference!
 public class TeamController {
 
     private final TeamService teamService;
@@ -40,12 +40,12 @@ public class TeamController {
     @PostMapping("/add")
     public String addTeam(Team team, Model model) {
         teamService.addTeam(team);
-        return "redirect:/team";
+        return "redirect:/teams";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteTeam(@PathVariable("id") Long id) {
         teamService.deleteTeam(id);
-        return "redirect:/team";
+        return "redirect:/teams";
     }
 }
