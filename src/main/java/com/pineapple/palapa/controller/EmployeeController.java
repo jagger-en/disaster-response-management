@@ -32,12 +32,9 @@ public class EmployeeController {
     public String getAllEmployees(Employee employee, Model model) {
         List<Employee> employees = employeeService.findAllEmployees();
         model.addAttribute("employees", employees);
-        model.addAttribute("pageToRender", "showEmployees");
+        model.addAttribute("pageToRender", "/employees/showEmployees");
 
         List<Team> teams = teamService.findAllTeams();
-        System.out.println("----------------------------");
-        System.out.println(employees);
-        System.out.println("----------------------------");
         model.addAttribute("teams", teams);
         return "base";
     }
@@ -46,7 +43,7 @@ public class EmployeeController {
     public String createEmployees(Employee employee, Model model) {
         List<Employee> employees = employeeService.findAllEmployees();
         model.addAttribute("employees", employees);
-        model.addAttribute("pageToRender", "createEmployees");
+        model.addAttribute("pageToRender", "/employees/createEmployees");
 
         List<Team> teams = teamService.findAllTeams();
         model.addAttribute("teams", teams);
