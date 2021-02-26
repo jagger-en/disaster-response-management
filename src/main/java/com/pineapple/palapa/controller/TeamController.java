@@ -34,7 +34,7 @@ public class TeamController {
         model.addAttribute("teams", teams);
         model.addAttribute("teamFunctionalities", teamFunctionalities);
         model.addAttribute("pageToRender", "/teams/createTeams");
-        return "base";
+        return "index";
     }
 
     @PostMapping("/add")

@@ -28,7 +28,7 @@ public class TeamFunctionalityController {
         List<TeamFunctionality> teamFunctionalities = teamFunctionalityService.findAllTeamFunctionalities();
         model.addAttribute("teamFunctionalities", teamFunctionalities);
         model.addAttribute("pageToRender", "/teamFunctionalities/createTeamFunctionalities");
-        return "base";
+        return "index";
     }
 
     @PostMapping("/add")

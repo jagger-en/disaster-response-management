@@ -28,7 +28,7 @@ public class JobTitleController {
         List<JobTitle> jobTitles = jobTitleService.findAllJobTitles();
         model.addAttribute("jobTitles", jobTitles);
         model.addAttribute("pageToRender", "/jobTitles/createJobTitles");
-        return "base";
+        return "index";
     }
 
     @PostMapping("/add")

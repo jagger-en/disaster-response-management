@@ -28,7 +28,7 @@ public class GenderController {
         List<Gender> genders = genderService.findAllGenders();
         model.addAttribute("genders", genders);
         model.addAttribute("pageToRender", "/genders/createGenders");
-        return "base";
+        return "index";
     }
 
     @PostMapping("/add")

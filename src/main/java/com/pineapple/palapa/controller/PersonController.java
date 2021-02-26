@@ -34,7 +34,7 @@ public class PersonController {
         model.addAttribute("persons", persons);
         model.addAttribute("genders", genders);
         model.addAttribute("pageToRender", "/persons/createPersons");
-        return "base";
+        return "index";
     }
 
     @PostMapping("/add")

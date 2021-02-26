@@ -44,7 +44,7 @@ public class EmployeeController {
         List<JobTitle> jobTitles = jobTitleService.findAllJobTitles();
         model.addAttribute("jobTitles", jobTitles);
 
-        return "base";
+        return "index";
     }
 
     @PostMapping("/add")
@@ -62,12 +62,12 @@ public class EmployeeController {
     // @GetMapping("/find/{id}")
     // public String getEmployeeById (@PathVariable("id") Long id) {
     //     Employee employee = employeeService.findEmployeeById(id);
-    //     return "base";
+    //     return "index";
     // }
 
     // @PostMapping("/update")
     // public String updateEmployee(@RequestBody Employee employee) {
     //     Employee updateEmployee = employeeService.updateEmployee(employee);
-    //     return "base";
+    //     return "index";
     // }
 }

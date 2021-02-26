@@ -28,7 +28,7 @@ public class CityController {
         List<City> cities = cityService.findAllCities();
         model.addAttribute("cities", cities);
         model.addAttribute("pageToRender", "/cities/createCities");
-        return "base";
+        return "index";
     }
 
     @PostMapping("/add")

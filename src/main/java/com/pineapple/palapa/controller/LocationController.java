@@ -28,7 +28,7 @@ public class LocationController {
         List<Location> locations = locationService.findAllLocations();
         model.addAttribute("locations", locations);
         model.addAttribute("pageToRender", "/locations/createlocations");
-        return "base";
+        return "index";
     }
 
     @PostMapping("/add")

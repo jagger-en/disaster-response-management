@@ -14,6 +14,6 @@ public class MainController {
     @GetMapping("")
     public String renderMainPage(Model model) {
         model.addAttribute("pageToRender", "/main");
-        return "base";
+        return "index";
     }
 }
