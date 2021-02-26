@@ -25,6 +25,11 @@ public class PersonService {
         return personRepo.findAll();
     }
 
+    public Person findPersonById(Long id) {
+        return personRepo.findPersonById(id)
+            .orElseThrow(() -> new UserNotFoundException("Person by id " + id + " was not found"));
+    }
+
     public void deletePerson(Long id){
         Person person = personRepo.findById(id)
             .orElseThrow(() -> new UserNotFoundException("Person by id " + id + " was not found"));

@@ -1,4 +1,4 @@
-package com.pineapple.palapa.resource;
+package com.pineapple.palapa.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +10,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/genders") 
-public class GenderController {
+public class GenderApiController {
 
     private final GenderService genderService;
 
-    public GenderController(GenderService genderService) {
+    public GenderApiController(GenderService genderService) {
         this.genderService = genderService;
     }
 
