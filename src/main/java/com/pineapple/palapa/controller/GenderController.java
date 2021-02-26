@@ -1,4 +1,4 @@
-package com.pineapple.palapa.resource;
+package com.pineapple.palapa.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +33,7 @@ public class GenderController {
     @PostMapping("/add")
     public ResponseEntity<Gender> addGender(@RequestBody Gender gender) {
         Gender newGender = genderService.addGender(gender);
-        return new ResponseEntity<>(gender, HttpStatus.CREATED);
+        return new ResponseEntity<>(newGender, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
