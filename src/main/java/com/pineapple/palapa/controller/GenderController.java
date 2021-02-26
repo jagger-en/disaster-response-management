@@ -1,14 +1,19 @@
 package com.pineapple.palapa.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.pineapple.palapa.model.Gender;
 import com.pineapple.palapa.service.GenderService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/genders") 
 public class GenderController {
 
@@ -18,27 +23,23 @@ public class GenderController {
         this.genderService = genderService;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Gender>> getAllGenders() {
+    @GetMapping("")
+    public String getAllGenders(Gender gender, Model model) {
         List<Gender> genders = genderService.findAllGenders();
-        return new ResponseEntity<>(genders, HttpStatus.OK);
-    }
-
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Gender> getGenderById(@PathVariable("id") Long id) {
-        Gender gender = genderService.findGenderById(id);
-        return new ResponseEntity<>(gender, HttpStatus.OK);
+        model.addAttribute("genders", genders);
+        model.addAttribute("pageToRender", "/genders/createGenders");
+        return "base";
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Gender> addGender(@RequestBody Gender gender) {
-        Gender newGender = genderService.addGender(gender);
-        return new ResponseEntity<>(newGender, HttpStatus.CREATED);
+    public String addGender(Gender gender, Model model) {
+        genderService.addGender(gender);
+        return "redirect:/genders";
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteGender(@PathVariable("id") Long id) {
+    @GetMapping("/delete/{id}")
+    public String deleteGender(@PathVariable("id") Long id) {
         genderService.deleteGender(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return "redirect:/genders";
     }
 }
