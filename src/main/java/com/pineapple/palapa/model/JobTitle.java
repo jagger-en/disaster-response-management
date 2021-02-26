@@ -18,7 +18,7 @@ public class JobTitle implements Serializable {
     private String name;
     private String description;
 
-    @OneToMany(mappedBy="employee", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy="jobTitle", cascade=CascadeType.REMOVE)
     Collection<Employee> employees;
 
     public JobTitle() {}

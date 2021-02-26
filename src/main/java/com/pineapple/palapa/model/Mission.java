@@ -29,7 +29,7 @@ public class Mission implements Serializable {
     private String startTime;
     private String endTime;
 
-    @OneToMany(mappedBy="missionTeam", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy="mission", cascade=CascadeType.REMOVE)
     Collection<MissionTeam> missionTeams;
 
     public Mission() {}

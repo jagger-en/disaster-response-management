@@ -17,7 +17,7 @@ public class City implements Serializable {
     private Long id;
     private String name;
     private String centerCoordinate; // TODO: do we need to have geo coordinate type?
-    @OneToMany(mappedBy="location", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy="city", cascade=CascadeType.REMOVE)
     Collection<Location> locations;
 
     public City() {}

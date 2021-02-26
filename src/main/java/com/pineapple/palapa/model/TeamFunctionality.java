@@ -18,7 +18,7 @@ public class TeamFunctionality implements Serializable {
     private String name;
     private String description;
 
-    @OneToMany(mappedBy="team", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy="teamFunctionality", cascade=CascadeType.REMOVE)
     Collection<Team> teams;
 
     public TeamFunctionality() {}

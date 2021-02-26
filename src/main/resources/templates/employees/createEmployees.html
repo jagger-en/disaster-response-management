@@ -1,4 +1,4 @@
-<div th:if="${#lists.size(teams)} > 0" class="container mt-3">
+<div class="container mt-3">
     <form th:action="@{/employees/add}" th:object="${employee}" method="POST">
         <div class="row g-3 mb-3">
 
@@ -15,13 +15,6 @@
                     <option th:each="jobTitle : ${jobTitles}" th:value="${jobTitle.id}" th:text="${jobTitle.name}"></option>
                 </select>
             </div>
-
-            <div class="col-sm-4">
-                <label for="team" class="form-label">Team</label>
-                <select th:field="*{team}" class="form-select" id="team">
-                    <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}"></option>
-                </select>
-            </div>
             
             <div class="col-sm-4">
                 <label for="joinDate" class="form-label">Join date</label>
@@ -34,12 +27,9 @@
         </div>
     </form>
 </div>
-<div th:unless="${#lists.size(teams)} > 0">
-    Need to add 1 team at least! Add a team <a th:href="@{/teams}">here</a>.
-</div>
 
 
-<div th:if="${#lists.size(teams)} > 0" class="container mt-3">
+<div class="container mt-3">
     <table class="table table-striped table-hover table-sm table-bordered table-responsive-md">
         <thead>
             <tr class="text-center">
@@ -47,7 +37,6 @@
                 <th>First name</th>
                 <!-- <th>Last name</th> -->
                 <th>Job title</th>
-                <th>Team</th>
                 <th>Delete</th>
             </tr>
         </thead>
@@ -58,8 +47,6 @@
                     <td th:unless="${employee.person != null}">No Person</td>
                 <td th:if="${employee.jobTitle != null}" th:text="${employee.jobTitle.name}"></td>
                     <td th:unless="${employee.jobTitle != null}">No JobTitle</td>
-                <td th:if="${employee.team != null}" th:text="${employee.team.name}"></td>
-                    <td th:unless="${employee.team != null}">No Team</td>
                 <td th:text="${employee.joinDate}"></td>
                 <td style="display: flex; justify-content: center;"><a
                     th:href="@{/employees/delete/{id}(id=${employee.id})}"
@@ -67,7 +54,4 @@
             </tr>
         </tbody>
     </table>
-</div>
-<div th:unless="${#lists.size(teams)} > 0">
-    Need to add 1 team at least! Add a team <a th:href="@{/teams}">here</a>.
 </div>

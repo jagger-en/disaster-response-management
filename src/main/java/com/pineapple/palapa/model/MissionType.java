@@ -18,7 +18,7 @@ public class MissionType implements Serializable {
     private String name;
     private String description;
 
-    @OneToMany(mappedBy="mission", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy="missionType", cascade=CascadeType.REMOVE)
     Collection<Mission> missions;
 
     public MissionType() {}

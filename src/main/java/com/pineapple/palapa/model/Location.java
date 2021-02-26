@@ -23,7 +23,7 @@ public class Location implements Serializable {
     @JoinColumn(name = "city_id")
     private City city;
 
-    @OneToMany(mappedBy="mission", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy="location", cascade=CascadeType.REMOVE)
     Collection<Mission> missions;
 
     public Location() {}

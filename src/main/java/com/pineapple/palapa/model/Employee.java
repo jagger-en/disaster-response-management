@@ -2,6 +2,7 @@ package com.pineapple.palapa.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "employee")
@@ -27,11 +28,10 @@ public class Employee implements Serializable {
     @JoinColumn(name = "job_title_id")
     private JobTitle jobTitle;
 
-    @ManyToOne
-    @JoinColumn(name = "team_id")
-    private Team team;
-
     private String joinDate;
+
+    @OneToMany(mappedBy="employee", cascade=CascadeType.REMOVE)
+    Collection<TeamEmployee> teamEmployees;
 
     public Employee() {}
 
@@ -59,14 +59,6 @@ public class Employee implements Serializable {
         this.jobTitle = jobTitle;
     }
 
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
     public String getJoinDate() {
         return joinDate;
     }
@@ -82,7 +74,6 @@ public class Employee implements Serializable {
         "id=" + id +
         "person=" + person +
         "jobTitle=" + jobTitle +
-        "team=" + team +
         "joinDate=" + joinDate +
         "}";
     }

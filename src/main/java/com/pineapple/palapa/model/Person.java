@@ -26,7 +26,7 @@ public class Person implements Serializable {
 
     private String dateOfBirth;
 
-    @OneToMany(mappedBy="employee", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy="person", cascade=CascadeType.REMOVE)
     Collection<Employee> employees;
 
     public Person() {}

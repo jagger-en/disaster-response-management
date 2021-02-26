@@ -21,8 +21,11 @@ public class Team implements Serializable {
     @JoinColumn(name = "team_functionality_id")
     private TeamFunctionality teamFunctionality;
 
-    @OneToMany(mappedBy="missionTeam", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy="team", cascade=CascadeType.REMOVE)
     Collection<MissionTeam> missionTeams;
+
+    @OneToMany(mappedBy="team", cascade=CascadeType.REMOVE)
+    Collection<TeamEmployee> teamEmployees;
 
     public Team() {}
 
