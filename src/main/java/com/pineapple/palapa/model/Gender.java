@@ -2,6 +2,7 @@ package com.pineapple.palapa.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "gender")
@@ -16,6 +17,8 @@ public class Gender implements Serializable {
     private Long id;
     private String name;
     private String description;
+    @OneToMany(mappedBy="gender", cascade=CascadeType.REMOVE)
+    Collection<Person> people;
 
     public Gender() {}
 
