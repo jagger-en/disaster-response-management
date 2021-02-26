@@ -19,7 +19,7 @@ public class Person implements Serializable {
     private String firstName;
     private String lastName;
     
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name = "gender_id")
     private Gender gender;
 

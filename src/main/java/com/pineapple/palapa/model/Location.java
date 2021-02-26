@@ -18,7 +18,7 @@ public class Location implements Serializable {
     private String zipCode;
     private String centerCoordinate; // TODO: do we need to have geo coordinate type?
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name = "city_id")
     private City city;
 

@@ -17,11 +17,11 @@ public class Mission implements Serializable {
     private String name;
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name = "mission_type_id")
     private MissionType missionType;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name = "location_type_id")
     private Location location;
 

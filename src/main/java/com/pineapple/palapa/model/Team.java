@@ -16,7 +16,7 @@ public class Team implements Serializable {
     private Long id;
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.REMOVE)
     @JoinColumn(name = "team_functionality_id")
     private TeamFunctionality teamFunctionality;
 
