@@ -5,7 +5,7 @@
             <tr class="text-center">
                 <th>City Id</th>
                 <th>City name</th>
-                <th>Description</th>
+                <th>Center coordinate</th>
                 <th>Delete</th>
             </tr>
         </thead>
@@ -13,7 +13,7 @@
             <tr th:each="city : ${cities}">
                 <td th:text="${city.id}"></td>
                 <td th:text="${city.name}"></td>
-                <td th:text="${city.description}"></td>
+                <td th:text="${city.centerCoordinate}"></td>
                 <td style="display: flex; justify-content: center;"><a
                     th:href="@{/cities/delete/{id}(id=${city.id})}"
                     class="btn btn-danger btn-sm">Delete</a></td>
@@ -30,8 +30,8 @@
                 <input th:field="*{name}" value="okok" type="text" class="form-control" id="name">
             </div>
             <div class="col-sm-4">
-                <label for="description" class="form-label">Description</label>
-                <input th:field="*{description}" value="okok" type="text" class="form-control" id="description">
+                <label for="centerCoordinate" class="form-label">Center coordinate</label>
+                <input th:field="*{centerCoordinate}" value="okok" type="text" class="form-control" id="centerCoordinate">
             </div>
 
             <div class="col-sm-4" style="display: flex; justify-content: flex-start; align-items: flex-end;">

@@ -5,7 +5,9 @@
             <tr class="text-center">
                 <th>Location Id</th>
                 <th>Location name</th>
-                <th>Description</th>
+                <th>Location zip code</th>
+                <th>Location center coordinate</th>
+                <th>Location city</th>
                 <th>Delete</th>
             </tr>
         </thead>
@@ -13,7 +15,10 @@
             <tr th:each="location : ${locations}">
                 <td th:text="${location.id}"></td>
                 <td th:text="${location.name}"></td>
-                <td th:text="${location.description}"></td>
+                <td th:text="${location.zipCode}"></td>
+                <td th:text="${location.centerCoordinate}"></td>
+                <td th:if="${location.city != null}" th:text="${location.city.name}"></td>
+                    <td th:unless="${location.city != null}">No city</td>
                 <td style="display: flex; justify-content: center;"><a
                     th:href="@{/locations/delete/{id}(id=${location.id})}"
                     class="btn btn-danger btn-sm">Delete</a></td>
@@ -30,10 +35,23 @@
                 <input th:field="*{name}" value="okok" type="text" class="form-control" id="name">
             </div>
             <div class="col-sm-4">
-                <label for="description" class="form-label">Description</label>
-                <input th:field="*{description}" value="okok" type="text" class="form-control" id="description">
+                <label for="zipCode" class="form-label">Location zipCode</label>
+                <input th:field="*{zipCode}" value="okok" type="text" class="form-control" id="zipCode">
             </div>
-
+            <div class="col-sm-4">
+                <label for="centerCoordinate" class="form-label">Location centerCoordinate</label>
+                <input th:field="*{centerCoordinate}" value="okok" type="text" class="form-control" id="centerCoordinate">
+            </div>
+            <div class="col-sm-4">
+                <label for="centerCoordinate" class="form-label">Location centerCoordinate</label>
+                <input th:field="*{centerCoordinate}" value="okok" type="text" class="form-control" id="centerCoordinate">
+            </div>
+            <div class="col-sm-4">
+                <label for="city" class="form-label">City</label>
+                <select th:field="*{city}" class="form-select" id="city">
+                    <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+                </select>
+            </div>
             <div class="col-sm-4" style="display: flex; justify-content: flex-start; align-items: flex-end;">
                 <button type="submit" class="btn btn-primary" style="height: fit-content;">Create Location</button>
             </div>
