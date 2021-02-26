@@ -27,7 +27,7 @@ public class LocationController {
     public String getAllLocations(Location Location, Model model) {
         List<Location> locations = locationService.findAllLocations();
         model.addAttribute("locations", locations);
-        model.addAttribute("pageToRender", "/locations/createlocations");
+        model.addAttribute("pageToRender", "/locations/createLocations");
         return "index";
     }
 
