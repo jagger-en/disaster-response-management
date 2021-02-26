@@ -2,6 +2,7 @@ package com.pineapple.palapa.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "mission")
@@ -17,16 +18,19 @@ public class Mission implements Serializable {
     private String name;
     private String description;
 
-    @ManyToOne(cascade=CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "mission_type_id")
     private MissionType missionType;
 
-    @ManyToOne(cascade=CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "location_type_id")
     private Location location;
 
     private String startTime;
     private String endTime;
+
+    @OneToMany(mappedBy="missionTeam", cascade=CascadeType.REMOVE)
+    Collection<MissionTeam> missionTeams;
 
     public Mission() {}
 

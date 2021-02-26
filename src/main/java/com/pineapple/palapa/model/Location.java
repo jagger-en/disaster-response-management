@@ -2,6 +2,7 @@ package com.pineapple.palapa.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "location")
@@ -18,9 +19,12 @@ public class Location implements Serializable {
     private String zipCode;
     private String centerCoordinate; // TODO: do we need to have geo coordinate type?
 
-    @ManyToOne(cascade=CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
+
+    @OneToMany(mappedBy="mission", cascade=CascadeType.REMOVE)
+    Collection<Mission> missions;
 
     public Location() {}
 

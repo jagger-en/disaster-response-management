@@ -2,6 +2,7 @@ package com.pineapple.palapa.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "city")
@@ -16,6 +17,8 @@ public class City implements Serializable {
     private Long id;
     private String name;
     private String centerCoordinate; // TODO: do we need to have geo coordinate type?
+    @OneToMany(mappedBy="location", cascade=CascadeType.REMOVE)
+    Collection<Location> locations;
 
     public City() {}
 

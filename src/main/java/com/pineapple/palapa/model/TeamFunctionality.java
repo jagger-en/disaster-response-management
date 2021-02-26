@@ -2,6 +2,7 @@ package com.pineapple.palapa.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "teamFunctionality")
@@ -16,6 +17,9 @@ public class TeamFunctionality implements Serializable {
     private Long id;
     private String name;
     private String description;
+
+    @OneToMany(mappedBy="team", cascade=CascadeType.REMOVE)
+    Collection<Team> teams;
 
     public TeamFunctionality() {}
 

@@ -19,15 +19,15 @@ public class Employee implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    @ManyToOne(cascade=CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
 
-    @ManyToOne(cascade=CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "job_title_id")
     private JobTitle jobTitle;
 
-    @ManyToOne(cascade=CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
 

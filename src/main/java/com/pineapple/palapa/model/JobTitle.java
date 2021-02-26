@@ -2,6 +2,7 @@ package com.pineapple.palapa.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "jobTitle")
@@ -16,6 +17,9 @@ public class JobTitle implements Serializable {
     private Long id;
     private String name;
     private String description;
+
+    @OneToMany(mappedBy="employee", cascade=CascadeType.REMOVE)
+    Collection<Employee> employees;
 
     public JobTitle() {}
 

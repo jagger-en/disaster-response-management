@@ -15,11 +15,11 @@ public class TeamEmployee implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    @ManyToOne(cascade=CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
     
-    @ManyToOne(cascade=CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
