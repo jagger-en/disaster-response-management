@@ -1,0 +1,38 @@
+[
+    {
+        "mission_id": 23,
+        "name": "Building hospital tents",
+        "description": "The medical team needs a facility to treat the wounded. Needs to be done within 2 days.",
+        "mission_type_id": 56,
+        "location_id": 209,
+        "start_time": "2018-5-4 10:00",
+        "end_time": null
+    },
+    {
+        "mission_id": 24,
+        "name": "Bring food supply from SupplyTeam-Bravo",
+        "description": "SupplyTeam-Bravo has arrived. Needs to be distributed to the sites.",
+        "mission_type_id": 57,
+        "location_id": 210,
+        "start_time": "2018-5-4 7:00",
+        "end_time": null
+    },
+    {
+        "mission_id": 25,
+        "name": "Dispatch searchers (air)",
+        "description": "Dispatch the helicopters. Need to get wide coverage.",
+        "mission_type_id": 46,
+        "location_id": 209,
+        "start_time": "2018-5-3 18:00",
+        "end_time": null
+    },
+    {
+        "mission_id": 26,
+        "name": "Dispatch searchers (ground)",
+        "description": "Search for anyone who is injured, lost, bring them to the safe zone.",
+        "mission_type_id": 46,
+        "location_id": 29,
+        "start_time": "2018-5-3 23:25",
+        "end_time": null
+    }
+]

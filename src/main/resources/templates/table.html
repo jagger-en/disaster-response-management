@@ -1,0 +1,149 @@
+<!-- Read me -->
+<!-- done i think  -however dunno where to put these two files  -->
+javascript function to generate a table from a json object
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="utf-8"> 
+<meta name="viewport"
+		content="width=device-width, 
+				initial-scale=1, 
+				shrink-to-fit=no"> 
+<title> 
+	Table
+</title> 
+
+<!-- Include Bootstrap for styling -->
+<link rel="stylesheet"
+		href= 
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+
+<!-- Include the Bootstrap Table CSS 
+for the table -->
+<link rel="stylesheet"
+		href= 
+"https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css"> 
+</head> 
+<body> 
+<div  id="tableContainer"> 
+	<h1 class="text text-success text-center "> 
+	dunno 
+	</h1> 
+	<h6 class="text text-success text-center"> 
+	some kind of header name 
+	</h6> 
+	<table class="table-striped border-success"> 
+		<thead> 
+            <tr> 
+                <th data-field="mission_id"> 
+                <span class="text-success"> 
+                    Mession ID 
+                </span> 
+                </th> 
+                <th data-field="name"> 
+                <span class="text-success"> 
+                     Name 
+                </span> 
+                </th> 
+                <th data-field="description"> 
+                <span class="text-success"> 
+                    Description 
+                </span> 
+                </th> 
+                <th data-field="mission_type_id"> 
+                <span class="text-success"> 
+                    Mission type Id 
+                </span> 
+                </th> 
+                <th data-field="location_id"> 
+                <span class="text-success"> 
+                    location Id 
+                </span> 
+                </th> 
+                <th data-field="start_time"> 
+                <span class="text-success"> 
+                    Start Time
+                </span> 
+                </th> 
+                <th data-field="end_time"> 
+                <span class="text-success"> 
+                    End Time 
+                </span> 
+                </th> 
+            </tr> 
+            </thead> 
+	</table> 
+</div> 
+
+<!-- Include jQuery and other required 
+files for Bootstrap -->
+<script src= 
+"https://code.jquery.com/jquery-3.3.1.min.js"> 
+</script> 
+<script src= 
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> 
+</script> 
+<script src= 
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> 
+</script> 
+
+<!-- Include the JavaScript file 
+for Bootstrap table -->
+<script src= 
+"https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"> 
+</script> 
+<script type="text/javascript"> 
+        const tableContainer = document.getElementById('tableContainer')
+
+	$(document).ready(function () { 
+
+	// Use the given data to create 
+	// the table and display it 
+	$('table').bootstrapTable({ 
+		data: mydata 
+	}); 
+	}); 
+
+	// Specify the JSON data to be displayed 
+	var mydata = 
+    [
+    {
+        "mission_id": 23,
+        "name": "Building hospital tents",
+        "description": "The medical team needs a facility to treat the wounded. Needs to be done within 2 days.",
+        "mission_type_id": 56,
+        "location_id": 209,
+        "start_time": "2018-5-4 10:00",
+        "end_time": null
+    },
+    {
+        "mission_id": 24,
+        "name": "Bring food supply from SupplyTeam-Bravo",
+        "description": "SupplyTeam-Bravo has arrived. Needs to be distributed to the sites.",
+        "mission_type_id": 57,
+        "location_id": 210,
+        "start_time": "2018-5-4 7:00",
+        "end_time": null
+    },
+    {
+        "mission_id": 25,
+        "name": "Dispatch searchers (air)",
+        "description": "Dispatch the helicopters. Need to get wide coverage.",
+        "mission_type_id": 46,
+        "location_id": 209,
+        "start_time": "2018-5-3 18:00",
+        "end_time": null
+    },
+    {
+        "mission_id": 26,
+        "name": "Dispatch searchers (ground)",
+        "description": "Search for anyone who is injured, lost, bring them to the safe zone.",
+        "mission_type_id": 46,
+        "location_id": 29,
+        "start_time": "2018-5-3 23:25",
+        "end_time": null
+    }
+];
+</script> 
+</body> 
+</html>
