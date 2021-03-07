@@ -1,0 +1,42 @@
+<div class="container mt-3">
+
+    <table class="table table-striped table-hover table-sm table-bordered table-responsive-md">
+        <thead>
+            <tr class="text-center">
+                <th>missionType Id</th>
+                <th>missionType name</th>
+                <th>Description</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="missionType : ${missionTypes}">
+                <td th:text="${missionType.id}"></td>
+                <td th:text="${missionType.name}"></td>
+                <td th:text="${missionType.description}"></td>
+                <td style="display: flex; justify-content: center;"><a
+                    th:href="@{/missionTypes/delete/{id}(id=${missionType.id})}"
+                    class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <form th:action="@{/missionTypes/add}" th:object="${missionType}" method="POST">
+        <div class="row g-3 mb-3">
+            <div class="col-sm-4">
+                <label for="name" class="form-label">missionType name</label>
+                <input th:field="*{name}" value="okok" type="text" class="form-control" id="name">
+            </div>
+            <div class="col-sm-4">
+                <label for="description" class="form-label">Description</label>
+                <input th:field="*{description}" value="okok" type="text" class="form-control" id="description">
+            </div>
+
+            <div class="col-sm-4" style="display: flex; justify-content: flex-start; align-items: flex-end;">
+                <button type="submit" class="btn btn-primary" style="height: fit-content;">Create missionType</button>
+            </div>
+        </div>
+    </form>
+</div>

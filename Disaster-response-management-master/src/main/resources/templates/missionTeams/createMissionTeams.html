@@ -1,0 +1,68 @@
+<div class="container mt-3">
+
+    <table class="table table-striped table-hover table-sm table-bordered table-responsive-md">
+        <thead>
+            <tr class="text-center">
+                <th>Mission Team Id</th>
+                <th>Mission</th>
+                <th>Team</th>
+                <th>Start time</th>
+                <th>End time</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="missionTeam : ${missionTeams}">
+                <td th:text="${missionTeam.id}"></td>
+
+                <td th:if="${missionTeam.mission != null}" th:text="${missionTeam.mission.name}"></td>
+                    <td th:unless="${missionTeam.mission != null}">No mission</td>
+
+                <td th:if="${missionTeam.team != null}" th:text="${missionTeam.team.name}"></td>
+                    <td th:unless="${missionTeam.team != null}">No team</td>
+
+                <td th:text="${missionTeam.startTime}"></td>
+                <td th:text="${missionTeam.endTime}"></td>
+                <td style="display: flex; justify-content: center;"><a
+                    th:href="@{/missionTeams/delete/{id}(id=${missionTeam.id})}"
+                    class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <form th:action="@{/missionTeams/add}" th:object="${missionTeam}" method="POST">
+        <div class="row g-3 mb-3">
+
+
+            <div class="col-sm-4">
+                <label for="mission" class="form-label">mission</label>
+                <select th:field="*{mission}" class="form-select" id="mission">
+                    <option th:each="mission : ${missions}" th:value="${mission.id}" th:text="${mission.name}"></option>
+                </select>
+            </div>
+
+            <div class="col-sm-4">
+                <label for="team" class="form-label">team</label>
+                <select th:field="*{team}" class="form-select" id="team">
+                    <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}"></option>
+                </select>
+            </div>
+
+            <div class="col-sm-4">
+                <label for="startTime" class="form-label">startTime</label>
+                <input th:field="*{startTime}" value="okok" type="text" class="form-control" id="startTime">
+            </div>
+
+            <div class="col-sm-4">
+                <label for="endTime" class="form-label">endTime</label>
+                <input th:field="*{endTime}" value="okok" type="text" class="form-control" id="endTime">
+            </div>
+
+            <div class="col-sm-4" style="display: flex; justify-content: flex-start; align-items: flex-end;">
+                <button type="submit" class="btn btn-primary" style="height: fit-content;">Create mission team</button>
+            </div>
+        </div>
+    </form>
+</div>
