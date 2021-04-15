@@ -1,0 +1,205 @@
+@startuml Adding employees
+actor recruitment
+
+== Visit web page ==
+
+survey_corps -> frontend : create employees
+frontend -> html_page_server : show employees form
+frontend <-- html_page_server : return employees form
+survey_corps <- frontend : render employees form
+
+== Add employee info ==
+
+alt manually add
+survey_corps -> frontend : add employee info
+survey_corps -> frontend : create jobtitle
+survey_corps <-- frontend : render jobtitle form
+survey_corps -> frontend : submit employee info
+frontend -> employee_controller : send employee info
+employee_controller -> employee_service : clean, typecast employee info
+employee_service -> employee_model : add employee info
+employee_model -> database : run query to insert employee info
+else upload a file
+
+end
+@enduml
+
+----------------------------------------------------------------------------
+
+@startuml  Adding locations
+actor surveycorps
+
+== Visit web page ==
+
+survey_corps -> frontend : create locations
+frontend -> html_page_server : show locations form
+frontend <-- html_page_server : return locations form
+survey_corps <- frontend : render locations form
+
+== Add location info ==
+
+alt manually add
+survey_corps -> frontend : add location info
+survey_corps -> frontend : create city
+survey_corps <-- frontend : render city form
+survey_corps -> frontend : submit location info
+frontend -> location_controller : send location info
+location_controller -> location_service : clean, typecast location info
+location_service -> location_model : add location info
+location_model -> database : run query to insert location info
+else upload a file
+
+end
+@enduml
+
+----------------------------------------------------------------------------
+
+@startuml  
+actor recruitment
+
+== Visit web page ==
+
+recruitment -> frontend : create teams, assign to functionalities, roles
+frontend -> html_page_server : show teams form
+frontend <-- html_page_server : return teams form
+recruitment <- frontend : render teams form
+
+== Create team ==
+
+alt enough data
+recruitment -> frontend : create teams
+recruitment -> frontend : add new team functionality
+recruitment <-- frontend : render team functionality form
+recruitment -> frontend : submit team info
+frontend -> team_controller : send team info
+team_controller -> team_service : clean, typecast team info
+team_service -> team_model : create teams
+team_model -> database : run query to insert team info
+
+
+end
+@enduml
+
+------------------------------------------------------------------------------
+
+@startuml
+actor management
+
+== Visit web page ==
+
+management -> frontend : create missions,assign missions
+frontend -> html_page_server : show missions form
+frontend <-- html_page_server : return missions form
+management <- frontend : render missions form
+
+== Create misson ==
+
+alt enough data
+management-> frontend : create mission
+management -> frontend : add new mission type
+management -> frontend : submit mission info
+frontend -> mission_controller : send mission info
+mission_controller -> mission_service : flatten into jason
+mission_service -> mission_model : create mission
+mission_model -> database : run query to insert mission and team info
+
+
+end
+@enduml
+
+------------------------------------------------------------------------------
+
+@startuml
+actor management
+
+== Visit web page ==
+
+management -> frontend : dispatch teams to missions
+frontend -> html_page_server : show missions summary
+frontend <-- html_page_server : return missions summary
+management <- frontend : render mission summary
+management -> frontend : set mission status
+management -> frontend : preview
+management <- frontend : render mission preview
+
+== dispatch mission ==
+
+alt preview good
+management -> frontend : dispatch mission
+management <-- frontend : update mission status
+frontend -> mission_controller : send mission info
+mission_controller -> mission_service : clean, typecast mission
+mission_service -> mission_model : assign mission
+mission_model -> database : run query to dispatch (update) mission
+
+
+end
+@enduml
+
+------------------------------------------------------------------------------
+
+@startuml
+actor surveycorps
+
+== Visit web page ==
+
+survey_corps -> frontend : create employees
+frontend -> html_page_server : show employees form
+frontend <-- html_page_server : return employees form
+survey_corps <- frontend : render employees form
+
+== Press upload and upload ==
+
+alt upload file
+survey_corps -> frontend : press upload and upload
+survey_corps <-- frontend : render employees preview
+survey_corps -> frontend : preview good
+frontend -> employee_controller : send employee data queue
+employee_controller -> employee_service : clean, typecast employee info
+employee_service -> employee_model : press upload and upload
+employee_model -> database : run query to insert employee info
+else manually add
+
+end
+@enduml
+
+--------------------------------------------------------------------------------
+
+@startuml
+actor surveycorps
+
+== Visit web page ==
+
+survey_corps -> frontend : create locations
+frontend -> html_page_server : show locations form
+frontend <-- html_page_server : return locations form
+survey_corps <- frontend : render locations form
+
+== Press upload and upload ==
+
+alt upload file
+survey_corps -> frontend : press upload and upload
+survey_corps <-- frontend : render locations preview
+survey_corps -> frontend : preview good
+frontend -> employee_controller : send location data queue
+employee_controller -> employee_service : clean, typecast location info
+employee_service -> employee_model : press upload and upload
+employee_model -> database : run query to insert location info
+else manually add
+
+end
+@enduml
+
+--------------------------------------------------------------------------------
+
+@startuml
+actor management
+
+== Visit web page ==
+
+management -> frontend : order recruitment and collection of location data
+frontend -> html_page_server : approve initial workforce
+frontend <-- html_page_server : order recruitment and collection of locational data
+management <- frontend : render master dashboard
+
+@enduml

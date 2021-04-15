@@ -1,0 +1,40 @@
+@startuml Organize workforce into teams
+actor recruitment
+
+== Visit web page ==
+recruitment -> frontend : create teams, assign to functionalities, roles
+frontend -> html_page_server : show teams form
+frontend <-- html_page_server : return teams form
+recruitment <- frontend : render teams form
+
+== Fill in team info ==
+recruitment -> frontend : fill in team info
+alt fields are correct
+    recruitment <-- frontend : show green, show submit button
+else fields are incorrect
+    recruitment <-- frontend : show red, disable submit button, prompt msg
+end
+recruitment -> frontend : press preview
+recruitment <-- frontend : render preview
+== Submit team info ==
+recruitment -> frontend : submit team info
+frontend -> team_controller : send team info
+team_controller -> team_service : clean, typecast team info
+alt data is nice 
+    team_service -> team_model : add team info
+    team_model -> database : run query to insert team info
+    alt query successfull 
+        team_model <-- database : successfully inserted to database
+    else query failed 
+        team_model <-- database : failed to insert to database
+        team_service <- team_model : failed to insert to database
+        team_controller <- team_service : failed to insert to database
+        frontend <- team_controller : failed to insert to database
+        recruitment <- frontend : failed to insert to database
+    end
+else data is dirty 
+    team_controller <- team_service : failed to clean
+    frontend <- team_controller : failed to clean
+    recruitment <- frontend : failed to clean
+end
+@enduml

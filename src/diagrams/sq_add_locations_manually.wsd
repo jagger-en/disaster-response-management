@@ -1,0 +1,42 @@
+@startuml Adding locations (manually)
+actor surveycorps
+
+== Visit web page ==
+surveycorps -> frontend : create location
+frontend -> html_page_server : show location form and map
+frontend <-- html_page_server : return location form and map
+surveycorps <- frontend : render location form and map
+
+== Fill in location info ==
+surveycorps -> frontend : pick point
+surveycorps -> frontend : add details
+frontend -> frontend : process input
+alt form is ok
+    surveycorps <-- frontend : show green, show submit button
+else form is not ok
+    surveycorps <-- frontend : show red, disable submit button, prompt msg
+end
+surveycorps -> frontend : press preview
+surveycorps <-- frontend : render preview
+== Submit location info ==
+surveycorps -> frontend : submit location info
+frontend -> location_controller : send location info
+location_controller -> location_service : clean, typecast location info
+alt data is nice 
+    location_service -> location_model : add location info
+    location_model -> database : run query to insert location info
+    alt query successfull 
+        location_model <-- database : successfully inserted to database
+    else query failed 
+        location_model <-- database : failed to insert to database
+        location_service <- location_model : failed to insert to database
+        location_controller <- location_service : failed to insert to database
+        frontend <- location_controller : failed to insert to database
+        surveycorps <- frontend : failed to insert to database
+    end
+else data is dirty 
+    location_controller <- location_service : failed to clean
+    frontend <- location_controller : failed to clean
+    surveycorps <- frontend : failed to clean
+end
+@enduml

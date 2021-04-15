@@ -1,0 +1,95 @@
+@startuml
+' colors:
+' F6CCA2 - Survey corps
+' BDDCDC - Frontend
+' 647782 - Backend
+
+|#F6CCA2|Survey corps|
+start
+:Visit create locations form page link;
+
+|#BDDCDC|Frontend|
+:Request locations form page;
+
+|#647782|Backend|
+:Send locations form page;
+
+|#BDDCDC|Frontend|
+:Render locations form page;
+
+|#F6CCA2|Survey corps|
+:View locations form page;
+|#BDDCDC|Frontend|
+if (User fill in form manually?) then (yes)
+    |#BDDCDC|Frontend|
+    :Render location form;
+    |#F6CCA2|Survey corps|
+    while (Preview good?) is (not good)
+        :Add location info;
+        if (New city?) then (yes)
+            :View city form;
+            :Add city info;
+        else (no)
+        endif
+    endwhile (good)
+    :Press send location form data;
+    |#BDDCDC|Frontend|
+    :Send location form data;
+else (no)
+    |#BDDCDC|Frontend|
+    :Display upload component;
+    |#F6CCA2|Survey corps|
+    while (Preview good?) is (not good)
+        :Upload file;
+        :View preview before sending;
+    endwhile (good)
+    |#BDDCDC|Frontend|
+    :Send location data queue;
+endif
+|#647782|Backend|
+repeat
+    :Clean and 
+    typecast json data;
+repeat while (more data?) is (yes)
+->no;
+if (All data is ok?) then (true)
+    :Send data;
+    |#647782|Backend|
+    :Make insertion query;
+    if (Query is ok?) then (true)
+        |#647782|Backend|
+        :Send SUCCESS: 
+        "New location added";
+        |#BDDCDC|Frontend|
+        :Display SUCCESS: "New location added";
+    else (false)
+        |#647782|Backend|
+        :Send ERROR: "Query failed";
+        |#BDDCDC|Frontend|
+        :Display ERROR: "Query failed";
+        stop
+    endif
+else (false)
+    |#647782|Backend|
+    :Send ERROR: "Dirty data";
+    note right
+        It is better to reject all 
+        data if at least one is dirty.
+        Anyways, it is the frontend's 
+        job to notify which ones are dirty.
+        If by any chance something slips 
+        (frontend fails to clean), the
+        backend will reject all. It will 
+        show no mercy.
+
+        This is to "force" a client (frontend, 
+        api client etc...) to make sure the 
+        data is clean.
+    end note
+    |#BDDCDC|Frontend|
+    :Display ERROR: "Dirty data";
+    stop
+endif
+
+stop
+@enduml

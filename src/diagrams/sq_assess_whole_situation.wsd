@@ -1,0 +1,42 @@
+@startuml Assess whole situation
+actor management
+
+== Visit web page ==
+management -> frontend : assess whole situation
+frontend -> html_page_server : show workforce summary
+frontend <-- html_page_server : return workforce data
+management <- frontend : render tables, charts, maps
+
+== Interact with data ==
+management -> frontend : filter locations
+frontend -> location_controller : ajax request for filter
+location_controller -> location_service : request for filter
+location_service -> location_model : request for filter
+
+location_model -> database_server : establish database connection
+alt database is available
+    location_model <-- database_server : return success status of database connection
+    database_server -> database : execute filter query
+    alt query is successful
+        database_server <-- database : return filtered results        
+        location_model <- database_server : return filtered results        
+        location_service <- location_model : return filtered results
+        location_controller <- location_service : return filtered results
+        frontend <- location_controller : return filtered results
+        management <- frontend : show results, show maps, figures
+    else
+        database_server <-- database : return empty result, and msg
+        location_model <- database_server : return empty result, and msg
+        location_service <- location_model : return empty result, and msg
+        location_controller <- location_service : return empty result, and msg
+        frontend <- location_controller : return empty result, and msg
+        management <- frontend : show error response dialog
+    end
+else
+    location_model <-- database_server : return failure status of database connection     
+    location_service <- location_model : return failure status of database connection
+    location_controller <- location_service : return failure status of database connection
+    frontend <- location_controller : return failure status of database connection
+    management <- frontend : show connection error response dialog
+end
+@enduml

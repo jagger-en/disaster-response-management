@@ -1,0 +1,40 @@
+@startuml Adding employees (upload)
+actor recruitment
+
+== Visit web page ==
+recruitment -> frontend : create employees
+frontend -> html_page_server : show employees form
+frontend <-- html_page_server : return employees form
+recruitment <- frontend : render employees form
+
+== Fill in employee info ==
+recruitment -> frontend : upload file
+alt file is ok
+    recruitment <-- frontend : show green, show submit button
+else file is not ok
+    recruitment <-- frontend : show red, disable submit button, prompt msg
+end
+recruitment -> frontend : press preview
+recruitment <-- frontend : render preview
+== Submit employee info ==
+recruitment -> frontend : submit employee info
+frontend -> employee_controller : send employee info
+employee_controller -> employee_service : clean, typecast employee info
+alt data is nice 
+    employee_service -> employee_model : add employee info
+    employee_model -> database : run query to insert employee info
+    alt query successfull 
+        employee_model <-- database : successfully inserted to database
+    else query failed 
+        employee_model <-- database : failed to insert to database
+        employee_service <- employee_model : failed to insert to database
+        employee_controller <- employee_service : failed to insert to database
+        frontend <- employee_controller : failed to insert to database
+        recruitment <- frontend : failed to insert to database
+    end
+else data is dirty 
+    employee_controller <- employee_service : failed to clean
+    frontend <- employee_controller : failed to clean
+    recruitment <- frontend : failed to clean
+end
+@enduml
