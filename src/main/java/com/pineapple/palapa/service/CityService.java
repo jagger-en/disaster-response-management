@@ -22,13 +22,13 @@ public class CityService {
     }
 
     public List<City> findAllCities() {
-        return cityRepo.findAll();
+        return cityRepo.getAllCities();
     }
 
-    public City findCityById(Long id) {
-        return cityRepo.findCityById(id)
-            .orElseThrow(() -> new UserNotFoundException("City by id " + id + " was not found"));
-    }
+    // public City findCityById(Long id) {
+    //     return cityRepo.findCityById(id)
+    //         .orElseThrow(() -> new UserNotFoundException("City by id " + id + " was not found"));
+    // }
 
     public void deleteCity(Long id){
         City city = cityRepo.findById(id)

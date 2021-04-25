@@ -6,6 +6,11 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "city")
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(name = "getAllCities",
+                                procedureName = "get_all_cities",
+    resultClasses = City.class)
+})
 public class City implements Serializable {
     /**
      * A serial was added
