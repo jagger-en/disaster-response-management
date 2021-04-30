@@ -16,8 +16,7 @@ public class CityRepoImpl implements CityRepoCustom {
 
     @Override
     public List<City> getAllCities() {
-        StoredProcedureQuery findByYearProcedure =
-                em.createNamedStoredProcedureQuery("getAllCities");
+        StoredProcedureQuery findByYearProcedure = em.createNamedStoredProcedureQuery("getAllCities");
         return findByYearProcedure.getResultList();
     }
 }
