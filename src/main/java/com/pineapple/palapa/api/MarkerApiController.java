@@ -17,6 +17,7 @@ public class MarkerApiController {
         this.markerService = markerService;
     }
 
+    @CrossOrigin
     @GetMapping("/all")
     public ResponseEntity<List<Marker>> getAllMarkers() {
         List<Marker> markers = markerService.findAllMarkers();
