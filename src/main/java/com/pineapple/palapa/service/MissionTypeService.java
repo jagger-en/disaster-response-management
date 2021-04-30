@@ -25,11 +25,6 @@ public class MissionTypeService {
         return missionTypeRepo.findAll();
     }
 
-    public MissionType findMissionTypeById(Long id) {
-        return missionTypeRepo.findMissionTypeById(id)
-            .orElseThrow(() -> new UserNotFoundException("MissionType by id " + id + " was not found"));
-    }
-
     public void deleteMissionType(Long id){
         MissionType missionType = missionTypeRepo.findById(id)
             .orElseThrow(() -> new UserNotFoundException("MissionType by id " + id + " was not found"));

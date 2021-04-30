@@ -25,11 +25,6 @@ public class TeamFunctionalityService {
         return teamFunctionalityRepo.findAll();
     }
 
-    public TeamFunctionality findTeamFunctionalityById(Long id) {
-        return teamFunctionalityRepo.findTeamFunctionalityById(id)
-            .orElseThrow(() -> new UserNotFoundException("TeamFunctionality by id " + id + " was not found"));
-    }
-
     public void deleteTeamFunctionality(Long id){
         TeamFunctionality teamFunctionality = teamFunctionalityRepo.findById(id)
             .orElseThrow(() -> new UserNotFoundException("TeamFunctionality by id " + id + " was not found"));

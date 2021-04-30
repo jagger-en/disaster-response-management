@@ -24,12 +24,6 @@ public class EmployeeApiController {
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id) {
-        Employee Employee = employeeService.findEmployeeById(id);
-        return new ResponseEntity<>(Employee, HttpStatus.OK);
-    }
-
     @PostMapping("/add")
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
         Employee newEmployee = employeeService.addEmployee(employee);

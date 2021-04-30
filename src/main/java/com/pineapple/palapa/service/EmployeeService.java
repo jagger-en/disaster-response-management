@@ -31,13 +31,4 @@ public class EmployeeService {
         employeeRepo.delete(employee);
         // employeeRepo.deleteEmployeeById(id);
     }
-
-    public Employee findEmployeeById(Long id) {
-        return employeeRepo.findEmployeeById(id)
-            .orElseThrow(() -> new UserNotFoundException("Employee by id " + id + " was not found"));
-    }
-    // public Employee updateEmployee(Employee employee) {
-    //     return employeeRepo.save(employee);
-    // }
-
 }

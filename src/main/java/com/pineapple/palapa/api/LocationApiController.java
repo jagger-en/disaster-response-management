@@ -27,12 +27,6 @@ public class LocationApiController {
         return new ResponseEntity<>(locations, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Location> getLocationById(@PathVariable("id") Long id) {
-        Location location = locationService.findLocationById(id);
-        return new ResponseEntity<>(location, HttpStatus.OK);
-    }
-
     @PostMapping("/add")
     public ResponseEntity<Location> addLocation(@RequestBody Location location) {
         Location newLocation = locationService.addLocation(location);

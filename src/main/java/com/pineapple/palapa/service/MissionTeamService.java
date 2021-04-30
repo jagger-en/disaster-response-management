@@ -25,11 +25,6 @@ public class MissionTeamService {
         return missionTeamRepo.findAll();
     }
 
-    public MissionTeam findMissionTeamById(Long id) {
-        return missionTeamRepo.findMissionTeamById(id)
-            .orElseThrow(() -> new UserNotFoundException("MissionTeam by id " + id + " was not found"));
-    }
-
     public void deleteMissionTeam(Long id){
         MissionTeam missionTeam = missionTeamRepo.findById(id)
             .orElseThrow(() -> new UserNotFoundException("MissionTeam by id " + id + " was not found"));

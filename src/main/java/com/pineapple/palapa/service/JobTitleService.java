@@ -25,11 +25,6 @@ public class JobTitleService {
         return jobTitleRepo.findAll();
     }
 
-    public JobTitle findJobTitleById(Long id) {
-        return jobTitleRepo.findJobTitleById(id)
-            .orElseThrow(() -> new UserNotFoundException("JobTitle by id " + id + " was not found"));
-    }
-
     public void deleteJobTitle(Long id){
         JobTitle jobTitle = jobTitleRepo.findById(id)
             .orElseThrow(() -> new UserNotFoundException("JobTitle by id " + id + " was not found"));

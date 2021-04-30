@@ -24,12 +24,6 @@ public class CityApiController {
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 
-    // @GetMapping("/find/{id}")
-    // public ResponseEntity<City> getCityById(@PathVariable("id") Long id) {
-    //     City city = cityService.findCityById(id);
-    //     return new ResponseEntity<>(city, HttpStatus.OK);
-    // }
-
     @PostMapping("/add")
     public ResponseEntity<City> addCity(@RequestBody City city) {
         City newCity = cityService.addCity(city);

@@ -24,12 +24,6 @@ public class GenderApiController {
         return new ResponseEntity<>(genders, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Gender> getGenderById(@PathVariable("id") Long id) {
-        Gender gender = genderService.findGenderById(id);
-        return new ResponseEntity<>(gender, HttpStatus.OK);
-    }
-
     @PostMapping("/add")
     public ResponseEntity<Gender> addGender(@RequestBody Gender gender) {
         Gender newGender = genderService.addGender(gender);

@@ -25,11 +25,6 @@ public class TeamService {
         return teamRepo.findAll();
     }
 
-    public Team findTeamById(Long id) {
-        return teamRepo.findTeamById(id)
-            .orElseThrow(() -> new UserNotFoundException("Team by id " + id + " was not found"));
-    }
-
     public void deleteTeam(Long id){
         Team team = teamRepo.findById(id)
             .orElseThrow(() -> new UserNotFoundException("User by id " + id + " was not found"));

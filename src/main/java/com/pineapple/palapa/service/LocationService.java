@@ -25,11 +25,6 @@ public class LocationService {
         return locationRepo.findAll();
     }
 
-    public Location findLocationById(Long id) {
-        return locationRepo.findLocationById(id)
-            .orElseThrow(() -> new UserNotFoundException("Location by id " + id + " was not found"));
-    }
-
     public void deleteLocation(Long id){
         Location location = locationRepo.findById(id)
             .orElseThrow(() -> new UserNotFoundException("Location by id " + id + " was not found"));

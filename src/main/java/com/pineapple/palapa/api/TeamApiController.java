@@ -23,12 +23,6 @@ public class TeamApiController {
         return new ResponseEntity<>(teams, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Team> getTeamById(@PathVariable("id") Long id) {
-        Team team = teamService.findTeamById(id);
-        return new ResponseEntity<>(team, HttpStatus.OK);
-    }
-
     @PostMapping("/add")
     public ResponseEntity<Team> addTeam(@RequestBody Team team) {
         Team newTeam = teamService.addTeam(team);

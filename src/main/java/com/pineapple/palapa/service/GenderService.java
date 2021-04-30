@@ -25,11 +25,6 @@ public class GenderService {
         return genderRepo.findAll();
     }
 
-    public Gender findGenderById(Long id) {
-        return genderRepo.findGenderById(id)
-            .orElseThrow(() -> new UserNotFoundException("Gender by id " + id + " was not found"));
-    }
-
     public void deleteGender(Long id){
         Gender gender = genderRepo.findById(id)
             .orElseThrow(() -> new UserNotFoundException("Gender by id " + id + " was not found"));

@@ -25,11 +25,6 @@ public class CityService {
         return cityRepo.getAllCities();
     }
 
-    // public City findCityById(Long id) {
-    //     return cityRepo.findCityById(id)
-    //         .orElseThrow(() -> new UserNotFoundException("City by id " + id + " was not found"));
-    // }
-
     public void deleteCity(Long id){
         City city = cityRepo.findById(id)
             .orElseThrow(() -> new UserNotFoundException("City by id " + id + " was not found"));

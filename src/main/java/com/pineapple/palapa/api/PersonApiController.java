@@ -23,12 +23,6 @@ public class PersonApiController {
         return new ResponseEntity<>(persons, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Person> getPersonById(@PathVariable("id") Long id) {
-        Person person = personService.findPersonById(id);
-        return new ResponseEntity<>(person, HttpStatus.OK);
-    }
-
     @PostMapping("/add")
     public ResponseEntity<Person> addPerson(@RequestBody Person person) {
         Person newPerson = personService.addPerson(person);

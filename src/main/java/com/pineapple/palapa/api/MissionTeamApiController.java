@@ -23,12 +23,6 @@ public class MissionTeamApiController {
         return new ResponseEntity<>(missionTeams, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<MissionTeam> getMissionTeamById(@PathVariable("id") Long id) {
-        MissionTeam missionTeam = missionTeamService.findMissionTeamById(id);
-        return new ResponseEntity<>(missionTeam, HttpStatus.OK);
-    }
-
     @PostMapping("/add")
     public ResponseEntity<MissionTeam> addMissionTeam(@RequestBody MissionTeam missionTeam) {
         MissionTeam newMissionTeam = missionTeamService.addMissionTeam(missionTeam);

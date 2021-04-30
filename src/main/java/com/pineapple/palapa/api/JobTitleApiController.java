@@ -24,12 +24,6 @@ public class JobTitleApiController {
         return new ResponseEntity<>(jobTitles, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<JobTitle> getJobTitleById(@PathVariable("id") Long id) {
-        JobTitle jobTitle = jobTitleService.findJobTitleById(id);
-        return new ResponseEntity<>(jobTitle, HttpStatus.OK);
-    }
-
     @PostMapping("/add")
     public ResponseEntity<JobTitle> addJobTitle(@RequestBody JobTitle jobTitle) {
         JobTitle newJobTitle = jobTitleService.addJobTitle(jobTitle);

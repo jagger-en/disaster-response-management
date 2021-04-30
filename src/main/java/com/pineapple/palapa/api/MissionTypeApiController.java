@@ -23,12 +23,6 @@ public class MissionTypeApiController {
         return new ResponseEntity<>(missionTypes, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<MissionType> getMissionTypeById(@PathVariable("id") Long id) {
-        MissionType missionType = missionTypeService.findMissionTypeById(id);
-        return new ResponseEntity<>(missionType, HttpStatus.OK);
-    }
-
     @PostMapping("/add")
     public ResponseEntity<MissionType> addMissionType(@RequestBody MissionType missionType) {
         MissionType newMissionType = missionTypeService.addMissionType(missionType);
