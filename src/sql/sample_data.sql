@@ -1,0 +1,1 @@
+INSERT INTO location (name) VALUES ('Pizza')
