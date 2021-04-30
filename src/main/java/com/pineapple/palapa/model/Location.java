@@ -16,12 +16,6 @@ public class Location implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
     private String name;
-    private String zipCode;
-    private String centerCoordinate; // TODO: do we need to have geo coordinate type?
-
-    @ManyToOne
-    @JoinColumn(name = "city_id")
-    private City city;
 
     @OneToMany(mappedBy="location", cascade=CascadeType.REMOVE)
     Collection<Mission> missions;
@@ -44,39 +38,12 @@ public class Location implements Serializable {
         this.name = name;
     }
 
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getCenterCoordinate() {
-        return centerCoordinate;
-    }
-
-    public void setCenterCoordinate(String centerCoordinate) {
-        this.centerCoordinate = centerCoordinate;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
 
     @Override
     public String toString() {
         return "Location {" +
         "id=" + id +
         ", name=" + name +
-        ", zipCode=" + zipCode +
-        ", centerCoordinate=" + centerCoordinate +
-        ", city=" + city +
         "}";
 
     }

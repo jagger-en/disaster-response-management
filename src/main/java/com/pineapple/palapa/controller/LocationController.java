@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.pineapple.palapa.model.City;
 import com.pineapple.palapa.model.Location;
-import com.pineapple.palapa.service.CityService;
 import com.pineapple.palapa.service.LocationService;
 
 import java.util.List;
@@ -20,11 +18,9 @@ import java.util.List;
 public class LocationController {
 
     private final LocationService locationService;
-    private CityService cityService;
 
-    public LocationController(LocationService locationService, CityService cityService) {
+    public LocationController(LocationService locationService) {
         this.locationService = locationService;
-        this.cityService = cityService;
     }
 
     @GetMapping("")
@@ -32,10 +28,6 @@ public class LocationController {
         List<Location> locations = locationService.findAllLocations();
         model.addAttribute("locations", locations);
         model.addAttribute("pageToRender", "/locations/createLocations");
-
-        List<City> cities = cityService.findAllCities();
-        model.addAttribute("cities", cities);
-
         return "index";
     }
 
