@@ -1,4 +1,4 @@
-road_data = {
+{
   "type": "FeatureCollection",
   "features": [
     {
