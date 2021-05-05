@@ -23,6 +23,9 @@ public class Location implements Serializable {
     @OneToMany(mappedBy="location", cascade=CascadeType.REMOVE)
     Collection<Adjacency> adjacencies;
 
+    @OneToMany(mappedBy="location", cascade=CascadeType.REMOVE)
+    Collection<Vertice> vertices;
+
     public Location() {}
 
     public Long getId() {
