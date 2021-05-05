@@ -1,6 +1,9 @@
 import requests
 import json
-from geo_data import geo_data_collection
+import time
+from geo_data import geo_data
+from bridge_data import bridge_data
+from road_data import road_data
 
 def send_to_endpoint(endpoint, payload):
     headers = {'content-type': 'application/json', 'Host': 'myhost'}
@@ -8,9 +11,9 @@ def send_to_endpoint(endpoint, payload):
     return r
 
 
-geo_features_list = geo_data_collection["features"]
+geo_features_list = road_data["features"]
 
-for geo_f in geo_features_list:
+for idx, geo_f in enumerate(geo_features_list):
     points_endpoint = "http://localhost:8080/api/points/add"
     name = "Sample1"
     longitude = geo_f["geometry"]["coordinates"][0]
@@ -23,4 +26,5 @@ for geo_f in geo_features_list:
         "height": height
     }
     send_to_endpoint(points_endpoint, payload)
+    print(f"Wait...data-{idx} was inserted.")
 
