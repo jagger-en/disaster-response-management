@@ -8,6 +8,7 @@
                 <th>Longitude</th>
                 <th>Latitude</th>
                 <th>Height</th>
+                <th>pointType</th>
                 <th>Delete</th>
             </tr>
         </thead>
@@ -18,6 +19,11 @@
                 <td th:text="${point.longitude}"></td>
                 <td th:text="${point.latitude}"></td>
                 <td th:text="${point.height}"></td>
+                <td th:if="${point.pointType != null}" th:text="${point.pointType.name}"></td>
+                    <td th:unless="${point.pointType != null}">No pointType</td>
+
+
+
                 <td style="display: flex; justify-content: center;"><a
                     th:href="@{/points/delete/{id}(id=${point.id})}"
                     class="btn btn-danger btn-sm">Delete</a></td>
@@ -44,6 +50,13 @@
             <div class="col-sm-4">
                 <label for="height" class="form-label">Height</label>
                 <input th:field="*{height}" value="okok" type="text" class="form-control" id="height">
+            </div>
+
+            <div class="col-sm-4">
+                <label for="pointType" class="form-label">pointType</label>
+                <select th:field="*{pointType}" class="form-select" id="pointType">
+                    <option th:each="pointType : ${pointTypes}" th:value="${pointType.id}" th:text="${pointType.name}"></option>
+                </select>
             </div>
 
             <div class="col-sm-4" style="display: flex; justify-content: flex-start; align-items: flex-end;">

@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pineapple.palapa.model.Point;
+import com.pineapple.palapa.model.PointType;
 import com.pineapple.palapa.service.PointService;
+import com.pineapple.palapa.service.PointTypeService;
 
 import java.util.List;
 
@@ -18,15 +20,19 @@ import java.util.List;
 public class PointController {
 
     private final PointService pointService;
+    private PointTypeService pointTypeService;
 
-    public PointController(PointService pointService) {
+    public PointController(PointService pointService, PointTypeService pointTypeService) {
         this.pointService = pointService;
+        this.pointTypeService = pointTypeService;
     }
 
     @GetMapping("")
-    public String getAllPoints(Point point, Model model) {
+    public String getAllPoints(Point point, PointType pointType, Model model) {
         List<Point> points = pointService.findAllPoints();
+        List<PointType> pointTypes = pointTypeService.findAllPointTypes();
         model.addAttribute("points", points);
+        model.addAttribute("pointTypes", pointTypes);
         model.addAttribute("pageToRender", "/points/createPoints");
         return "index";
     }

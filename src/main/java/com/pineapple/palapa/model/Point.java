@@ -33,6 +33,9 @@ public class Point implements Serializable {
     @OneToMany(mappedBy="point", cascade=CascadeType.REMOVE)
     Collection<TerminalPoint> terminalPoints;
 
+    @ManyToOne
+    @JoinColumn(name = "point_type_id")
+    private PointType pointType;
 
     public Point() {}
 
@@ -76,6 +79,14 @@ public class Point implements Serializable {
         this.height = height;
     }
 
+    public PointType getPointType() {
+        return pointType;
+    }
+
+    public void setPointType(PointType pointType) {
+        this.pointType = pointType;
+    }
+
     @Override
     public String toString() {
         return "Point {" +
@@ -84,6 +95,7 @@ public class Point implements Serializable {
         ", longitude=" + longitude +
         ", latitude=" + latitude +
         ", height=" + height +
+        ", pointType=" + pointType +
         "}";
 
     }
