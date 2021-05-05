@@ -5,7 +5,7 @@ import { TileLayer, Marker, Popup, MapContainer} from 'react-leaflet';
 import icon_close from './assets/icon_close.svg';
 import icon_firefighter from './assets/icon_firefighter.svg';
 import useSwr from 'swr';
-
+import { v4 as uuidv4 } from 'uuid';
 
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
@@ -41,20 +41,11 @@ const decide_icon = (pointName) => {
 export default function App() {
   const zoom_level = 3
 
-
-
-
-
-
   const url = "http://localhost:8080/api/markers/all";
   const {data, error} = useSwr(url, {fetcher});
 
   const markers_data = data && !error ? data : [];
-  
-  console.log("--------------------")
-  console.log(JSON.stringify(markers_data))
-  console.log("--------------------")
-  // const markers_data = [{"pointName":"lineA_1","locationName":"50","latitude":"-30.484368866927777","longitude":"512.9327774047852"},{"pointName":"lineA_2","locationName":"60","latitude":"-30.48133620934747","longitude":"512.9372406005859"},{"pointName":"lineA_3","locationName":"70","latitude":"-30.47826647191783","longitude":"512.9423475265503"},{"pointName":"lineA_4","locationName":"50","latitude":"-30.4741979960528","longitude":"512.9465532302856"},{"pointName":"zoneA_1","locationName":"50","latitude":"-30.49579595933365","longitude":"512.9233360290526"},{"pointName":"zoneA_2","locationName":"60","latitude":"-30.49483450812004","longitude":"512.9358243942261"},{"pointName":"zoneA_3","locationName":"70","latitude":"-30.489102582572734","longitude":"512.950415611267"},{"pointName":"zoneA_4","locationName":"50","latitude":"-30.48163208253916","longitude":"512.952561378479"},{"pointName":"zoneA_5","locationName":"70","latitude":"-30.475381570203016","longitude":"512.9452228546143"},{"pointName":"Sample1","locationName":"145","latitude":"-30.5068796961844","longitude":"152.89874017238617"},{"pointName":"Sample1","locationName":"145","latitude":"-30.50647759770449","longitude":"152.89936780929565"},{"pointName":"Sample1","locationName":"145","latitude":"-30.50602465719561","longitude":"152.90002226829526"},{"pointName":"Sample1","locationName":"145","latitude":"-30.505641042665626","longitude":"152.9009234905243"},{"pointName":"Sample1","locationName":"145","latitude":"-30.50507717277826","longitude":"152.901052236557"},{"pointName":"Sample1","locationName":"145","latitude":"-30.504619603827333","longitude":"152.9009073972702"},{"pointName":"Sample1","locationName":"145","latitude":"-30.50411812427204","longitude":"152.90072232484818"},{"pointName":"Sample1","locationName":"145","latitude":"-30.502163022604204","longitude":"152.89736151695251"},{"pointName":"Sample1","locationName":"145","latitude":"-30.50233634880783","longitude":"152.89760828018186"},{"pointName":"Sample1","locationName":"145","latitude":"-30.502394124140395","longitude":"152.89792746305463"},{"pointName":"Sample1","locationName":"145","latitude":"-30.502451899438633","longitude":"152.89834856987"},{"pointName":"Sample1","locationName":"145","latitude":"-30.502516607731938","longitude":"152.89887964725494"},{"pointName":"Sample1","locationName":"145","latitude":"-30.50258824900642","longitude":"152.8994670510292"},{"pointName":"Sample1","locationName":"145","latitude":"-30.502710732353492","longitude":"152.89997667074203"},{"pointName":"Sample1","locationName":"145","latitude":"-30.503082803461783","longitude":"152.90046751499173"},{"pointName":"Sample1","locationName":"145","latitude":"-30.50363975196385","longitude":"152.90067672729492"}]
+  console.log(markers_data)
   const coord_center = markers_data.length > 0 ? 
     [markers_data[0].latitude, markers_data[0].longitude] : [0, 0]
 
@@ -65,10 +56,11 @@ export default function App() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {markers_data.map(d => (
-        <Marker key={d.pointName} position={[d.latitude, d.longitude]} icon={decide_icon(d.pointName)}>
+        <Marker key={uuidv4} position={[d.latitude, d.longitude]} icon={decide_icon(d.pointName)}>
           <Popup>
-          pointName: {d.pointName}
-          locationName: {d.locationName}
+          Point: {d.pointName}
+          <br></br>
+          Location: {d.locationName}
           </Popup>
         </Marker>
       ))}
