@@ -132,7 +132,9 @@ else:
 
 
 """
-python api_add.py trail_data.json --l "Forest fire" --i fire
-python api_add.py road_data.json --l "Hains Lane" --i defense
-python api_add.py bridge_data.json --l "Bridge water supply" --i water-supply
+python api_add.py icon_close.json --l "Forest fire" --i icon_close
+python api_add.py icon_firefighter.json --l "Hains Lane" --i icon_firefighter
+python api_add.py icon_flame.json --l "Forest fire" --i icon_flame
+python api_add.py icon_helicopter.json --l "Bridge water supply" --i icon_helicopter
+python api_add.py icon_storagetank.json --l "Bridge water supply" --i icon_storagetank
 """

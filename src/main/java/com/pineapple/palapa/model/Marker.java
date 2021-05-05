@@ -23,6 +23,7 @@ public class Marker {
     private String locationName;
     private String latitude;
     private String longitude;
+    private String pointTypeName;
 
     public Marker() {}
 
@@ -57,5 +58,13 @@ public class Marker {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+    
+    public String getPointTypeName() {
+        return pointTypeName;
+    }
+
+    public void setPointTypeName(String pointTypeName) {
+        this.pointTypeName = pointTypeName;
     }
 }
