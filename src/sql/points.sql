@@ -10,4 +10,11 @@ BEGIN
 END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE `get_all_points` ()
+BEGIN
+    SELECT * FROM point;
+END //
+DELIMITER ;
+
 CALL get_set_of_points_for_location('Water line');
