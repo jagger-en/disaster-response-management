@@ -10,6 +10,27 @@ BEGIN
 END //
 DELIMITER ;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 DELIMITER //
 CREATE PROCEDURE `get_all_points` ()
 BEGIN
