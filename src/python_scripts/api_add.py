@@ -129,3 +129,10 @@ if point_type_name and location_name:
 else:
     print(f"Check your args: {the_args}")
 
+
+
+"""
+python api_add.py trail_data.json --l "Forest fire" --i fire
+python api_add.py road_data.json --l "Hains Lane" --i defense
+python api_add.py bridge_data.json --l "Bridge water supply" --i water-supply
+"""
