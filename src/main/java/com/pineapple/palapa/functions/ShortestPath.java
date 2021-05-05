@@ -4,7 +4,8 @@ import java.util.Scanner;
 public class ShortestPath {
 
     Scanner myObj = new Scanner(System.in);
-    int num_Vertices = myObj.nextInt();  //Enter max number of vertices in graph
+    // int num_Vertices = myObj.nextInt();  //Enter max number of vertices in graph
+    int num_Vertices = 6;  //Enter max number of vertices in graph
     // find a vertex with minimum distance
     public int minDistance(int path_array[], Boolean sptSet[])   {
         // Initialize min value
