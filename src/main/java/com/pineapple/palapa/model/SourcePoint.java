@@ -5,25 +5,27 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-@Table(name = "location")
-public class Location implements Serializable {
+@Table(name = "sourcePoint")
+public class SourcePoint implements Serializable {
+
     /**
      * A serial was added
      */
-    private static final long serialVersionUID = 1002L;
+    private static final long serialVersionUID = 101200L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
-    private String name;
+    
+    @ManyToOne
+    @JoinColumn(name = "point_id")
+    private Point point;
 
-    @OneToMany(mappedBy="location", cascade=CascadeType.REMOVE)
-    Collection<Mission> missions;
-
-    @OneToMany(mappedBy="location", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy="sourcePoint", cascade=CascadeType.REMOVE)
     Collection<Adjacency> adjacencies;
 
-    public Location() {}
+    public SourcePoint() {}
 
     public Long getId() {
         return id;
@@ -33,20 +35,19 @@ public class Location implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Point getPoint() {
+        return point;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPoint(Point point) {
+        this.point = point;
     }
-
 
     @Override
     public String toString() {
-        return "Location {" +
+        return "SourcePoint {" +
         "id=" + id +
-        ", name=" + name +
+        ", point=" + point +
         "}";
 
     }

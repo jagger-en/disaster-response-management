@@ -27,6 +27,12 @@ public class Point implements Serializable {
     @OneToMany(mappedBy="point", cascade=CascadeType.REMOVE)
     Collection<Vertice> vertices;
 
+    @OneToMany(mappedBy="point", cascade=CascadeType.REMOVE)
+    Collection<SourcePoint> sourcePoints;
+
+    @OneToMany(mappedBy="point", cascade=CascadeType.REMOVE)
+    Collection<TerminalPoint> terminalPoints;
+
 
     public Point() {}
 
