@@ -92,9 +92,13 @@ export default function App() {
       {markers_data.map(d => (
         <Marker key={uuidv4} position={[d.latitude, d.longitude]} icon={decide_icon(d.pointTypeName)}>
           <Popup>
-          Point: {d.pointName}
+          <b>Point:</b> {d.pointName}
           <br></br>
-          Location: {d.locationName}
+          <b>Location:</b> {d.locationName}
+          <br></br>
+          <b>Mission:</b> {d.missionName}
+          <br></br>
+          <b>Team:</b> {d.teamName}
           </Popup>
         </Marker>
       ))}
