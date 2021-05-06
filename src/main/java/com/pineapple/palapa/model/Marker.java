@@ -11,19 +11,20 @@ import javax.persistence.NamedStoredProcedureQuery;
 @Entity
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(name = "getAllMarkers",
-                                procedureName = "get_set_of_points_for_location",
+                                procedureName = "get_ultra_query",
     resultClasses = Marker.class)
 })
 public class Marker {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
-    private Long id;
+    private String id;
     private String pointName;
     private String locationName;
     private String latitude;
     private String longitude;
     private String pointTypeName;
+
+    private String missionName;
+    private String teamName;
 
     public Marker() {}
 
@@ -66,5 +67,21 @@ public class Marker {
 
     public void setPointTypeName(String pointTypeName) {
         this.pointTypeName = pointTypeName;
+    }
+    
+    public String getMissionName() {
+        return missionName;
+    }
+
+    public void setMissionName(String missionName) {
+        this.missionName = missionName;
+    }
+    
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 }

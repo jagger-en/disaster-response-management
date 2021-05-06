@@ -2,6 +2,9 @@
 --     IN location_name VARCHAR(255)
 -- )
 
+USE db_palapa;
+
+
 
 DELIMITER //
 CREATE PROCEDURE `get_set_of_points_for_location` ()
@@ -27,6 +30,75 @@ BEGIN
     SELECT * FROM point;
 END //
 DELIMITER ;
+
+
+
+
+DELIMITER //
+CREATE PROCEDURE `get_ultra_query` ()
+BEGIN
+    SELECT 
+		p.name as `point_name`, 
+        l.name as `location_name`, 
+		p.latitude as `latitude`, 
+        p.longitude as `longitude`, 
+        pt.name as `point_type_name`,
+		mis.name as `mission_name`,
+        team.name as `team_name`,
+		LEFT(UUID(), 8) as `id`
+	FROM vertice as v
+    INNER JOIN location as l on l.id = v.location_id
+    INNER JOIN point as p on p.id = v.point_id
+	INNER JOIN point_type as pt on pt.id = p.point_type_id
+    INNER JOIN mission as mis on mis.location_id = l.id
+    INNER JOIN mission_team as misteam on misteam.mission_id = mis.id
+    INNER JOIN team on team.id = misteam.team_id
+    ;
+END //
+DELIMITER ;
+
+
+
+CALL get_ultra_query();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
