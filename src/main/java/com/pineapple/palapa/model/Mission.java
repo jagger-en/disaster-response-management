@@ -23,7 +23,7 @@ public class Mission implements Serializable {
     private MissionType missionType;
 
     @ManyToOne
-    @JoinColumn(name = "location_type_id")
+    @JoinColumn(name = "location_id")
     private Location location;
 
     private String startTime;
