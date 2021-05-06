@@ -9,6 +9,8 @@ import icon_firefighter_url from './assets/icon_firefighter.svg';
 import icon_storagetank_url from './assets/icon_storagetank.svg';
 import useSwr from 'swr';
 import { v4 as uuidv4 } from 'uuid';
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Table } from 'react-bootstrap';
+
 
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
@@ -75,34 +77,83 @@ const decide_icon = (pointName) => {
 export default function App() {
   const zoom_level = 3
 
-  const url = "http://localhost:8080/api/markers/all";
-  const {data, error} = useSwr(url, {fetcher});
+  // const url = "http://localhost:8080/api/markers/all";
+  // const {data, error} = useSwr(url, {fetcher});
 
-  const markers_data = data && !error ? data : [];
-  console.log(markers_data)
-  const coord_center = markers_data.length > 0 ? 
-    [markers_data[0].latitude, markers_data[0].longitude] : [0, 0]
+  // const markers_data = data && !error ? data : [];
+  // console.log(markers_data)
+  // const coord_center = markers_data.length > 0 ? 
+  //   [markers_data[0].latitude, markers_data[0].longitude] : [0, 0]
 
+
+  const markers_data = []
+  const coord_center = [0, 0]
+  // const summary_table_data = []
+
+  const summary_url = "http://localhost:8080/api/summaries/all";
+  const {data, error}= useSwr(summary_url, {fetcher});
+  const summary_table_data = data && !error ? data : [];
+  
+  console.log(summary_table_data)
   return (
-    <MapContainer className="map" center={coord_center} zoom={zoom_level}>
-      <TileLayer
-        attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {markers_data.map(d => (
-        <Marker key={uuidv4} position={[d.latitude, d.longitude]} icon={decide_icon(d.pointTypeName)}>
-          <Popup>
-          <b>Point:</b> {d.pointName}
-          <br></br>
-          <b>Location:</b> {d.locationName}
-          <br></br>
-          <b>Mission:</b> {d.missionName}
-          <br></br>
-          <b>Team:</b> {d.teamName}
-          </Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+    <div>
+      <Navbar bg="success" variant="dark" expand="lg">
+        <div className="container">
+          <Navbar.Brand href="#home">Disaster Response (Java Project)</Navbar.Brand>
+        </div>
+      </Navbar>
+      <div className="container" style={{width: "100%"}}>
+        <MapContainer className="map" center={coord_center} zoom={zoom_level}>
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {markers_data.map(d => (
+            <Marker key={uuidv4} position={[d.latitude, d.longitude]} icon={decide_icon(d.pointTypeName)}>
+              <Popup>
+              <b>Point:</b> {d.pointName}
+              <br></br>
+              <b>Location:</b> {d.locationName}
+              <br></br>
+              <b>Mission:</b> {d.missionName}
+              <br></br>
+              <b>Team:</b> {d.teamName}
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
+      </div>
+      <div className="container mt-5">
+        <h1>Summary</h1>
+        <Table striped bordered hover size="sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Job title</th>
+              <th>Mission</th>
+              <th>Team</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              summary_table_data.map(d => (
+                <tr>
+                  <td>{d.id}</td>
+                  <td>{d.firstName}</td>
+                  <td>{d.lastName}</td>
+                  <td>{d.jobTitleName}</td>
+                  <td>{d.missionName}</td>
+                  <td>{d.teamName}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </Table>
+      </div>
+      <div style={{marginBottom: "500px"}}></div>
+    </div>
   );
 }
 
