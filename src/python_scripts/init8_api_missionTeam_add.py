@@ -25,5 +25,5 @@ def initialize():
     helperFunc.check_status(result.status_code, f"data: {mission}")
 
 
-for _ in range(10):
+for _ in range(20):
     initialize()

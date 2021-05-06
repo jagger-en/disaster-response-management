@@ -47,5 +47,5 @@ def add_stuff():
     helperFunc.check_status(result.status_code, f"employee: {employee}")
 
 
-for _ in range(2):
+for _ in range(100):
     add_stuff()
