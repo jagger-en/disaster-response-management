@@ -2,41 +2,17 @@ import requests
 import json
 import time
 import sys
+import helperFunc
 
+points_add_endpoint = "points/add"
+vertices_add_endpoint = "vertices/add"
+pointTypes_add_endpoint = "pointTypes/add"
+locations_add_endpoint = "locations/add"
 
-points_add_endpoint = "http://localhost:8080/api/points/add"
-vertices_add_endpoint = "http://localhost:8080/api/vertices/add"
-pointTypes_add_endpoint = "http://localhost:8080/api/pointTypes/add"
-locations_add_endpoint = "http://localhost:8080/api/locations/add"
+points_all_endpoint = "points/all"
+pointType_all_endpoint = "pointTypes/all"
+locations_all_endpoint = "locations/all"
 
-points_all_endpoint = "http://localhost:8080/api/points/all"
-pointType_all_endpoint = "http://localhost:8080/api/pointTypes/all"
-locations_all_endpoint = "http://localhost:8080/api/locations/all"
-
-def send_to_endpoint(endpoint, payload):
-    headers = {'content-type': 'application/json', 'Host': 'myhost'}
-    r = requests.post(endpoint, json=payload, headers=headers)
-    return r
-
-def access_endpoint(endpoint):
-    r = requests.get(endpoint)
-    r_dict_list = json.loads(r.text)
-    return r_dict_list
-
-def filter_by_name_query(name, endpoint):
-    result = None
-    try:
-        all_records = access_endpoint(endpoint)
-        result = [record for record in all_records if record["name"] == name][0]
-    except Exception as e:
-        print(e)
-    return result
-
-def check_status(status, msg):
-    if status == 201:
-        print(f"------SUCCESS------ {msg}")
-    else:
-        print(f"------ERROR------ {msg}")
 
 
 
@@ -46,8 +22,8 @@ def main():
         "name": point_type_name,
         "description": "no description"
     }
-    result = send_to_endpoint(pointTypes_add_endpoint, pointType_payload)
-    check_status(result.status_code, f"PT: {point_type_name}")
+    result = helperFunc.send_to_endpoint(pointTypes_add_endpoint, pointType_payload)
+    helperFunc.check_status(result.status_code, f"PT: {point_type_name}")
 
 
 
@@ -56,8 +32,8 @@ def main():
         "name": location_name,
         "description": "no description"
     }
-    result = send_to_endpoint(locations_add_endpoint, location_payload)
-    check_status(result.status_code, f"PT: {location_name}")
+    result = helperFunc.send_to_endpoint(locations_add_endpoint, location_payload)
+    helperFunc.check_status(result.status_code, f"PT: {location_name}")
 
 
 
@@ -76,19 +52,19 @@ def main():
                 "longitude": longitude,
                 "latitude": latitude,
                 "height": height,
-                "pointType": filter_by_name_query(point_type_name, pointType_all_endpoint)
+                "pointType": helperFunc.filter_by_name_query(point_type_name, pointType_all_endpoint)
             }
-            result = send_to_endpoint(points_add_endpoint, point_payload)
-            check_status(result.status_code, f"P: {point_name}")
+            result = helperFunc.send_to_endpoint(points_add_endpoint, point_payload)
+            helperFunc.check_status(result.status_code, f"P: {point_name}")
         except Exception as e:
             print(e)
         try:
             vertice_payload = {
-                "point": filter_by_name_query(point_name, points_all_endpoint),
-                "location": filter_by_name_query(location_name, locations_all_endpoint)
+                "point": helperFunc.filter_by_name_query(point_name, points_all_endpoint),
+                "location": helperFunc.filter_by_name_query(location_name, locations_all_endpoint)
             }
-            result = send_to_endpoint(vertices_add_endpoint, vertice_payload)
-            check_status(result.status_code, f'V: {vertice_payload["point"]["name"]} {vertice_payload["location"]["name"]}')   
+            result = helperFunc.send_to_endpoint(vertices_add_endpoint, vertice_payload)
+            helperFunc.check_status(result.status_code, f'V: {vertice_payload["point"]["name"]} {vertice_payload["location"]["name"]}')   
         except Exception as e:
             print(e)
 
