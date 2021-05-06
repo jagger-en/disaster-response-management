@@ -77,24 +77,24 @@ const decide_icon = (pointName) => {
 export default function App() {
   const zoom_level = 3
 
-  // const url = "http://localhost:8080/api/markers/all";
-  // const {data, error} = useSwr(url, {fetcher});
+  const url = "http://localhost:8080/api/markers/all";
+  const {data, error} = useSwr(url, {fetcher});
 
-  // const markers_data = data && !error ? data : [];
-  // console.log(markers_data)
-  // const coord_center = markers_data.length > 0 ? 
-  //   [markers_data[0].latitude, markers_data[0].longitude] : [0, 0]
+  const markers_data = data && !error ? data : [];
+  console.log(markers_data)
+  const coord_center = markers_data.length > 0 ? 
+    [markers_data[0].latitude, markers_data[0].longitude] : [0, 0]
 
 
-  const markers_data = []
-  const coord_center = [0, 0]
-  // const summary_table_data = []
+  // const markers_data = []
+  // const coord_center = [0, 0]
+  const summary_table_data = []
 
-  const summary_url = "http://localhost:8080/api/summaries/all";
-  const {data, error}= useSwr(summary_url, {fetcher});
-  const summary_table_data = data && !error ? data : [];
+  // const summary_url = "http://localhost:8080/api/summaries/all";
+  // const {data, error}= useSwr(summary_url, {fetcher});
+  // const summary_table_data = data && !error ? data : [];
   
-  console.log(summary_table_data)
+  // console.log(summary_table_data)
   return (
     <div>
       <Navbar bg="success" variant="dark" expand="lg">
