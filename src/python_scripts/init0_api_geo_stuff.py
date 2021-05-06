@@ -43,7 +43,7 @@ def main():
     for idx, geo_f in enumerate(data_list):
         print()
         try:
-            point_name = f"Point-{idx}"
+            point_name = f"Point-{point_type_name}-{idx}"
             longitude = geo_f["geometry"]["coordinates"][0]
             latitude = geo_f["geometry"]["coordinates"][1]
             height = 145
@@ -108,9 +108,9 @@ else:
 
 
 """
-python api_add.py icon_close.json --l "Forest fire" --i icon_close
-python api_add.py icon_firefighter.json --l "Hains Lane" --i icon_firefighter
-python api_add.py icon_flame.json --l "Forest fire" --i icon_flame
-python api_add.py icon_helicopter.json --l "Bridge water supply" --i icon_helicopter
-python api_add.py icon_storagetank.json --l "Bridge water supply" --i icon_storagetank
+python init0_api_geo_stuff.py icon_close.json --l "Construction locations" --i icon_close
+python init0_api_geo_stuff.py icon_flame.json --l "Forest fire" --i icon_flame
+python init0_api_geo_stuff.py icon_firefighter.json --l "Hains Lane" --i icon_firefighter
+python init0_api_geo_stuff.py icon_helicopter.json --l "Air support" --i icon_helicopter
+python init0_api_geo_stuff.py icon_storagetank.json --l "Bridge water supply" --i icon_storagetank
 """
