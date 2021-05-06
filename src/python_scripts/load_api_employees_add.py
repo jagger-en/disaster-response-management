@@ -39,7 +39,7 @@ def add_stuff():
     join_day = random.randint(1, 20)
     join_date = f"{join_year}-{join_month}-{join_day}"
     employee = {
-        "person": helperFunc.filter_by_name_query("firstName", "persons/all"),
+        "person": helperFunc.filter_by_firstname_query(first_name, "persons/all"),
         "jobTitle": jobTitle,
         "joinDate": join_date,
     }

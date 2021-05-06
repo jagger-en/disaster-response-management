@@ -25,6 +25,15 @@ def filter_by_name_query(name, endpoint):
         print(e)
     return result
 
+def filter_by_firstname_query(name, endpoint):
+    result = None
+    try:
+        all_records = access_endpoint(endpoint)
+        result = [record for record in all_records if record["firstName"] == name][0]
+    except Exception as e:
+        print(e)
+    return result
+
 def check_status(status, msg):
     if status == 201:
         print(f"------SUCCESS------ {msg}")
