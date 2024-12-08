@@ -23,7 +23,6 @@ public class Point implements Serializable {
     private String name;
     private String latitude;
     private String longitude;
-    private String height;
     @OneToMany(mappedBy="point", cascade=CascadeType.REMOVE)
     Collection<Vertice> vertices;
 
@@ -71,14 +70,6 @@ public class Point implements Serializable {
         this.latitude = latitude;
     }
 
-    public String getHeight() {
-        return height;
-    }
-
-    public void setHeight(String height) {
-        this.height = height;
-    }
-
     public PointType getPointType() {
         return pointType;
     }
@@ -94,7 +85,6 @@ public class Point implements Serializable {
         ", name=" + name +
         ", longitude=" + longitude +
         ", latitude=" + latitude +
-        ", height=" + height +
         ", pointType=" + pointType +
         "}";
 

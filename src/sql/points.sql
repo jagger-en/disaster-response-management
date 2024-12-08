@@ -1,78 +1,70 @@
-USE db_palapa;
-
-DELIMITER //
-CREATE PROCEDURE `get_set_of_points_for_location` ()
+CREATE OR REPLACE FUNCTION get_set_of_points_for_location()
+RETURNS TABLE (
+    point_name VARCHAR(255),
+    location_name VARCHAR(255),
+    latitude VARCHAR(255),
+    longitude VARCHAR(255),
+    point_type_name VARCHAR(255),
+    id BIGINT
+) AS $$
 BEGIN
+    RETURN QUERY
     SELECT
-		p.name as `point_name`,
-        l.name as `location_name`,
-		p.latitude,
+        p.name AS point_name,
+        l.name AS location_name,
+        p.latitude,
         p.longitude,
-        pt.name as `point_type_name`,
+        pt.name AS point_type_name,
         p.id
-	FROM db_palapa.vertice as v
-    INNER JOIN db_palapa.location as l on l.id = v.location_id
-    INNER JOIN db_palapa.point as p on p.id = v.point_id
-	INNER JOIN db_palapa.point_type as pt on pt.id = p.point_type_id;
-END //
-DELIMITER ;
+    FROM db_palapa.vertice v
+    INNER JOIN db_palapa.location l ON l.id = v.location_id
+    INNER JOIN db_palapa.point p ON p.id = v.point_id
+    INNER JOIN db_palapa.point_type pt ON pt.id = p.point_type_id;
+END;
+$$ LANGUAGE plpgsql;
 
-DELIMITER //
-CREATE PROCEDURE `get_all_points` ()
+CREATE OR REPLACE FUNCTION get_all_points()
+RETURNS TABLE (
+    id BIGINT,
+    name VARCHAR(255),
+    latitude VARCHAR(255),
+    longitude VARCHAR(255),
+    point_type_id BIGINT
+) AS $$
 BEGIN
-    SELECT * FROM point;
-END //
-DELIMITER ;
+    RETURN QUERY
+    SELECT p.id, p.name, p.latitude, p.longitude, p.point_type_id FROM point p;
+END;
+$$ LANGUAGE plpgsql;
 
-DELIMITER //
-CREATE PROCEDURE `get_ultra_query` ()
+CREATE OR REPLACE FUNCTION get_ultra_query()
+RETURNS TABLE (
+    point_name VARCHAR(255),
+    location_name VARCHAR(255),
+    latitude VARCHAR(255),
+    longitude VARCHAR(255),
+    point_type_name VARCHAR(255),
+    mission_name VARCHAR(255),
+    team_name VARCHAR(255),
+    id BIGINT
+) AS $$
 BEGIN
+    RETURN QUERY
     SELECT
-		p.name as `point_name`,
-        l.name as `location_name`,
-		p.latitude as `latitude`,
-        p.longitude as `longitude`,
-        pt.name as `point_type_name`,
-		mis.name as `mission_name`,
-        team.name as `team_name`,
-		LEFT(UUID(), 8) as `id`
-	FROM vertice as v
-    INNER JOIN location as l on l.id = v.location_id
-    INNER JOIN point as p on p.id = v.point_id
-	INNER JOIN point_type as pt on pt.id = p.point_type_id
-    INNER JOIN mission as mis on mis.location_id = l.id
-    INNER JOIN mission_team as misteam on misteam.mission_id = mis.id
-    INNER JOIN team on team.id = misteam.team_id
-    ;
-END //
-DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE `get_summary_query` ()
-BEGIN
-    SELECT
-        LEFT(UUID(), 8) as `id`,
-        person.first_name as `first_name`,
-        person.last_name as `last_name`,
-        job_title.name as `job_title_name`,
-        mis.name as `mission_name`,
-        team.name as `team_name`,
-		p.name as `point_name`,
-        l.name as `location_name`,
-		p.latitude as `latitude`,
-        p.longitude as `longitude`,
-        pt.name as `point_type_name`
-	FROM vertice as v
-    INNER JOIN location as l on l.id = v.location_id
-    INNER JOIN point as p on p.id = v.point_id
-	INNER JOIN point_type as pt on pt.id = p.point_type_id
-    INNER JOIN mission as mis on mis.location_id = l.id
-    INNER JOIN mission_team as misteam on misteam.mission_id = mis.id
-    INNER JOIN team on team.id = misteam.team_id
-    INNER JOIN team_employee as teamEmp on teamEmp.team_id = team.id
-    INNER JOIN employee on employee.id = teamEmp.employee_id
-    INNER JOIN job_title on job_title.id = employee.job_title_id
-    INNER JOIN person on person.id = employee.person_id
-    ;
-END //
-DELIMITER ;
+        p.name AS point_name,
+        l.name AS location_name,
+        p.latitude AS latitude,
+        p.longitude AS longitude,
+        pt.name AS point_type_name,
+        mis.name AS mission_name,
+        team.name AS team_name,
+        LEFT(UUID_GENERATE_V4()::text, 8) AS id
+    FROM vertice v
+    INNER JOIN location l ON l.id = v.location_id
+    INNER JOIN point p ON p.id = v.point_id
+    INNER JOIN point_type pt ON pt.id = p.point_type_id
+    INNER JOIN mission mis ON mis.location_id = l.id
+    INNER JOIN mission_team misteam ON misteam.mission_id = mis.id
+    INNER JOIN team ON team.id = misteam.team_id;
+END;
+$$ LANGUAGE plpgsql;

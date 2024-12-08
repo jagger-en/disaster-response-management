@@ -3,21 +3,22 @@ A disaster-response-management system.
 
 1. Stop container if already running.
 ```bash
-docker container stop mysql_instance
+docker container stop postgres_instance
 ```
 
-2. Start MySQL.
+2. Start database server.
 ```bash
-docker run --rm --name=mysql_instance \
-    --net=host \
-    -e MYSQL_DATABASE=db_palapa \
-    -e MYSQL_ROOT_PASSWORD=root \
-    docker.io/library/mysql:8.4.3
+docker run --rm --name postgres_instance \
+    -e POSTGRES_USER=postgres \
+    -e POSTGRES_PASSWORD=root \
+    -e POSTGRES_DB=db_palapa \
+    -p 5432:5432 \
+    docker.io/library/postgres:15.3
 ```
 
 3. Add stored procedures.
 ```bash
-docker exec -i mysql_instance mysql --user=root --password=root < ./src/sql/points.sql
+docker exec -i postgres_instance psql -U postgres -d db_palapa < ./src/sql/points.sql
 ```
 
 4. Run application.

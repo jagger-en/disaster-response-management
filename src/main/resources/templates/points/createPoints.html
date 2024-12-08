@@ -7,7 +7,6 @@
                 <th>Point name</th>
                 <th>Longitude</th>
                 <th>Latitude</th>
-                <th>Height</th>
                 <th>pointType</th>
                 <th>Delete</th>
             </tr>
@@ -18,7 +17,6 @@
                 <td th:text="${point.name}"></td>
                 <td th:text="${point.longitude}"></td>
                 <td th:text="${point.latitude}"></td>
-                <td th:text="${point.height}"></td>
                 <td th:if="${point.pointType != null}" th:text="${point.pointType.name}"></td>
                     <td th:unless="${point.pointType != null}">No pointType</td>
 
@@ -46,10 +44,6 @@
             <div class="col-sm-4">
                 <label for="latitude" class="form-label">Latitude</label>
                 <input th:field="*{latitude}" value="okok" type="text" class="form-control" id="latitude">
-            </div>
-            <div class="col-sm-4">
-                <label for="height" class="form-label">Height</label>
-                <input th:field="*{height}" value="okok" type="text" class="form-control" id="height">
             </div>
 
             <div class="col-sm-4">
