@@ -27,7 +27,7 @@ public class PointTypeController {
     public String getAllPointTypes(PointType pointType, Model model) {
         List<PointType> pointTypes = pointTypeService.findAllPointTypes();
         model.addAttribute("pointTypes", pointTypes);
-        model.addAttribute("pageToRender", "/PointTypes/createPointTypes");
+        model.addAttribute("pageToRender", "/pointTypes/createPointTypes");
         return "index";
     }
 
