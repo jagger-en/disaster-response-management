@@ -5,13 +5,13 @@ import sys
 
 
 def send_to_endpoint(endpoint, payload):
-    endpoint = f"http://localhost:8080/api/{endpoint}"
+    endpoint = f"http://localhost:8081/api/{endpoint}"
     headers = {'content-type': 'application/json', 'Host': 'myhost'}
     r = requests.post(endpoint, json=payload, headers=headers)
     return r
 
 def access_endpoint(endpoint):
-    endpoint = f"http://localhost:8080/api/{endpoint}"
+    endpoint = f"http://localhost:8081/api/{endpoint}"
     r = requests.get(endpoint)
     r_dict_list = json.loads(r.text)
     return r_dict_list

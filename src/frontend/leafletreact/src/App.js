@@ -77,7 +77,7 @@ const decide_icon = (pointName) => {
 export default function App() {
   const zoom_level = 3
 
-  const url = "http://localhost:8080/api/markers/all";
+  const url = "http://localhost:8081/api/markers/all";
   const {data, error} = useSwr(url, {fetcher});
 
   const markers_data = data && !error ? data : [];
@@ -90,7 +90,7 @@ export default function App() {
   // const coord_center = [0, 0]
   const summary_table_data = []
 
-  // const summary_url = "http://localhost:8080/api/summaries/all";
+  // const summary_url = "http://localhost:8081/api/summaries/all";
   // const {data, error}= useSwr(summary_url, {fetcher});
   // const summary_table_data = data && !error ? data : [];
   
