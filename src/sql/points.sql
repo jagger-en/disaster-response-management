@@ -1,19 +1,13 @@
--- CREATE PROCEDURE `get_set_of_points_for_location` (
---     IN location_name VARCHAR(255)
--- )
-
 USE db_palapa;
-
-
 
 DELIMITER //
 CREATE PROCEDURE `get_set_of_points_for_location` ()
 BEGIN
-    SELECT 
-		p.name as `point_name`, 
-        l.name as `location_name`, 
-		p.latitude, 
-        p.longitude, 
+    SELECT
+		p.name as `point_name`,
+        l.name as `location_name`,
+		p.latitude,
+        p.longitude,
         pt.name as `point_type_name`,
         p.id
 	FROM db_palapa.vertice as v
@@ -23,7 +17,6 @@ BEGIN
 END //
 DELIMITER ;
 
-
 DELIMITER //
 CREATE PROCEDURE `get_all_points` ()
 BEGIN
@@ -31,17 +24,14 @@ BEGIN
 END //
 DELIMITER ;
 
-
-
-
 DELIMITER //
 CREATE PROCEDURE `get_ultra_query` ()
 BEGIN
-    SELECT 
-		p.name as `point_name`, 
-        l.name as `location_name`, 
-		p.latitude as `latitude`, 
-        p.longitude as `longitude`, 
+    SELECT
+		p.name as `point_name`,
+        l.name as `location_name`,
+		p.latitude as `latitude`,
+        p.longitude as `longitude`,
         pt.name as `point_type_name`,
 		mis.name as `mission_name`,
         team.name as `team_name`,
@@ -57,23 +47,20 @@ BEGIN
 END //
 DELIMITER ;
 
-
-
-
 DELIMITER //
 CREATE PROCEDURE `get_summary_query` ()
 BEGIN
-    SELECT 
+    SELECT
         LEFT(UUID(), 8) as `id`,
         person.first_name as `first_name`,
         person.last_name as `last_name`,
         job_title.name as `job_title_name`,
         mis.name as `mission_name`,
         team.name as `team_name`,
-		p.name as `point_name`, 
-        l.name as `location_name`, 
-		p.latitude as `latitude`, 
-        p.longitude as `longitude`, 
+		p.name as `point_name`,
+        l.name as `location_name`,
+		p.latitude as `latitude`,
+        p.longitude as `longitude`,
         pt.name as `point_type_name`
 	FROM vertice as v
     INNER JOIN location as l on l.id = v.location_id
@@ -89,60 +76,3 @@ BEGIN
     ;
 END //
 DELIMITER ;
-
-
-
-
-
-CALL get_ultra_query();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
