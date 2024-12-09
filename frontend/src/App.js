@@ -13,6 +13,8 @@ import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Table } from 'reac
 
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
+const MARKERS_URL = "http://localhost:8081/api/markers/all";
+
 const icon_close = L.icon({
   iconUrl: icon_close_url,
   iconSize:     [38, 95],
@@ -73,13 +75,15 @@ const decide_icon = (pointName) => {
 }
 
 export default function App() {
-  const zoom_level = 3
+  const zoom_level = 15
 
-  const url = "http://localhost:8081/api/markers/all";
-  const {data, error} = useSwr(url, {fetcher});
+  const {data, error, isLoading} = useSwr(MARKERS_URL, fetcher);
 
-  const markers_data = data && !error ? data : [];
-  console.log(markers_data)
+  if (isLoading || !data) return <div>Loading...</div>;
+  if (error) return <div>Error loading data</div>;
+
+  const markers_data = data;
+
   const coord_center = markers_data.length > 0 ?
     [markers_data[0].latitude, markers_data[0].longitude] : [0, 0]
 
@@ -111,7 +115,6 @@ export default function App() {
           ))}
         </MapContainer>
       </div>
-      <div style={{marginBottom: "500px"}}></div>
     </div>
   );
 }
