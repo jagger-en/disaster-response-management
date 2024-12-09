@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import L from 'leaflet';
 import { TileLayer, Marker, Popup, MapContainer} from 'react-leaflet';
@@ -9,7 +9,7 @@ import icon_firefighter_url from './assets/icon_firefighter.svg';
 import icon_storagetank_url from './assets/icon_storagetank.svg';
 import useSwr from 'swr';
 import { v4 as uuidv4 } from 'uuid';
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Table } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Table, Modal } from 'react-bootstrap';
 
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
@@ -74,7 +74,28 @@ const decide_icon = (pointName) => {
   return icon_return
 }
 
+const teams = [
+  { name: 'Team Alpha', missions: ['Mission A', 'Mission C'] },
+  { name: 'Team Beta', missions: ['Mission B'] },
+  { name: 'Team Gamma', missions: ['Mission A', 'Mission B'] },
+  { name: 'Team Delta', missions: [] },
+];
+
 export default function App() {
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: '', details: '' });
+
+  // Handle modal open and close
+  const handleShow = (title, details) => {
+    setModalContent({ title, details });
+    setShowModal(true);
+  };
+
+  const handleClose = () => setShowModal(false);
+
+
+
   const zoom_level = 15
 
   const {data, error, isLoading} = useSwr(MARKERS_URL, fetcher);
@@ -87,6 +108,14 @@ export default function App() {
   const coord_center = markers_data.length > 0 ?
     [markers_data[0].latitude, markers_data[0].longitude] : [0, 0]
 
+
+
+
+
+
+
+
+
   return (
     <div>
       <Navbar expand="lg">
@@ -94,7 +123,7 @@ export default function App() {
           <Navbar.Brand href="#home">Disaster Response Management System</Navbar.Brand>
         </div>
       </Navbar>
-      <div className="">
+      <div className="container">
         <MapContainer className="map" center={coord_center} zoom={zoom_level} style={{ height: "50vh", width: "100%" }}>
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -115,6 +144,70 @@ export default function App() {
           ))}
         </MapContainer>
       </div>
+
+      <div className="container">
+        <div className="birdseye-view">
+          <h3>Teams and Missions</h3>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Team Name</th>
+                <th>Missions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {teams.map((team, index) => (
+                <tr key={index}>
+                  <td>
+                    <a
+                      href="#!"
+                      onClick={() => handleShow(`Team: ${team.name}`, `Missions: ${team.missions.join(', ') || 'None'}`)}
+                      className="team-link"
+                    >
+                      {team.name}
+                    </a>
+                  </td>
+                  <td>
+                    {team.missions.length > 0 ? (
+                      team.missions.map((mission, idx) => (
+                        <a
+                          key={idx}
+                          href="#!"
+                          onClick={() => handleShow(`Mission: ${mission}`, `Assigned to team: ${team.name}`)}
+                          className="mission-link"
+                        >
+                          {mission}
+                        </a>
+                      ))
+                    ) : (
+                      <span className="no-assignment">- None Assigned -</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+
+          {/* Modal Component */}
+          <Modal show={showModal} onHide={handleClose} centered>
+            <Modal.Header closeButton>
+              <Modal.Title>{modalContent.title}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>{modalContent.details}</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+      </div>
+
+
+
+
+
+
     </div>
   );
 }

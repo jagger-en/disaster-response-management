@@ -1,4 +1,124 @@
-.map{
-  height: 100vh;
-  
+/* General Page Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Navbar Styles */
+.navbar {
+  /* background-color: #313131; Bootstrap Primary Blue */
+  /* color: #000; */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  /* color: white !important; */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Map Container Styles */
+.map-container {
+  margin: 20px auto;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.map {
+  height: 50vh;
+  width: 100%;
+}
+
+/* Popup Styles */
+.leaflet-popup-content {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.leaflet-popup-content b {
+  color: #007bff; /* Highlighted Blue */
+}
+
+/* Marker Popup Styles */
+.leaflet-popup-content-wrapper {
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.leaflet-popup-tip {
+  background: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+  .map {
+    height: 40vh;
+  }
+}
+
+/*
+Teams and Missions
+*/
+
+.birdseye-view {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.birdseye-view h3 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #343a40;
+  font-weight: 600;
+}
+
+.table {
+  font-size: 14px;
+}
+
+.team-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.team-link:hover {
+  text-decoration: underline;
+}
+
+.mission-link {
+  color: #28a745;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.mission-link:hover {
+  text-decoration: underline;
+}
+
+.no-assignment {
+  color: #6c757d;
+  font-style: italic;
 }
