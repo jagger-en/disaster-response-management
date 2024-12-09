@@ -11,42 +11,40 @@ import useSwr from 'swr';
 import { v4 as uuidv4 } from 'uuid';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Table } from 'react-bootstrap';
 
-
 const fetcher = (...args) => fetch(...args).then(response => response.json());
-
 
 const icon_close = L.icon({
   iconUrl: icon_close_url,
-  iconSize:     [38, 95], // size of the icon
-  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+  iconSize:     [38, 95],
+  iconAnchor:   [22, 94],
   popupAnchor:  [-3, -86]
 });
 
 const icon_firefighter = L.icon({
   iconUrl: icon_firefighter_url,
-  iconSize:     [38, 95], // size of the icon
-  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+  iconSize:     [38, 95],
+  iconAnchor:   [22, 94],
   popupAnchor:  [-3, -86]
 });
 
 const icon_flame = L.icon({
   iconUrl: icon_flame_url,
-  iconSize:     [38, 95], // size of the icon
-  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+  iconSize:     [38, 95],
+  iconAnchor:   [22, 94],
   popupAnchor:  [-3, -86]
 });
 
 const icon_helicopter = L.icon({
   iconUrl: icon_helicopter_url,
-  iconSize:     [38, 95], // size of the icon
-  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+  iconSize:     [38, 95],
+  iconAnchor:   [22, 94],
   popupAnchor:  [-3, -86]
 });
 
 const icon_storagetank = L.icon({
   iconUrl: icon_storagetank_url,
-  iconSize:     [38, 95], // size of the icon
-  iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+  iconSize:     [38, 95],
+  iconAnchor:   [22, 94],
   popupAnchor:  [-3, -86]
 });
 
@@ -85,16 +83,8 @@ export default function App() {
   const coord_center = markers_data.length > 0 ? 
     [markers_data[0].latitude, markers_data[0].longitude] : [0, 0]
 
-
-  // const markers_data = []
-  // const coord_center = [0, 0]
   const summary_table_data = []
 
-  // const summary_url = "http://localhost:8081/api/summaries/all";
-  // const {data, error}= useSwr(summary_url, {fetcher});
-  // const summary_table_data = data && !error ? data : [];
-
-  // console.log(summary_table_data)
   return (
     <div>
       <Navbar bg="success" variant="dark" expand="lg">
@@ -102,7 +92,7 @@ export default function App() {
           <Navbar.Brand href="#home">Disaster Response (Java Project)</Navbar.Brand>
         </div>
       </Navbar>
-      <div className="container" style={{width: "100%"}}>
+      <div className="container" style={{width: "100%", height: "100vh"}}>
         <MapContainer className="map" center={coord_center} zoom={zoom_level}>
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -157,14 +147,11 @@ export default function App() {
   );
 }
 
-
 {/* <div>Icons made by <a href="https://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
 
-// <div>Icons made by <a href="https://www.flaticon.com/authors/mangsaabguru" 
-// title="mangsaabguru">mangsaabguru</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+{/* <div>Icons made by <a href="https://www.flaticon.com/authors/mangsaabguru" title="mangsaabguru">mangsaabguru</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
 
-// <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from 
-// <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+{/* <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
 
 {/* <div>Icons made by <a href="https://www.flaticon.com/authors/monkik" title="monkik">monkik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
 
