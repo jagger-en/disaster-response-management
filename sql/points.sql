@@ -1,3 +1,4 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE OR REPLACE FUNCTION get_set_of_points_for_location()
 RETURNS TABLE (
     point_name VARCHAR(255),
@@ -5,7 +6,7 @@ RETURNS TABLE (
     latitude VARCHAR(255),
     longitude VARCHAR(255),
     point_type_name VARCHAR(255),
-    id BIGINT
+    id TEXT
 ) AS $$
 BEGIN
     RETURN QUERY
@@ -46,7 +47,7 @@ RETURNS TABLE (
     point_type_name VARCHAR(255),
     mission_name VARCHAR(255),
     team_name VARCHAR(255),
-    id BIGINT
+    id TEXT
 ) AS $$
 BEGIN
     RETURN QUERY
