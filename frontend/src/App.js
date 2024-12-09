@@ -80,20 +80,18 @@ export default function App() {
 
   const markers_data = data && !error ? data : [];
   console.log(markers_data)
-  const coord_center = markers_data.length > 0 ? 
+  const coord_center = markers_data.length > 0 ?
     [markers_data[0].latitude, markers_data[0].longitude] : [0, 0]
-
-  const summary_table_data = []
 
   return (
     <div>
-      <Navbar bg="success" variant="dark" expand="lg">
+      <Navbar expand="lg">
         <div className="container">
-          <Navbar.Brand href="#home">Disaster Response (Java Project)</Navbar.Brand>
+          <Navbar.Brand href="#home">Disaster Response Management System</Navbar.Brand>
         </div>
       </Navbar>
-      <div className="container" style={{width: "100%", height: "100vh"}}>
-        <MapContainer className="map" center={coord_center} zoom={zoom_level}>
+      <div className="">
+        <MapContainer className="map" center={coord_center} zoom={zoom_level} style={{ height: "50vh", width: "100%" }}>
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -112,35 +110,6 @@ export default function App() {
             </Marker>
           ))}
         </MapContainer>
-      </div>
-      <div className="container mt-5">
-        <h1>Summary</h1>
-        <Table striped bordered hover size="sm">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Job title</th>
-              <th>Mission</th>
-              <th>Team</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              summary_table_data.map(d => (
-                <tr key={uuidv4()}>
-                  <td>{d.id}</td>
-                  <td>{d.firstName}</td>
-                  <td>{d.lastName}</td>
-                  <td>{d.jobTitleName}</td>
-                  <td>{d.missionName}</td>
-                  <td>{d.teamName}</td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </Table>
       </div>
       <div style={{marginBottom: "500px"}}></div>
     </div>
