@@ -116,6 +116,7 @@ Teams and Missions
 
 .mission-link:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .no-assignment {

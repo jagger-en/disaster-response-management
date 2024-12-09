@@ -14,6 +14,7 @@ import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Table, Modal } fro
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
 const MARKERS_URL = "http://localhost:8081/api/markers/all";
+const TEAM_MISSION_DETAILS_URL = "http://localhost:8081/api/team-mission-details/all";
 
 const icon_close = L.icon({
   iconUrl: icon_close_url,
@@ -98,23 +99,63 @@ export default function App() {
 
   const zoom_level = 15
 
-  const {data, error, isLoading} = useSwr(MARKERS_URL, fetcher);
+  const { data: markersData, error: markersError } = useSwr(MARKERS_URL, fetcher);
 
-  if (isLoading || !data) return <div>Loading...</div>;
-  if (error) return <div>Error loading data</div>;
+  const { data: teamMissionDetailsData, error: teamMissionDetailsError } = useSwr(TEAM_MISSION_DETAILS_URL, fetcher);
 
-  const markers_data = data;
+  if (markersError || teamMissionDetailsError) {
+    return <div>Error loading data...</div>;
+  }
 
-  const coord_center = markers_data.length > 0 ?
-    [markers_data[0].latitude, markers_data[0].longitude] : [0, 0]
+  if (!markersData || !teamMissionDetailsData) {
+    return <div>Loading...</div>;
+  }
 
+  const coord_center = markersData.length > 0 ?
+    [markersData[0].latitude, markersData[0].longitude] : [0, 0]
 
+  const uniqueTeamNames = new Set();
 
+  teamMissionDetailsData.forEach(d => {
+    uniqueTeamNames.add(d.teamName)
+  })
 
+  const teamMissionDetails = Array.from(uniqueTeamNames).map(d => {
+    const matches = teamMissionDetailsData.filter(dd => {
+      if (dd.teamName == d) {
+        return dd
+      }
+    })
 
+    const employees = new Set();
+    const addToEmployees = obj => {
+      const serialized = JSON.stringify(obj);
+      employees.add(serialized);
+    };
+    matches.forEach(dd => {
+      addToEmployees({
+        employeeFirstName: dd.employeeFirstName,
+        employeeLastName: dd.employeeLastName,
+        employeeJobTitleName: dd.employeeJobTitleName,
+      })
+    })
 
+    const missions = new Set();
+    const addToMissions = obj => {
+      const serialized = JSON.stringify(obj);
+      missions.add(serialized);
+    };
+    matches.forEach(dd => {
+      addToMissions({
+        missionName: dd.missionName,
+        missionDescription: dd.missionDescription,
+        missionLocationName: dd.missionLocationName,
+        missionTypeName: dd.missionTypeName,
+      })
+    })
 
-
+    return {"name": d, "employees": Array.from(employees).map(dd => JSON.parse(dd)), "missions": Array.from(missions).map(dd => JSON.parse(dd))}
+  })
 
   return (
     <div>
@@ -129,7 +170,7 @@ export default function App() {
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {markers_data.map(d => (
+          {markersData.map(d => (
             <Marker key={uuidv4()} position={[d.latitude, d.longitude]} icon={decide_icon(d.pointTypeName)}>
               <Popup>
               <b>Point:</b> {d.pointName}
@@ -156,28 +197,63 @@ export default function App() {
               </tr>
             </thead>
             <tbody>
-              {teams.map((team, index) => (
+              {teamMissionDetails.map((item, index) => (
                 <tr key={index}>
                   <td>
                     <a
                       href="#!"
-                      onClick={() => handleShow(`Team: ${team.name}`, `Missions: ${team.missions.join(', ') || 'None'}`)}
+                      onClick={() => handleShow(`Team: ${item.name}`,
+                        (
+                          <table className="table">
+                            <thead>
+                              <tr>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Role</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {
+                              item.employees.map((employee, index) => (
+                                <tr key={index}>
+                                  <td>{employee.employeeFirstName}</td>
+                                  <td>{employee.employeeLastName}</td>
+                                  <td>{employee.employeeJobTitleName}</td>
+                                </tr>
+                              ))
+                            }
+                            </tbody>
+                          </table>
+                        )
+                      )}
                       className="team-link"
                     >
-                      {team.name}
+                      {item.name}
                     </a>
                   </td>
                   <td>
-                    {team.missions.length > 0 ? (
-                      team.missions.map((mission, idx) => (
-                        <a
+                    {item.missions.length > 0 ? (
+                      item.missions.map((mission, idx) => (
+                        <li
                           key={idx}
                           href="#!"
-                          onClick={() => handleShow(`Mission: ${mission}`, `Assigned to team: ${team.name}`)}
+                          onClick={() => handleShow(`Mission: ${mission.missionName}`, (
+                            <div>
+                              <p>
+                                <b>Description</b>: {mission.missionDescription}
+                              </p>
+                              <p>
+                                <b>Location</b>: {mission.missionLocationName}
+                              </p>
+                              <p>
+                                <b>Type</b>: {mission.missionTypeName}
+                              </p>
+                            </div>
+                            ))}
                           className="mission-link"
                         >
-                          {mission}
-                        </a>
+                          {mission.missionName}
+                        </li>
                       ))
                     ) : (
                       <span className="no-assignment">- None Assigned -</span>

@@ -25,7 +25,9 @@ TEAM_FUNCTIONALITIES_ALL= "teamFunctionalities/all"
 MISSION_TYPES_ADD = "missionTypes/add"
 MISSION_TYPES_ALL = "missionTypes/all"
 
-BOILER_PLATE_DESCRIPTION = "Lorem ipsum dolor sit amet."
+BOILER_PLATE_DESCRIPTION = ("Lorem ipsum dolor sit amet, consectetur "
+    "adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam "
+    "ut odio sed eros fermentum egestas sit amet sed massa.")
 
 PERSONS_ADD = "persons/add"
 PERSONS_ALL = "persons/all"
