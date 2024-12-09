@@ -18,7 +18,7 @@ docker run --rm --name postgres_instance \
 
 3. Add stored procedures.
 ```bash
-docker exec -i postgres_instance psql -U postgres -d db_palapa < ./sql/points.sql
+docker exec -i postgres_instance psql -U postgres -d db_palapa < ./sql/stored_procedures.sql
 ```
 
 4. Run application.
