@@ -25,3 +25,8 @@ docker exec -i postgres_instance psql -U postgres -d db_palapa < ./sql/points.sq
 ```bash
 ./mvnw spring-boot:run
 ```
+
+5. Add sample data
+```bash
+./python_scripts/populate_database.py
+```
