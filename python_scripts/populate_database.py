@@ -41,44 +41,104 @@ if __name__ == "__main__":
 
     # Populate job titles
     for job_title_name in [
-        "driver",
-        "paramedic",
-        "nurse",
-        "cook",
-        "geo-surveyor",
-        "pilot",
-        "construction-worker",
+        "Wildfire Response Coordinator",
+        "Firefighter/Rescue Specialist",
+        "Wildfire Incident Commander",
+        "Logistics and Supply Chain Manager",
+        "Emergency Medical Technician (EMT)",
+        "Community Liaison Officer",
+        "Fire Behaviour Analyst",
+        "Incident Communications Officer",
+        "Crisis Management Consultant",
+        "Fire Safety Officer",
+        "Wildfire Evacuation Specialist",
+        "Search and Rescue Specialist",
+        "Water and Air Operations Manager",
+        "Disaster Relief Coordinator",
+        "Environmental Restoration Specialist",
+        "Infrastructure Recovery Specialist",
+        "Wildlife and Ecosystem Officer",
+        "Evacuation Shelter Manager",
+        "Disaster Recovery Specialist",
+        "Public Health Specialist",
+        "Field Operations Supervisor",
+        "Wildfire Recovery Officer",
+        "Disaster Analyst",
+        "Community Outreach Coordinator",
+        "Fire Perimeter Control Specialist",
+        "Transportation and Evacuation Coordinator",
+        "Flood and Erosion Control Specialist",
+        "Hazardous Materials Handler",
+        "Psychosocial Support Officer",
+        "Volunteer Coordinator"
     ]:
         job_titles.add_to_database(job_title_name)
     job_titles_list = query.access_endpoint(constants.JOB_TITLES_ALL)
 
     # Populate teams
     for mission_type_name in [
-        "rescue",
-        "construction",
-        "first-response",
-        "survey",
+        "Fire Suppression and Containment",
+        "Logistics and Supply Distribution",
+        "Evacuation and Shelter Management",
+        "Medical and First Aid Response",
+        "Fire Perimeter Control",
+        "Damage Assessment",
+        "Search and Rescue",
+        "Communications and Coordination",
+        "Community Outreach and Support",
+        "Wildlife and Ecosystem Protection",
+        "Hazardous Materials Management",
+        "Air Support and Water Bombing Operations",
+        "Disaster Relief Distribution",
+        "Psychosocial Support and Counseling",
+        "Environmental Recovery and Restoration"
     ]:
         mission_types.add_to_database(mission_type_name)
     mission_types_list = query.access_endpoint(constants.MISSION_TYPES_ALL)
 
     # Populate team functionalities
     for team_functionality_name in [
-        "medical",
-        "construction",
-        "transportation",
-        "survey",
+        "Fire Suppression and Containment",
+        "Logistics and Supply Distribution",
+        "Evacuation and Shelter Management",
+        "Medical and First Aid Response",
+        "Fire Perimeter Control",
+        "Damage Assessment",
+        "Search and Rescue",
+        "Communications and Coordination",
+        "Community Outreach and Support",
+        "Wildlife and Ecosystem Protection",
+        "Hazardous Materials Management",
+        "Air Support and Water Bombing Operations",
+        "Disaster Relief Distribution",
+        "Psychosocial Support and Counseling",
+        "Environmental Recovery and Restoration"
     ]:
         team_functionalities.add_to_database(team_functionality_name)
     team_functionalities = query.access_endpoint(constants.TEAM_FUNCTIONALITIES_ALL)
 
     # Populate teams
     for team_name in [
-        "Alpha838",
-        "CakeMonstas",
-        "TaxiTanks",
-        "SurveyDadada",
-        "RockNRoll12354",
+        "Thunderbolts",
+        "Phoenix Force",
+        "Stormbringers",
+        "Steel Titans",
+        "Shadow Warriors",
+        "Crimson Hawks",
+        "Galaxy Pioneers",
+        "Iron Wolves",
+        "Viper Squad",
+        "Golden Eagles",
+        "Raging Bulls",
+        "Night Wolves",
+        "Silver Sharks",
+        "Alpha Pack",
+        "Velocity Vanguards",
+        "Inferno Legion",
+        "Dark Knights",
+        "Blaze Rangers",
+        "Frozen Titans",
+        "Rogue Falcons",
     ]:
         team_functionality = random.sample(team_functionalities, 1)[0]
         teams.add_to_database(team_name, team_functionality)
@@ -92,8 +152,39 @@ if __name__ == "__main__":
 
     # Populate missions
     # TODO: The data here is awkward because the types do not match the mission names.
-    mission_names_list = ['Build hospital', 'Put out fire', 'Evacuate citizens', 'Transport food supplies']
-    for mission_name in mission_names_list:
+    for mission_name in [
+        "Operation Blaze Relief",
+        "Mission Ashes Recovery",
+        "Task Ember Evacuation",
+        "Operation Firestorm Recovery",
+        "Mission Fire Break Control",
+        "Task Bushfire Relief Response",
+        "Operation Red Cross Assistance",
+        "Mission Outback Fire Recovery",
+        "Task Wildfire Evacuation Plan",
+        "Operation Firefighter Assistance",
+        "Mission Black Summer Recovery",
+        "Task Fire Damage Assessment",
+        "Operation Air Support",
+        "Mission Burnt Land Restoration",
+        "Task Emergency Shelter Setup",
+        "Operation Safe Haven Evacuation",
+        "Mission Wildlife Protection",
+        "Task Resource Allocation",
+        "Operation Hazardous Material Clean-up",
+        "Mission Post-Fire Infrastructure",
+        "Task Recovery and Rehabilitation",
+        "Operation Smoke and Air Quality Monitoring",
+        "Mission Disaster Recovery",
+        "Task Evacuee Health Monitoring",
+        "Mission Community Resilience Building",
+        "Task Fire Prevention Education",
+        "Operation Fire Recovery Assistance",
+        "Mission Fireproofing Communities",
+        "Task Public Health and Safety",
+        "Mission Southern Highlands Recovery",
+        "Operation Outback Wildlife Recovery"
+    ]:
         mission_type = random.sample(mission_types_list, 1)[0]
         location =random.sample(locations_list, 1)[0]
         missions.add_to_database(mission_name, mission_type, location)
