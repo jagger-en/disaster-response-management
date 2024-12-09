@@ -1,8 +1,8 @@
+from lib.logger import create_stdout_logger
 import requests
 import json
-import time
-import sys
 
+logger = create_stdout_logger(__name__)
 
 def send_to_endpoint(endpoint, payload):
     endpoint = f"http://localhost:8081/api/{endpoint}"
@@ -34,8 +34,8 @@ def filter_by_firstname_query(name, endpoint):
         print(e)
     return result
 
-def check_status(status, msg):
+def check_status(status, info):
     if status == 201:
-        print(f"------SUCCESS------ {msg}")
+        logger.info(f"successfully added {info}")
     else:
-        print(f"------ERROR------ {msg}")
+        logger.error(f"failed to add {info}")
