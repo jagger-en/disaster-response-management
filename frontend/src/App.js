@@ -93,7 +93,7 @@ export default function App() {
   // const summary_url = "http://localhost:8081/api/summaries/all";
   // const {data, error}= useSwr(summary_url, {fetcher});
   // const summary_table_data = data && !error ? data : [];
-  
+
   // console.log(summary_table_data)
   return (
     <div>
@@ -109,7 +109,7 @@ export default function App() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {markers_data.map(d => (
-            <Marker key={uuidv4} position={[d.latitude, d.longitude]} icon={decide_icon(d.pointTypeName)}>
+            <Marker key={uuidv4()} position={[d.latitude, d.longitude]} icon={decide_icon(d.pointTypeName)}>
               <Popup>
               <b>Point:</b> {d.pointName}
               <br></br>
@@ -139,7 +139,7 @@ export default function App() {
           <tbody>
             {
               summary_table_data.map(d => (
-                <tr>
+                <tr key={uuidv4()}>
                   <td>{d.id}</td>
                   <td>{d.firstName}</td>
                   <td>{d.lastName}</td>
