@@ -4,8 +4,28 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Button, Table, Modal } from 'react-bootstrap';
 import Home from "./Home.js"
 import NewMission from "./NewMission.js"
+import MissionsDashboard from "./MissionsDashboard";
+import SpecificMission from "./SpecificMission";
 
 export default function App() {
+  const missions = [
+    { id: "1", name: "Bushfire Response", status: "ACTIVE", location: "Victoria", personnelCount: 20 },
+    { id: "2", name: "Flood Relief", status: "COMPLETED", location: "New South Wales", personnelCount: 15 },
+    { id: "3", name: "Earthquake Rescue", status: "PLANNED", location: "Tasmania", personnelCount: 25 },
+  ];
+
+  const mission = {
+    id: "1",
+    name: "Bushfire Response",
+    status: "ACTIVE",
+    details: "Responding to the wildfires in Victoria",
+    location: "Victoria",
+    personnel: [
+      { id: 1, firstName: "John", lastName: "Doe", location: "Melbourne", status: "ACTIVE" },
+      { id: 2, firstName: "Jane", lastName: "Smith", location: "Sydney", status: "UNKNOWN" },
+    ],
+  };
+
   return (
     <BrowserRouter>
        <Navbar bg="light" expand="lg">
@@ -16,6 +36,7 @@ export default function App() {
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/new-mission">New mission</Nav.Link>
+              <Nav.Link href="/missions">Missions</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -24,6 +45,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new-mission" element={ <NewMission /> } />
+        <Route path="/missions" element={<MissionsDashboard missions={missions} />} />
+        <Route path="/specific-mission" element={<SpecificMission mission={mission} />} />
       </Routes>
 
     </BrowserRouter>
