@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Button, Table, Modal } from 'react-bootstrap';
 import Home from "./Home.js"
+import NewMission from "./NewMission.js"
 
 export default function App() {
   return (
@@ -22,7 +23,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/new-mission" element={ "New mission" } />
+        <Route path="/new-mission" element={ <NewMission /> } />
       </Routes>
 
     </BrowserRouter>
