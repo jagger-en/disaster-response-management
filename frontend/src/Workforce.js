@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-const EmployeeDashboard = () => {
+const Workforce = () => {
   // Example employee data
   const employees = [
     {
@@ -121,7 +121,7 @@ const EmployeeDashboard = () => {
       <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "20px" }}>
         <div>
           <i className="fas fa-users fa-2x" style={{ color: "#4caf50" }}></i>
-          <h3>Total Employees</h3>
+          <h3>Total workforce</h3>
           <p>{totalEmployees}</p>
         </div>
         <div>
@@ -171,9 +171,9 @@ const EmployeeDashboard = () => {
         </select>
       </div>
 
-      {/* Employee List */}
+      {/* Staff list */}
       <div>
-        <h2>Employee List</h2>
+        <h2>Staff list</h2>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
@@ -211,4 +211,4 @@ const EmployeeDashboard = () => {
   );
 };
 
-export default EmployeeDashboard;
+export default Workforce;

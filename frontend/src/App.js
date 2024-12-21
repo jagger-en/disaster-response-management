@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Button, Table, Modal } from 'react-bootstrap';
 import Home from "./Home.js"
 import MissionsAndTeams from "./MissionsAndTeams.js"
-import EmployeeDashboard from "./EmployeeDashboard.js"
+import Workforce from "./Workforce.js"
 import NewMission from "./NewMission.js"
 import MissionsDashboard from "./MissionsDashboard";
 import SpecificMission from "./SpecificMission";
@@ -37,7 +37,7 @@ export default function App() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/employees">Employees</Nav.Link>
+              <Nav.Link href="/workforce">Workforce</Nav.Link>
               <Nav.Link href="/new-mission">New mission</Nav.Link>
               <Nav.Link href="/missions">Missions</Nav.Link>
               <Nav.Link href="/missions-and-teams">Overview</Nav.Link>
@@ -48,7 +48,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/employees" element={<EmployeeDashboard />} />
+        <Route path="/workforce" element={<Workforce />} />
         <Route path="/new-mission" element={ <NewMission /> } />
         <Route path="/missions" element={<MissionsDashboard missions={missions} />} />
         <Route path="/missions-and-teams" element={<MissionsAndTeams />} />
