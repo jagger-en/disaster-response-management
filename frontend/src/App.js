@@ -5,8 +5,7 @@ import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Button, Table, 
 import Home from "./Home.js"
 import MissionsAndTeams from "./MissionsAndTeams.js"
 import Workforce from "./Workforce.js"
-import NewMission from "./NewMission.js"
-import MissionsDashboard from "./MissionsDashboard";
+import Missions from "./Missions.js";
 import SpecificMission from "./SpecificMission";
 
 export default function App() {
@@ -38,7 +37,6 @@ export default function App() {
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/workforce">Workforce</Nav.Link>
-              <Nav.Link href="/new-mission">New mission</Nav.Link>
               <Nav.Link href="/missions">Missions</Nav.Link>
               <Nav.Link href="/missions-and-teams">Overview</Nav.Link>
             </Nav>
@@ -49,8 +47,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/workforce" element={<Workforce />} />
-        <Route path="/new-mission" element={ <NewMission /> } />
-        <Route path="/missions" element={<MissionsDashboard missions={missions} />} />
+        <Route path="/missions" element={<Missions missions={missions} />} />
         <Route path="/missions-and-teams" element={<MissionsAndTeams />} />
         <Route path="/specific-mission" element={<SpecificMission mission={mission} />} />
       </Routes>

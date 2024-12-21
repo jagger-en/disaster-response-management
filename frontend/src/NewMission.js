@@ -70,7 +70,6 @@ const NewMission = () => {
 
   return (
     <Container>
-      <h1 className="mb-4">Create New Mission</h1>
       <Form onSubmit={handleSubmit}>
         {/* Mission Name */}
         <Form.Group className="mb-3">
