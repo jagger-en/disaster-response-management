@@ -37,10 +37,10 @@ export default function App() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/missions-and-teams">Missions and Teams</Nav.Link>
               <Nav.Link href="/employees">Employees</Nav.Link>
               <Nav.Link href="/new-mission">New mission</Nav.Link>
               <Nav.Link href="/missions">Missions</Nav.Link>
+              <Nav.Link href="/missions-and-teams">Overview</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -48,10 +48,10 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/missions-and-teams" element={<MissionsAndTeams />} />
         <Route path="/employees" element={<EmployeeDashboard />} />
         <Route path="/new-mission" element={ <NewMission /> } />
         <Route path="/missions" element={<MissionsDashboard missions={missions} />} />
+        <Route path="/missions-and-teams" element={<MissionsAndTeams />} />
         <Route path="/specific-mission" element={<SpecificMission mission={mission} />} />
       </Routes>
 
