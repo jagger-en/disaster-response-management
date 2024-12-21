@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { Container } from "react-bootstrap";
 
 const Workforce = () => {
   // Example employee data
@@ -116,98 +117,100 @@ const Workforce = () => {
   const uniqueSites = [...new Set(employees.map((emp) => emp.site))];
 
   return (
-    <div className="dashboard" style={{ fontFamily: "Arial, sans-serif", margin: "20px" }}>
-      {/* Summary Statistics */}
-      <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "20px" }}>
-        <div>
-          <i className="fas fa-users fa-2x" style={{ color: "#4caf50" }}></i>
-          <h3>Total workforce</h3>
-          <p>{totalEmployees}</p>
+    <Container className="mt-5">
+      <div className="dashboard" style={{ fontFamily: "Arial, sans-serif", margin: "20px" }}>
+        {/* Summary Statistics */}
+        <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "20px" }}>
+          <div>
+            <i className="fas fa-users fa-2x" style={{ color: "#4caf50" }}></i>
+            <h3>Total workforce</h3>
+            <p>{totalEmployees}</p>
+          </div>
+          <div>
+            <i className="fas fa-user-check fa-2x" style={{ color: "#2196f3" }}></i>
+            <h3>Available</h3>
+            <p>{availableEmployees}</p>
+          </div>
+          <div>
+            <i className="fas fa-user-times fa-2x" style={{ color: "#f44336" }}></i>
+            <h3>Unavailable</h3>
+            <p>{unavailableEmployees}</p>
+          </div>
         </div>
-        <div>
-          <i className="fas fa-user-check fa-2x" style={{ color: "#2196f3" }}></i>
-          <h3>Available</h3>
-          <p>{availableEmployees}</p>
-        </div>
-        <div>
-          <i className="fas fa-user-times fa-2x" style={{ color: "#f44336" }}></i>
-          <h3>Unavailable</h3>
-          <p>{unavailableEmployees}</p>
-        </div>
-      </div>
 
-      {/* Filters */}
-      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
-        <input
-          type="text"
-          placeholder="Search by name"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ padding: "10px", width: "200px" }}
-        />
-        <select
-          value={jobTitleFilter}
-          onChange={(e) => setJobTitleFilter(e.target.value)}
-          style={{ padding: "10px", width: "200px" }}
-        >
-          <option value="">Filter by Job Title</option>
-          {uniqueJobTitles.map((skill) => (
-            <option key={skill} value={skill}>
-              {skill}
-            </option>
-          ))}
-        </select>
-        <select
-          value={siteFilter}
-          onChange={(e) => setSiteFilter(e.target.value)}
-          style={{ padding: "10px", width: "200px" }}
-        >
-          <option value="">Filter by site</option>
-          {uniqueSites.map((site) => (
-            <option key={site} value={site}>
-              {site}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Staff list */}
-      <div>
-        <h2>Staff list</h2>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
-          <thead>
-            <tr>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Name</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Job Title</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Site</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Status</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Phone</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredEmployees.map((emp, index) => (
-              <tr key={index}>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  {emp.firstName} {emp.lastName}
-                </td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{emp.jobTitle}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{emp.site}</td>
-                <td
-                  style={{
-                    border: "1px solid #ddd",
-                    padding: "8px",
-                    color: emp.status === "Available" ? "green" : "red",
-                  }}
-                >
-                  {emp.status}
-                </td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{emp.phone}</td>
-              </tr>
+        {/* Filters */}
+        <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+          <input
+            type="text"
+            placeholder="Search by name"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{ padding: "10px", width: "200px" }}
+          />
+          <select
+            value={jobTitleFilter}
+            onChange={(e) => setJobTitleFilter(e.target.value)}
+            style={{ padding: "10px", width: "200px" }}
+          >
+            <option value="">Filter by Job Title</option>
+            {uniqueJobTitles.map((skill) => (
+              <option key={skill} value={skill}>
+                {skill}
+              </option>
             ))}
-          </tbody>
-        </table>
+          </select>
+          <select
+            value={siteFilter}
+            onChange={(e) => setSiteFilter(e.target.value)}
+            style={{ padding: "10px", width: "200px" }}
+          >
+            <option value="">Filter by site</option>
+            {uniqueSites.map((site) => (
+              <option key={site} value={site}>
+                {site}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Staff list */}
+        <div>
+          <h2>Staff list</h2>
+          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+            <thead>
+              <tr>
+                <th style={{ border: "1px solid #ddd", padding: "8px" }}>Name</th>
+                <th style={{ border: "1px solid #ddd", padding: "8px" }}>Job Title</th>
+                <th style={{ border: "1px solid #ddd", padding: "8px" }}>Site</th>
+                <th style={{ border: "1px solid #ddd", padding: "8px" }}>Status</th>
+                <th style={{ border: "1px solid #ddd", padding: "8px" }}>Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredEmployees.map((emp, index) => (
+                <tr key={index}>
+                  <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                    {emp.firstName} {emp.lastName}
+                  </td>
+                  <td style={{ border: "1px solid #ddd", padding: "8px" }}>{emp.jobTitle}</td>
+                  <td style={{ border: "1px solid #ddd", padding: "8px" }}>{emp.site}</td>
+                  <td
+                    style={{
+                      border: "1px solid #ddd",
+                      padding: "8px",
+                      color: emp.status === "Available" ? "green" : "red",
+                    }}
+                  >
+                    {emp.status}
+                  </td>
+                  <td style={{ border: "1px solid #ddd", padding: "8px" }}>{emp.phone}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

@@ -149,9 +149,6 @@ const MissionsAndTeams = () => {
 
     return (
         <div className="container">
-            <h1>MissionsAndTeams Page</h1>
-            <p>Welcome to the Disaster Response Management System.</p>
-
             <MapContainer className="map" center={coord_center} zoom={zoom_level} style={{ height: "50vh", width: "100%" }}>
                 <TileLayer
                     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

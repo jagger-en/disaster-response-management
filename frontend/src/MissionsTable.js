@@ -24,7 +24,7 @@ const MissionsTable = ({ missions }) => {
             <td>
               <Button
                 variant="info"
-                className="me-2"
+                className="mr-2"
                 onClick={() => alert(`Showing details for mission: ${mission.id}`)}
               >
                 View Details
