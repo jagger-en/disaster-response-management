@@ -119,3 +119,32 @@ Teams and Missions
   color: #6c757d;
   font-style: italic;
 }
+
+.news-container {
+  max-width: 800px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.news-container h1, h2 {
+  color: #d9534f;
+}
+
+.news-container h1 {
+  text-align: center;
+}
+.section {
+  margin-bottom: 20px;
+}
+
+.evacuation {
+  background-color: #ffe5e5;
+  padding: 15px;
+  border-left: 4px solid #d9534f;
+}
+
+.news-container ul {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
