@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="25.0.3">
   <diagram name="Page-1" id="GTOmrJ-06UMx9YZceT99">
-    <mxGraphModel dx="1703" dy="949" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1362" dy="759" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -345,7 +345,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="x5X8FCxjgV9cVz1QedtN-132" value="Mission" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;" parent="1" vertex="1">
-          <mxGeometry x="770" y="570" width="180" height="210" as="geometry" />
+          <mxGeometry x="770" y="570" width="180" height="240" as="geometry" />
         </mxCell>
         <mxCell id="x5X8FCxjgV9cVz1QedtN-133" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" parent="x5X8FCxjgV9cVz1QedtN-132" vertex="1">
           <mxGeometry y="30" width="180" height="30" as="geometry" />
@@ -412,8 +412,21 @@
             <mxRectangle width="150" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="AshSvS0aVAX-bGRuzO0q-29" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="x5X8FCxjgV9cVz1QedtN-132" vertex="1">
+        <mxCell id="SGCfkNlqxrTIbc7SQTht-1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="x5X8FCxjgV9cVz1QedtN-132">
           <mxGeometry y="180" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SGCfkNlqxrTIbc7SQTht-2" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="SGCfkNlqxrTIbc7SQTht-1">
+          <mxGeometry width="30" height="30" as="geometry">
+            <mxRectangle width="30" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SGCfkNlqxrTIbc7SQTht-3" value="status_ttl" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="SGCfkNlqxrTIbc7SQTht-1">
+          <mxGeometry x="30" width="150" height="30" as="geometry">
+            <mxRectangle width="150" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="AshSvS0aVAX-bGRuzO0q-29" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="x5X8FCxjgV9cVz1QedtN-132" vertex="1">
+          <mxGeometry y="210" width="180" height="30" as="geometry" />
         </mxCell>
         <mxCell id="AshSvS0aVAX-bGRuzO0q-30" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="AshSvS0aVAX-bGRuzO0q-29" vertex="1">
           <mxGeometry width="30" height="30" as="geometry">
@@ -586,25 +599,25 @@
         <mxCell id="kGv5gZY_BlTH5XvxFo6r-1" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Demo&lt;/h1&gt;&lt;p&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Steps&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Background. Describe the problem. There is a forest fire somewhere and the following needs to be done:&lt;/span&gt;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Evacuate residents&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Send fire fighters to area&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Provide shelter for evacuees&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Employees are registered. Show all the sites available and the distribution of skills. Show some summary statistics of the employees.&lt;/li&gt;&lt;li&gt;Create mission. See mission have employees assigned automatically.&lt;/li&gt;&lt;li&gt;Create more missions. Eventually see pending state because of lack of available workers.&lt;/li&gt;&lt;li&gt;Complete one of the missions. See the pending state disappear and mission is assigned and in progress.&lt;/li&gt;&lt;li&gt;Complete remaining missions and see all be cleared.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="460" y="40" width="400" height="310" as="geometry" />
         </mxCell>
-        <mxCell id="hdWdoaHKL-TaTotpV8ST-1" value="Home, news, background information from higher-up" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="hdWdoaHKL-TaTotpV8ST-1" value="Home, news, background information from higher-up" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="140" y="200" width="170" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="hdWdoaHKL-TaTotpV8ST-2" value="Employees, sites, what personnel we have currently" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="hdWdoaHKL-TaTotpV8ST-2" value="Employees, sites, what personnel we have currently" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="140" y="290" width="170" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="hdWdoaHKL-TaTotpV8ST-3" value="Create mission" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="hdWdoaHKL-TaTotpV8ST-3" value="Create mission" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="140" y="380" width="170" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="hdWdoaHKL-TaTotpV8ST-4" value="Missions have Employees assigned automatically" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="hdWdoaHKL-TaTotpV8ST-4" value="Missions have Employees assigned automatically" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="140" y="470" width="170" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="hdWdoaHKL-TaTotpV8ST-5" value="See employees dashboard again to see who is unavailable" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="hdWdoaHKL-TaTotpV8ST-5" value="See employees dashboard again to see who is unavailable" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="140" y="560" width="170" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="hdWdoaHKL-TaTotpV8ST-6" value="Complete missions" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="hdWdoaHKL-TaTotpV8ST-6" value="Complete missions" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="140" y="650" width="170" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="hdWdoaHKL-TaTotpV8ST-7" value="See employees dashboard again to see who is available again" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="hdWdoaHKL-TaTotpV8ST-7" value="See employees dashboard again to see who is available again" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="140" y="740" width="170" height="70" as="geometry" />
         </mxCell>
       </root>
