@@ -85,43 +85,8 @@ const MissionsTable: React.FC<Props> = ({ missions }) => {
     };
     const handleClose = () => setOpen(false);
 
-    // Aggregate statistics
-    const totalMissions = missions.length;
-    const completedMissions = missions.filter(
-        (item) => item.status === "COMPLETED"
-    ).length;
-    const cancelledMissions = missions.filter(
-        (item) => item.status === "CANCELLED"
-    ).length;
-    const pendingMissions = missions.filter(
-        (item) => item.status === "PENDING"
-    ).length;
-
     return (
         <Box>
-            <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "20px" }}>
-                <div>
-                    <ListAltIcon color="primary" fontSize="large" />
-                    <Typography variant="h3">Total missions</Typography>
-                    <Typography marginTop={1}>{totalMissions}</Typography>
-                </div>
-                <div>
-                    <HourglassEmptyIcon color="warning" fontSize="large" />
-                    <Typography variant="h3">Pending</Typography>
-                    <Typography marginTop={1}>{pendingMissions}</Typography>
-                </div>
-                <div>
-                    <CheckCircleIcon color="success" fontSize="large" />
-                    <Typography variant="h3">Completed</Typography>
-                    <Typography marginTop={1}>{completedMissions}</Typography>
-                </div>
-                <div>
-                    <CancelIcon color="error" fontSize="large" />
-                    <Typography variant="h3">Cancelled</Typography>
-                    <Typography marginTop={1}>{cancelledMissions}</Typography>
-                </div>
-            </div>
-
             <DashboardCard title="Missions">
                 <div>
                     <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>

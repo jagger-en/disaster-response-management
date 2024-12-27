@@ -16,7 +16,7 @@ function MapComponent() {
 
   return (
     <DashboardCard title="Map">
-          <div style={{ height: '500px', width: '100%' }}>
+          <div style={{ height: '350px', width: '100%' }}>
       <Map
         initialViewState={{
           longitude: -0.09,

@@ -1,5 +1,6 @@
 'use client';
 import PageContainer from '@/app/(DashboardLayout)/components/container/PageContainer';
+import MissionsSummary from '@/app/(DashboardLayout)/components/dashboard/MissionsSummary';
 import MissionsTable from './MissionsTable';
 import { useState } from "react";
 import {
@@ -60,9 +61,28 @@ const MissionsPage = () => {
   };
   const handleClose = () => setOpen(false);
 
+  // Aggregate statistics
+  const totalMissions = missions.length;
+  const completedMissions = missions.filter(
+      (item) => item.status === "COMPLETED"
+  ).length;
+  const cancelledMissions = missions.filter(
+      (item) => item.status === "CANCELLED"
+  ).length;
+  const pendingMissions = missions.filter(
+      (item) => item.status === "PENDING"
+  ).length;
+
   return (
     <PageContainer title="Missions" description="Missions">
-      <MissionsTable missions={missions} />
+      <MissionsSummary
+        totalMissions={totalMissions}
+        completedMissions={completedMissions}
+        cancelledMissions={cancelledMissions}
+        pendingMissions={pendingMissions} />
+      <Box sx={{marginTop: 5}}>
+        <MissionsTable missions={missions} />
+      </Box>
       <Button color="primary" size="medium" variant="outlined" sx={{marginTop: 2}} onClick={() => handleOpen()}>New mission</Button>
       <Modal
           open={open}
