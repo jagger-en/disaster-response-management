@@ -3,12 +3,20 @@ import PageContainer from '@/app/(DashboardLayout)/components/container/PageCont
 import { Typography, Box, Grid, Button } from '@mui/material';
 import { useParams } from 'next/navigation';
 import PersonnelTable from './PersonnelTable';
-import DashboardCard from '@/app/(DashboardLayout)//components/shared/DashboardCard';
+import DashboardCard from '@/app/(DashboardLayout)/components/shared/DashboardCard';
+import Timer from '@/app/(DashboardLayout)/missions/Timer';
 import Map, { Marker, MapRef } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { useState } from "react";
 
 // Mapbox Access Token
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
+
+const addSecondsToDate = (date: Date, seconds: number): Date => {
+  const newDate = new Date(date);
+  newDate.setSeconds(newDate.getSeconds() + seconds);
+  return newDate;
+};
 
 const Mission = () => {
   const params = useParams();
@@ -20,6 +28,21 @@ const Mission = () => {
     { id: "1", firstName: "John", lastName: "Doe", location: "Melbourne", phone: "111 222 333", status: "ACTIVE", statusBackground: "success.main" },
     { id: "2", firstName: "Jane", lastName: "Smith", location: "Sydney", phone: "111 222 444", status: "UNKNOWN", statusBackground: "secondary.main" },
   ];
+  const ttl = 60 * 60 * 24; // 1 day
+
+  const now = new Date();
+
+  const originalTimerTargetDate = addSecondsToDate(now, ttl)
+
+  const [timerTargetDate, setTimerTargetDate] = useState(originalTimerTargetDate);
+
+  const handleTimerTargetDate = () => {
+    const now = new Date();
+
+    const newDate = addSecondsToDate(now, ttl)
+
+    setTimerTargetDate(newDate)
+  }
 
   return (
     <PageContainer title="Mission" description="Mission">
@@ -39,7 +62,10 @@ const Mission = () => {
             </DashboardCard>
           </Grid>
           <Grid item xs={12} lg={4}>
-              <Button variant="contained" sx={{marginBottom: 3}}>Complete mission</Button>
+              <Timer targetDate={timerTargetDate} />
+              <Button variant="contained" color="success" sx={{marginBottom: 3, marginTop: 3}}>Complete mission</Button>
+              <Button variant="contained" color="primary" sx={{marginBottom: 3, marginTop: 3, marginLeft: 2}} onClick={handleTimerTargetDate}>Refresh timer</Button>
+
               <Map
                 initialViewState={{
                   longitude: -120.5,
