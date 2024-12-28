@@ -53,7 +53,7 @@ const Dashboard = () => {
   ).length;
 
   return (
-    <PageContainer title="Dashboard" description="this is Dashboard">
+    <PageContainer title="D.R.M dashboard" description="this is the Dashboard">
       <Box>
         <Grid container spacing={3}>
           <Grid item xs={12} lg={12}>

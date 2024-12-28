@@ -1,5 +1,6 @@
-import { useMediaQuery, Box, Drawer } from "@mui/material";
+import { useMediaQuery, Box, Drawer, Typography } from "@mui/material";
 import SidebarItems from "./SidebarItems";
+import DRMLogo from "./DRMLogo";
 import { Sidebar, Logo } from 'react-mui-sidebar';
 
 interface ItemType {
@@ -71,7 +72,9 @@ const MSidebar = ({
               {/* ------------------------------------------- */}
               {/* Logo */}
               {/* ------------------------------------------- */}
-              <Logo img="/images/logos/dark-logo.svg" />
+
+              <DRMLogo />
+
               <Box>
                 {/* ------------------------------------------- */}
                 {/* Sidebar Items */}
@@ -115,7 +118,7 @@ const MSidebar = ({
           {/* ------------------------------------------- */}
           {/* Logo */}
           {/* ------------------------------------------- */}
-          <Logo img="/images/logos/dark-logo.svg" />
+          <DRMLogo />
           {/* ------------------------------------------- */}
           {/* Sidebar Items */}
           {/* ------------------------------------------- */}

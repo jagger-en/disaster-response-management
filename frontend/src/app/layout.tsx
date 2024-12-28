@@ -10,6 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <link rel="icon" href="/favicon.ico" />
       <body>
         <ThemeProvider theme={baselightTheme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
