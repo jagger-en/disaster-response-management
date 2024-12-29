@@ -29,12 +29,12 @@ if __name__ == "__main__":
     availability_status_list = query.access_endpoint(constants.AVAILABILITY_STATUS_ALL)
 
     # Populate mission_status table
-    for status_name in [
-        "PENDING",
-        "COMPLETED",
-        "CANCELLED",
+    for status_name, status_background in [
+        ("PENDING", "warning.main"),
+        ("COMPLETED", "success.main"),
+        ("CANCELLED", "error.main"),
     ]:
-        mission_status.add_to_database(status_name)
+        mission_status.add_to_database(status_name, status_background)
     mission_status_list = query.access_endpoint(constants.MISSION_STATUS_ALL)
 
     print(mission_status_list)
@@ -109,8 +109,7 @@ if __name__ == "__main__":
     location_list = query.access_endpoint(constants.LOCATION_ALL)
 
     # Populate mission and location table
-    for location in location_list:
-        mission = random.sample(mission_list, 1)[0]
+    for location, mission in zip(location_list, mission_list):
         mission_and_location.add_to_database(mission, location)
 
     # Populate mission assignment

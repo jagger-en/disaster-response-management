@@ -19,19 +19,15 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useState } from "react";
 import DashboardCard from '@/app/(DashboardLayout)//components/shared/DashboardCard';
 import NLink from "next/link";
-import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CancelIcon from '@mui/icons-material/Cancel';
-import ListAltIcon from '@mui/icons-material/ListAlt';
 
 interface Mission {
     id: string;
-    name: string;
-    status: string;
+    missionName: string;
+    statusName: string;
     statusBackground: string;
-    location: string;
+    locationName: string;
     description: string;
-    personnelCount: number;
+    numEmployees: number;
 }
 
 interface Props {
@@ -54,29 +50,29 @@ const MissionsTable: React.FC<Props> = ({ missions }) => {
     const [selectedMission, setSelectedMission] = useState({
         id: "",
         name: "",
-        status: "",
+        statusName: "",
         statusBackground: "",
         location: "",
         description: "",
-        personnelCount: 0,
+        numEmployees: 0,
     });
     const [locationSearchTerm, setLocationSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("");
 
     const filteredMissions = missions.filter((item) => {
         const matchesNameSearch =
-            item.name
+            item.missionName
                 .toLowerCase()
                 .includes(nameSearchTerm.toLowerCase());
         const matchesLocationSearch =
-            item.location
+            item.locationName
                 .toLowerCase()
                 .includes(locationSearchTerm.toLowerCase());
-        const matchesStatus = statusFilter ? item.status === statusFilter : true;
+        const matchesStatus = statusFilter ? item.statusName === statusFilter : true;
         return matchesNameSearch && matchesLocationSearch && matchesStatus;
     });
 
-    const uniqueStatuses = [...new Set(missions.map((item) => item.status))];
+    const uniqueStatuses = [...new Set(missions.map((item) => item.statusName))];
 
     const [open, setOpen] = useState(false);
     const handleOpen = (mission: Mission) => {
@@ -146,17 +142,17 @@ const MissionsTable: React.FC<Props> = ({ missions }) => {
                                     </TableCell>
                                     <TableCell>
                                         <Typography variant="subtitle2" fontWeight={600}>
-                                            Name, Location
+                                            Name, Locations
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography variant="subtitle2" fontWeight={600}>
+                                            Number of Personnel
                                         </Typography>
                                     </TableCell>
                                     <TableCell>
                                         <Typography variant="subtitle2" fontWeight={600}>
                                             Status
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="subtitle2" fontWeight={600}>
-                                            Personnel
                                         </Typography>
                                     </TableCell>
                                     <TableCell>
@@ -188,7 +184,7 @@ const MissionsTable: React.FC<Props> = ({ missions }) => {
                                             >
                                                 <Box>
                                                     <Typography variant="subtitle2" fontWeight={600}>
-                                                        {mission.name}
+                                                        {mission.missionName}
                                                     </Typography>
                                                     <Typography
                                                         color="textSecondary"
@@ -196,14 +192,14 @@ const MissionsTable: React.FC<Props> = ({ missions }) => {
                                                             fontSize: "13px",
                                                         }}
                                                     >
-                                                        {mission.location}
+                                                        {mission.locationName}
                                                     </Typography>
                                                 </Box>
                                             </Box>
                                         </TableCell>
                                         <TableCell>
                                             <Typography color="textSecondary" variant="subtitle2" fontWeight={400}>
-                                                {mission.personnelCount}
+                                                {mission.numEmployees}
                                             </Typography>
                                         </TableCell>
                                         <TableCell>
@@ -214,7 +210,7 @@ const MissionsTable: React.FC<Props> = ({ missions }) => {
                                                     color: "#fff",
                                                 }}
                                                 size="small"
-                                                label={mission.status}
+                                                label={mission.statusName}
                                             ></Chip>
                                         </TableCell>
                                         <TableCell>
@@ -249,10 +245,10 @@ const MissionsTable: React.FC<Props> = ({ missions }) => {
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        {selectedMission.name}
+                        {selectedMission.missionName}
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        {selectedMission.description}
+                        {selectedMission.missionDescription}
                     </Typography>
                 </Box>
             </Modal>

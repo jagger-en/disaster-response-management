@@ -33,5 +33,5 @@ docker exec -i postgres_instance psql -U postgres -d db_palapa < ./sql/stored_pr
 
 6. Go to frontend and run
 ```bash
-cd ./frontend && npm run start
+cd ./frontend && npm run dev
 ```

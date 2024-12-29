@@ -7,49 +7,36 @@ import MissionsSummary from '@/app/(DashboardLayout)/components/dashboard/Missio
 import MissionsTable from '@/app/(DashboardLayout)/missions/MissionsTable';
 import MissionsTimeline from '@/app/(DashboardLayout)/components/dashboard/MissionsTimeline';
 import OverviewMap from '@/app/(DashboardLayout)/components/dashboard/OverviewMap';
+import useSwr from 'swr';
+
+const MISSION_SUMMARY_URL = "http://localhost:8081/api/mission-summaries/all";
+const fetcher = (...args) => fetch(...args).then(response => response.json());
 
 const Dashboard = () => {
-  const missions = [
-    { id: "1",
-      name: "Bushfire Response",
-      status: "CANCELLED",
-      statusBackground: "error.main",
-      location: "Victoria",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mollis sem eu dui suscipit tincidunt. Ut feugiat aliquam porttitor. Ut lacinia justo tellus, at rutrum sapien egestas eu. In ut.",
-      personnelCount: 20 },
-    { id: "2",
-      name: "Flood Relief",
-      status: "COMPLETED",
-      statusBackground: "success.main",
-      location: "New South Wales",
-      description: "Quisque lobortis purus sit amet ex vestibulum maximus. Quisque at vehicula augue, non mattis sem. In hac habitasse platea dictumst. Nullam interdum, lectus quis dictum lobortis, tortor urna iaculis risus, eget molestie massa elit sed mauris. Nullam in ex in mi tincidunt convallis. Nulla pulvinar facilisis risus et maximus. Phasellus vel luctus diam. Cras velit libero, fringilla sed lacus in, maximus blandit metus. Mauris vitae venenatis neque. In.",
-      personnelCount: 15 },
-    { id: "3",
-      name: "Earthquake Rescue",
-      status: "PENDING",
-      statusBackground: "warning.main",
-      location: "Tasmania",
-      description: "Quisque lobortis purus sit amet ex vestibulum maximus. Quisque at vehicula augue, non mattis sem. In hac habitasse platea dictumst. Nullam interdum, lectus quis dictum lobortis, tortor urna iaculis risus, eget molestie massa elit sed mauris. Nullam in ex in mi tincidunt convallis. Nulla pulvinar facilisis risus et maximus. Phasellus vel luctus diam. Cras velit libero, fringilla sed lacus in, maximus blandit metus. Mauris vitae venenatis neque. In.",
-      personnelCount: 25 },
-    { id: "4",
-      name: "Tsunami Rescue",
-      status: "PENDING",
-      statusBackground: "warning.main",
-      location: "FooBarBuzz",
-      description: "Nulla pulvinar facilisis risus et maximus. Phasellus vel luctus diam. Cras velit libero, fringilla sed lacus in, maximus blandit metus. Mauris vitae venenatis neque. In.",
-      personnelCount: 50 },
-  ];
+  const { data: missionSummaries, error: missionSummariesError } = useSwr(MISSION_SUMMARY_URL, fetcher);
+
+  if (missionSummaries) {
+    if (missionSummaries.status == 500) {
+        return <div>Error loading data {JSON.stringify(missionSummaries)}</div>;
+      }
+  }
+
+  if (!missionSummaries) {
+      return <div>Loading...</div>;
+  }
+
+  console.log(missionSummaries)
 
   // Aggregate statistics
-  const totalMissions = missions.length;
-  const completedMissions = missions.filter(
-      (item) => item.status === "COMPLETED"
+  const totalMissions = missionSummaries.length;
+  const completedMissions = missionSummaries.filter(
+      (item) => item.statusName.toUpperCase() === "COMPLETED"
   ).length;
-  const cancelledMissions = missions.filter(
-      (item) => item.status === "CANCELLED"
+  const cancelledMissions = missionSummaries.filter(
+      (item) => item.statusName.toUpperCase() === "CANCELLED"
   ).length;
-  const pendingMissions = missions.filter(
-      (item) => item.status === "PENDING"
+  const pendingMissions = missionSummaries.filter(
+      (item) => item.statusName.toUpperCase() === "PENDING"
   ).length;
 
   return (
@@ -73,7 +60,7 @@ const Dashboard = () => {
             <MissionsTimeline />
           </Grid>
           <Grid item xs={12} lg={8}>
-            <MissionsTable missions={missions} />
+            <MissionsTable missions={missionSummaries} />
           </Grid>
         </Grid>
       </Box>

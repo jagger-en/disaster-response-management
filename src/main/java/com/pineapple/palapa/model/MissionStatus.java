@@ -16,6 +16,7 @@ public class MissionStatus implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
     private String name;
+    private String background;
     private String description;
 
     @OneToMany(mappedBy="missionStatus", cascade=CascadeType.REMOVE)
@@ -37,6 +38,14 @@ public class MissionStatus implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
     }
 
     public String getDescription() {
