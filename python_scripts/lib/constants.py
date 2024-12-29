@@ -1,43 +1,31 @@
 # Constants
-POINTS_ADD = "points/add"
-POINTS_ALL = "points/all"
-
-VERTICES_ADD = "vertices/add"
-
-POINT_TYPES_ADD = "pointTypes/add"
-POINT_TYPES_ALL = "pointTypes/all"
-
-LOCATIONS_ADD = "locations/add"
-LOCATIONS_ALL = "locations/all"
-
-GENDERS_ADD = "genders/add"
-GENDERS_ALL = "genders/all"
-
-JOB_TITLES_ADD = "jobTitles/add"
-JOB_TITLES_ALL = "jobTitles/all"
-
-TEAMS_ADD = "teams/add"
-TEAMS_ALL = "teams/all"
-
-TEAM_FUNCTIONALITIES_ADD = "teamFunctionalities/add"
-TEAM_FUNCTIONALITIES_ALL= "teamFunctionalities/all"
-
-MISSION_TYPES_ADD = "missionTypes/add"
-MISSION_TYPES_ALL = "missionTypes/all"
-
 BOILER_PLATE_DESCRIPTION = ("Lorem ipsum dolor sit amet, consectetur "
     "adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam "
     "ut odio sed eros fermentum egestas sit amet sed massa.")
 
-PERSONS_ADD = "persons/add"
-PERSONS_ALL = "persons/all"
+AVAILABILITY_STATUS_ADD = "availabilityStatus/add"
+AVAILABILITY_STATUS_ALL = "availabilityStatus/all"
 
-EMPLOYEES_ADD = "employees/add"
-EMPLOYEES_ALL = "employees/all"
+EMPLOYEE_ADD = "employee/add"
+EMPLOYEE_ALL = "employee/all"
 
-MISSIONS_ADD = "missions/add"
-MISSIONS_ALL = "missions/all"
+GENDER_ADD = "gender/add"
+GENDER_ALL = "gender/all"
 
-MISSIONS_AND_TEAMS_ADD = "missionTeams/add"
+JOB_TITLE_ADD = "job-title/add"
+JOB_TITLE_ALL = "job-title/all"
 
-TEAMS_AND_EMPLOYEES_ADD = "teamEmployees/add"
+LOCATION_ADD = "location/add"
+LOCATION_ALL = "location/all"
+
+MISSION_AND_LOCATION_ADD = "mission-and-location/add"
+MISSION_AND_LOCATION_ALL = "mission-and-location/all"
+
+MISSION_ASSIGNMENT_ADD = "mission-assignment/add"
+MISSION_ASSIGNMENT_ALL = "mission-assignment/all"
+
+MISSION_STATUS_ADD = "mission-status/add"
+MISSION_STATUS_ALL = "mission-status/all"
+
+MISSION_ADD = "mission/add"
+MISSION_ALL = "mission/all"

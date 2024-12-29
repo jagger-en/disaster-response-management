@@ -5,28 +5,23 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-@Table(name = "location")
-public class Location implements Serializable {
+@Table(name = "missionStatus")
+public class MissionStatus implements Serializable {
     /**
      * A serial was added
      */
-    private static final long serialVersionUID = 1002L;
+    private static final long serialVersionUID = 415676435199798147L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
     private String name;
     private String description;
-    private String latitude;
-    private String longitude;
 
-    @OneToMany(mappedBy="location", cascade=CascadeType.REMOVE)
-    Collection<MissionAndLocation> missionAndLocations;
+    @OneToMany(mappedBy="missionStatus", cascade=CascadeType.REMOVE)
+    Collection<Mission> missions;
 
-    @OneToMany(mappedBy="location", cascade=CascadeType.REMOVE)
-    Collection<Employee> employees;
-
-    public Location() {}
+    public MissionStatus() {}
 
     public Long getId() {
         return id;
@@ -52,30 +47,15 @@ public class Location implements Serializable {
         this.description = description;
     }
 
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
 
     @Override
     public String toString() {
-        return "Location {" +
+        return "MissionStatus {" +
         "id=" + id +
         ", name=" + name +
         ", description=" + description +
-        ", latitude=" + latitude +
-        ", longitude=" + longitude +
         "}";
+
     }
+
 }

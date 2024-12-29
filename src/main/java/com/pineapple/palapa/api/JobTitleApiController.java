@@ -9,7 +9,7 @@ import com.pineapple.palapa.service.JobTitleService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/jobTitles") 
+@RequestMapping("/api/job-title")
 public class JobTitleApiController {
 
     private final JobTitleService jobTitleService;

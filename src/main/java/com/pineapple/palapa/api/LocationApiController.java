@@ -13,7 +13,7 @@ import com.pineapple.palapa.service.LocationService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/locations")
+@RequestMapping("/api/location")
 public class LocationApiController {
     private final LocationService locationService;
 

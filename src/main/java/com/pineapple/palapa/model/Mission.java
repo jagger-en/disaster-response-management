@@ -19,18 +19,16 @@ public class Mission implements Serializable {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "mission_type_id")
-    private MissionType missionType;
+    @JoinColumn(name = "mission_status_id")
+    private MissionStatus missionStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "location_id")
-    private Location location;
+    private Long statusTtl;
 
     private String startTime;
     private String endTime;
 
     @OneToMany(mappedBy="mission", cascade=CascadeType.REMOVE)
-    Collection<MissionTeam> missionTeams;
+    Collection<MissionAssignment> missionAssignments;
 
     public Mission() {}
 
@@ -58,20 +56,20 @@ public class Mission implements Serializable {
         this.description = description;
     }
 
-    public MissionType getMissionType() {
-        return missionType;
+    public MissionStatus getMissionStatus() {
+        return missionStatus;
     }
 
-    public void setMissionType(MissionType missionType) {
-        this.missionType = missionType;
+    public void setMissionStatus(MissionStatus missionStatus) {
+        this.missionStatus = missionStatus;
     }
 
-    public Location getLocation() {
-        return location;
+    public Long getStatusTtl() {
+        return statusTtl;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setStatusTtl(Long statusTtl) {
+        this.statusTtl = statusTtl;
     }
 
     public String getStartTime() {
@@ -97,8 +95,8 @@ public class Mission implements Serializable {
         "id=" + id +
         ", name=" + name +
         ", description=" + description +
-        ", missionType=" + missionType +
-        ", location=" + location +
+        ", missionStatus=" + missionStatus +
+        ", statusTtl=" + statusTtl +
         ", startTime=" + startTime +
         ", endTime=" + endTime +
         "}";

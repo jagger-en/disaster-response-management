@@ -9,7 +9,7 @@ import com.pineapple.palapa.service.EmployeeService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/employees") 
+@RequestMapping("/api/employee")
 public class EmployeeApiController {
 
     private final EmployeeService employeeService;

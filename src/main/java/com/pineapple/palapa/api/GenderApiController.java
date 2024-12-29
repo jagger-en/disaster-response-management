@@ -9,7 +9,7 @@ import com.pineapple.palapa.service.GenderService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/genders") 
+@RequestMapping("/api/gender")
 public class GenderApiController {
 
     private final GenderService genderService;

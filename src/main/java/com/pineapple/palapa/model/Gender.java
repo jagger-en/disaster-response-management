@@ -18,7 +18,7 @@ public class Gender implements Serializable {
     private String name;
     private String description;
     @OneToMany(mappedBy="gender", cascade=CascadeType.REMOVE)
-    Collection<Person> people;
+    Collection<Employee> employees;
 
     public Gender() {}
 

@@ -8,7 +8,7 @@ import com.pineapple.palapa.service.MissionService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/missions")
+@RequestMapping("/api/mission")
 
 public class MissionApiController {
     private final MissionService missionService;
