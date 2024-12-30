@@ -2,6 +2,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 DROP FUNCTION get_all_mission_summaries();
 DROP FUNCTION get_all_mission_timeline_item();
+DROP FUNCTION get_all_mission_location_item();
 
 CREATE OR REPLACE FUNCTION get_all_mission_summaries()
 RETURNS TABLE (
@@ -57,5 +58,27 @@ BEGIN
     FROM mission_and_status m_and_st
         INNER JOIN mission_status ms ON ms.id = m_and_st.mission_status_id
         INNER JOIN mission m ON m.id = m_and_st.mission_id;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION get_all_mission_location_item()
+RETURNS TABLE (
+    id TEXT,
+    mission_name VARCHAR(255),
+    mission_description VARCHAR(255),
+    latitude VARCHAR(255),
+    longitude VARCHAR(255)
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        LEFT(UUID_GENERATE_V4()::text, 8) AS id,
+        m.name AS mission_name,
+        m.description AS mission_description,
+        loc.latitude AS latitude,
+        loc.longitude AS longitude
+    FROM mission_and_location m_and_loc
+        INNER JOIN mission m ON m.id = m_and_loc.mission_id
+        INNER JOIN location loc ON loc.id = m_and_loc.location_id;
 END;
 $$ LANGUAGE plpgsql;

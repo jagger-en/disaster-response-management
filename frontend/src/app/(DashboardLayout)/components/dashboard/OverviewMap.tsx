@@ -2,26 +2,51 @@ import React from 'react';
 import Map, { Marker, Popup } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import DashboardCard from '../shared/DashboardCard';
+import useSwr from 'swr';
+import { parse } from 'path';
+
+const MISSION_LOCATION_ITEMS_URL = "http://localhost:8081/api/mission-location-items/all";
+const fetcher = async (...args) => {
+  const res = await fetch(...args);
+  if (!res.ok) {
+    throw new Error(`HTTP error! Status: ${res.status}`);
+  }
+  return res.json();
+};
 
 function MapComponent() {
+  const { data: missionLocationItems, error: missionLocationItemsError } = useSwr(MISSION_LOCATION_ITEMS_URL, fetcher);
+
+  if (missionLocationItems) {
+    if (missionLocationItems.status == 500) {
+        return <div>Error loading data {JSON.stringify(missionLocationItems)}</div>;
+      }
+  }
+
+  if (!missionLocationItems) {
+      return <div>Loading mission and location...</div>;
+  }
+
   // Replace with your Mapbox access token
   const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
   // Marker data (example locations)
-  const markers = [
-    { id: 1, position: [51.505, -0.09], popupText: 'London' },
-    { id: 2, position: [48.8566, 2.3522], popupText: 'Paris' },
-    { id: 3, position: [40.7128, -74.006], popupText: 'New York' },
-  ];
+  const markers = missionLocationItems.map(d => {
+    return {
+      id: d.id,
+      position: [parseFloat(d.longitude), parseFloat(d.latitude)],
+      name: d.missionName,
+    }
+  })
 
   return (
     <DashboardCard title="Map">
           <div style={{ height: '350px', width: '100%' }}>
       <Map
         initialViewState={{
-          longitude: -0.09,
-          latitude: 51.505,
-          zoom: 3,
+          latitude: markers[0].position[0],
+          longitude: markers[0].position[1],
+          zoom: 12,
         }}
         style={{ width: '100%', height: '100%' }}
         mapStyle="mapbox://styles/mapbox/streets-v11"
@@ -41,6 +66,7 @@ function MapComponent() {
                 height: '10px',
               }}
             />
+            { marker.name }
           </Marker>
         ))}
       </Map>
