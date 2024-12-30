@@ -10,24 +10,24 @@ import java.util.List;
 
 @Service
 public class MissionAndLocationService {
-    private final MissionAndLocationRepo missionTeamRepo;
+    private final MissionAndLocationRepo missionAndLocationRepo;
 
     @Autowired
-    public MissionAndLocationService(MissionAndLocationRepo missionTeamRepo) {
-        this.missionTeamRepo = missionTeamRepo;
+    public MissionAndLocationService(MissionAndLocationRepo missionAndLocationRepo) {
+        this.missionAndLocationRepo = missionAndLocationRepo;
     }
 
     public MissionAndLocation addMissionAndLocation(MissionAndLocation missionTeam) {
-        return missionTeamRepo.save(missionTeam);
+        return missionAndLocationRepo.save(missionTeam);
     }
 
     public List<MissionAndLocation> findAllMissionAndLocations() {
-        return missionTeamRepo.findAll();
+        return missionAndLocationRepo.findAll();
     }
 
     public void deleteMissionAndLocation(Long id){
-        MissionAndLocation missionTeam = missionTeamRepo.findById(id)
+        MissionAndLocation missionTeam = missionAndLocationRepo.findById(id)
             .orElseThrow(() -> new UserNotFoundException("MissionAndLocation by id " + id + " was not found"));
-        missionTeamRepo.delete(missionTeam);
+        missionAndLocationRepo.delete(missionTeam);
     }
 }

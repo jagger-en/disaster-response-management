@@ -21,6 +21,9 @@ LOCATION_ALL = "location/all"
 MISSION_AND_LOCATION_ADD = "mission-and-location/add"
 MISSION_AND_LOCATION_ALL = "mission-and-location/all"
 
+MISSION_AND_STATUS_ADD = "mission-and-status/add"
+MISSION_AND_STATUS_ALL = "mission-and-status/all"
+
 MISSION_ASSIGNMENT_ADD = "mission-assignment/add"
 MISSION_ASSIGNMENT_ALL = "mission-assignment/all"
 

@@ -22,10 +22,8 @@ const Dashboard = () => {
   }
 
   if (!missionSummaries) {
-      return <div>Loading...</div>;
+      return <div>Loading mission summaries...</div>;
   }
-
-  console.log(missionSummaries)
 
   // Aggregate statistics
   const totalMissions = missionSummaries.length;

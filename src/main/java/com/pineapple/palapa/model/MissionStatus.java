@@ -20,6 +20,9 @@ public class MissionStatus implements Serializable {
     private String description;
 
     @OneToMany(mappedBy="missionStatus", cascade=CascadeType.REMOVE)
+    Collection<MissionAndStatus> missionAndStatuses;
+
+    @OneToMany(mappedBy="missionStatus", cascade=CascadeType.REMOVE)
     Collection<Mission> missions;
 
     public MissionStatus() {}

@@ -10,8 +10,30 @@ import {
   TimelineContent,
   timelineOppositeContentClasses,
 } from '@mui/lab';
+import useSwr from 'swr';
+
+const MISSION_TIMELINE_ITEMS_URL = "http://localhost:8081/api/mission-timeline-items/all";
+const fetcher = async (...args) => {
+  const res = await fetch(...args);
+  if (!res.ok) {
+    throw new Error(`HTTP error! Status: ${res.status}`);
+  }
+  return res.json();
+};
 
 const MissionsTimeline = () => {
+  const { data: missionTimelineItems, error: missionTimelineItemsError } = useSwr(MISSION_TIMELINE_ITEMS_URL, fetcher);
+
+  if (missionTimelineItems) {
+    if (missionTimelineItems.status == 500) {
+        return <div>Error loading data {JSON.stringify(missionTimelineItems)}</div>;
+      }
+  }
+
+  if (!missionTimelineItems) {
+      return <div>Loading mission and status...</div>;
+  }
+
   return (
     <DashboardCard title="Missions timeline">
       <>
@@ -33,37 +55,16 @@ const MissionsTimeline = () => {
             },
           }}
         >
-          <TimelineItem>
-            <TimelineOppositeContent>2024-12-23 15:22:40</TimelineOppositeContent>
+        {missionTimelineItems.map((item, idx) => (
+          <TimelineItem key={item.id}>
+            <TimelineOppositeContent>{item.assignmentDate.replace("T", " ")}</TimelineOppositeContent>
             <TimelineSeparator>
-              <TimelineDot color="primary" variant="outlined" />
-              <TimelineConnector />
+              <TimelineDot color={item.statusBackground.split(".")[0]} variant="outlined" />
+              {(idx == missionTimelineItems.length - 1) ? "" : <TimelineConnector />}
             </TimelineSeparator>
-            <TimelineContent>Mission 1 completed</TimelineContent>
+            <TimelineContent>{item.missionName}</TimelineContent>
           </TimelineItem>
-          <TimelineItem>
-            <TimelineOppositeContent>2024-12-23 13:43:12</TimelineOppositeContent>
-            <TimelineSeparator>
-              <TimelineDot color="primary" variant="outlined" />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>Mission 2 completed</TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineOppositeContent>2024-12-23 13:04:50</TimelineOppositeContent>
-            <TimelineSeparator>
-              <TimelineDot color="secondary" variant="outlined" />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>Mission 3 registered</TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineOppositeContent>2024-12-23 12:28:55</TimelineOppositeContent>
-            <TimelineSeparator>
-              <TimelineDot color="error" variant="outlined" />
-            </TimelineSeparator>
-            <TimelineContent>Mission 4 cancelled</TimelineContent>
-          </TimelineItem>
+        ))}
         </Timeline>
       </>
     </DashboardCard>

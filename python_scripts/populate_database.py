@@ -7,6 +7,7 @@ from lib.data_sets import gender
 from lib.data_sets import job_title
 from lib.data_sets import location
 from lib.data_sets import mission_and_location
+from lib.data_sets import mission_and_status
 from lib.data_sets import mission_assignment
 from lib.data_sets import mission_status
 from lib.data_sets import mission
@@ -36,8 +37,6 @@ if __name__ == "__main__":
     ]:
         mission_status.add_to_database(status_name, status_background)
     mission_status_list = query.access_endpoint(constants.MISSION_STATUS_ALL)
-
-    print(mission_status_list)
 
     # Populate mission table
     for mission_name in [
@@ -111,6 +110,10 @@ if __name__ == "__main__":
     # Populate mission and location table
     for location, mission in zip(location_list, mission_list):
         mission_and_location.add_to_database(mission, location)
+
+    # Populate mission and status table
+    for status, mission in zip(mission_status_list, mission_list):
+        mission_and_status.add_to_database(mission, status)
 
     # Populate mission assignment
     for mission in mission_list:
