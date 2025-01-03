@@ -17,7 +17,7 @@ import javax.persistence.NamedStoredProcedureQuery;
 })
 public class MissionSummary implements Serializable {
     @Id
-    private String id;
+    private Long id;
     private String missionName;
     private String missionDescription;
     private String locationName;
@@ -29,11 +29,11 @@ public class MissionSummary implements Serializable {
 
     public MissionSummary() {}
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

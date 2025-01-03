@@ -6,7 +6,7 @@ DROP FUNCTION get_all_mission_location_item();
 
 CREATE OR REPLACE FUNCTION get_all_mission_summaries()
 RETURNS TABLE (
-    id TEXT,
+    id BIGINT,
     mission_name VARCHAR(255),
     mission_description VARCHAR(255),
     location_name VARCHAR(255),
@@ -19,7 +19,7 @@ RETURNS TABLE (
 BEGIN
     RETURN QUERY
     SELECT
-        LEFT(UUID_GENERATE_V4()::text, 8) AS id,
+        m.id AS id,
         m.name AS mission_name,
         m.description AS mission_description,
         l.name AS location_name,
@@ -33,13 +33,13 @@ BEGIN
         INNER JOIN location l ON ml.location_id = l.id
         INNER JOIN mission_status ms ON ms.id = m.mission_status_id
         LEFT JOIN mission_assignment ma ON m.id = ma.mission_id
-        GROUP BY m.name, m.description, l.name, l.latitude, l.longitude, ms.name, ms.background;
+        GROUP BY m.id, m.name, m.description, l.name, l.latitude, l.longitude, ms.name, ms.background;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION get_all_mission_timeline_item()
 RETURNS TABLE (
-    id TEXT,
+    id BIGINT,
     mission_name VARCHAR(255),
     mission_description VARCHAR(255),
     status_name VARCHAR(255),
@@ -49,7 +49,7 @@ RETURNS TABLE (
 BEGIN
     RETURN QUERY
     SELECT
-        LEFT(UUID_GENERATE_V4()::text, 8) AS id,
+        m.id AS id,
         m.name AS mission_name,
         m.description AS mission_description,
         ms.name AS status_name,
@@ -63,7 +63,7 @@ $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION get_all_mission_location_item()
 RETURNS TABLE (
-    id TEXT,
+    id BIGINT,
     mission_name VARCHAR(255),
     mission_description VARCHAR(255),
     latitude VARCHAR(255),
@@ -72,7 +72,7 @@ RETURNS TABLE (
 BEGIN
     RETURN QUERY
     SELECT
-        LEFT(UUID_GENERATE_V4()::text, 8) AS id,
+        m.id AS id,
         m.name AS mission_name,
         m.description AS mission_description,
         loc.latitude AS latitude,
