@@ -18,6 +18,7 @@ public class EmployeeApiController {
         this.employeeService = employeeService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/all")
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employees = employeeService.findAllEmployees();

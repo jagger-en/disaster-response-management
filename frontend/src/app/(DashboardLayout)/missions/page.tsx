@@ -26,8 +26,6 @@ const style = {
 const MISSION_SUMMARY_URL = "http://localhost:8081/api/mission-summaries/all";
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
-
-
 const MissionsPage = () => {
   const { data: missionSummaries, error: missionSummariesError } = useSwr(MISSION_SUMMARY_URL, fetcher);
 

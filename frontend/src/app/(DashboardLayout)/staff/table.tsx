@@ -19,115 +19,28 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { useState } from "react";
 import DashboardCard from '@/app/(DashboardLayout)//components/shared/DashboardCard';
+import useSwr from 'swr';
 
-const employees = [
-    {
-        id: "1",
-        firstName: "John",
-        lastName: "Doe",
-        jobTitle: "Software Engineer",
-        site: "New York",
-        status: "Available",
-        statusBackground: "success.main",
-        phone: "123-456-7890",
-    },
-    {
-        id: "2",
-        firstName: "Jane",
-        lastName: "Smith",
-        jobTitle: "Software Engineer",
-        site: "San Francisco",
-        status: "Unavailable",
-        statusBackground: "error.main",
-        phone: "987-654-3210",
-    },
-    {
-        id: "3",
-        firstName: "Alice",
-        lastName: "Brown",
-        jobTitle: "Data Scientist",
-        site: "New York",
-        status: "Available",
-        statusBackground: "success.main",
-        phone: "555-666-7777",
-    },
-    {
-        id: "4",
-        firstName: "Bob",
-        lastName: "Johnson",
-        jobTitle: "Technician",
-        site: "Austin",
-        status: "Unavailable",
-        statusBackground: "error.main",
-        phone: "444-333-2222",
-    },
-    {
-        id: "5",
-        firstName: "Michael",
-        lastName: "Davis",
-        jobTitle: "System Administrator",
-        site: "New York",
-        status: "Available",
-        statusBackground: "success.main",
-        phone: "321-654-9870",
-    },
-    {
-        id: "6",
-        firstName: "Emily",
-        lastName: "Clark",
-        jobTitle: "UX Designer",
-        site: "Austin",
-        status: "Available",
-        statusBackground: "success.main",
-        phone: "789-123-4560",
-    },
-    {
-        id: "7",
-        firstName: "David",
-        lastName: "Miller",
-        jobTitle: "Electrical Engineer",
-        site: "San Francisco",
-        status: "Unavailable",
-        statusBackground: "error.main",
-        phone: "555-888-9999",
-    },
-    {
-        id: "8",
-        firstName: "Sophia",
-        lastName: "Taylor",
-        jobTitle: "Human Resources",
-        site: "Austin",
-        status: "Available",
-        statusBackground: "success.main",
-        phone: "222-444-6666",
-    },
-    {
-        id: "9",
-        firstName: "James",
-        lastName: "Anderson",
-        jobTitle: "Software Architect",
-        site: "New York",
-        status: "Unavailable",
-        statusBackground: "error.main",
-        phone: "987-111-2222",
-    },
-    {
-        id: "10",
-        firstName: "Olivia",
-        lastName: "Martinez",
-        jobTitle: "QA Engineer",
-        site: "San Francisco",
-        status: "Available",
-        statusBackground: "success.main",
-        phone: "333-777-8888",
-    },
-];
+const EMPLOYEES_URL = "http://localhost:8081/api/employee/all";
+const fetcher = (...args) => fetch(...args).then(response => response.json());
 
 const StaffTable = () => {
     // State for search and filter
     const [searchTerm, setSearchTerm] = useState("");
     const [jobTitleFilter, setJobTitleFilter] = useState("");
     const [siteFilter, setSiteFilter] = useState("");
+
+    const { data: employees, error: employeesError } = useSwr(EMPLOYEES_URL, fetcher);
+
+    if (employees) {
+      if (employees.status == 500) {
+          return <div>Error loading data {JSON.stringify(employees)}</div>;
+        }
+    }
+
+    if (!employees) {
+        return <div>Loading employees...</div>;
+    }
 
     // Aggregate statistics
     const totalEmployees = employees.length;
@@ -143,15 +56,15 @@ const StaffTable = () => {
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase());
         const matchesSkill = jobTitleFilter
-            ? emp.jobTitle.includes(jobTitleFilter)
+            ? emp.jobTitle.name.includes(jobTitleFilter)
             : true;
         const matchesSite = siteFilter ? emp.site === siteFilter : true;
         return matchesSearch && matchesSkill && matchesSite;
     });
 
     // Extract unique skills and sites for dropdown options
-    const uniqueJobTitles = [...new Set(employees.map((emp) => emp.jobTitle))];
-    const uniqueSites = [...new Set(employees.map((emp) => emp.site))];
+    const uniqueJobTitles = [...new Set(employees.map((emp) => emp.jobTitle.name))];
+    const uniqueSites = [...new Set(employees.map((emp) => emp.site ? emp.site.name : null))];
 
     return (
         <div>
@@ -293,14 +206,14 @@ const StaffTable = () => {
                                                             fontSize: "13px",
                                                         }}
                                                     >
-                                                        {employee.jobTitle}
+                                                        {employee.jobTitle ? employee.jobTitle.name : ""}
                                                     </Typography>
                                                 </Box>
                                             </Box>
                                         </TableCell>
                                         <TableCell>
                                             <Typography color="textSecondary" variant="subtitle2" fontWeight={400}>
-                                                {employee.site}
+                                                {employee.site ? employee.site.name : ""}
                                             </Typography>
                                         </TableCell>
                                         <TableCell>
@@ -311,11 +224,11 @@ const StaffTable = () => {
                                                     color: "#fff",
                                                 }}
                                                 size="small"
-                                                label={employee.status}
+                                                label={employee.availabilityStatus ? employee.availabilityStatus.name : ""}
                                             ></Chip>
                                         </TableCell>
                                         <TableCell>
-                                            <Typography variant="h6">{employee.phone}</Typography>
+                                            <Typography variant="h6">{employee.phoneNumber}</Typography>
                                         </TableCell>
                                     </TableRow>
                                 ))}
