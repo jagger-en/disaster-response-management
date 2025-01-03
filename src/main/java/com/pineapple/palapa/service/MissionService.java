@@ -17,6 +17,13 @@ public class MissionService {
         this.missionRepo = missionRepo;
     }
 
+    public Mission getMission(Long id) {
+        Mission mission = missionRepo.findById(id)
+            .orElseThrow(() -> new UserNotFoundException("Mission by id " + id + " was not found"));
+
+        return mission;
+    }
+
     public Mission addMission(Mission mission) {
         return missionRepo.save(mission);
     }

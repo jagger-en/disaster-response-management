@@ -17,6 +17,13 @@ public class MissionApiController {
         this.missionService = missionService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getMission(@PathVariable("id") Long id) {
+        Mission mission = missionService.getMission(id);
+        return new ResponseEntity<>(mission, HttpStatus.OK);
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<Mission>> getAllMissions() {
         List<Mission> missions = missionService.findAllMissions();
