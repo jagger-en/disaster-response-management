@@ -27,6 +27,12 @@ const MISSION_SUMMARY_URL = "http://localhost:8081/api/mission-summaries/all";
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
 const MissionsPage = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+      setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
+
   const { data: missionSummaries, error: missionSummariesError } = useSwr(MISSION_SUMMARY_URL, fetcher);
 
   if (missionSummaries) {
@@ -38,12 +44,6 @@ const MissionsPage = () => {
   if (!missionSummaries) {
       return <div>Loading mission summaries...</div>;
   }
-
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-      setOpen(true);
-  };
-  const handleClose = () => setOpen(false);
 
   // Aggregate statistics
   const totalMissions = missionSummaries.length;
