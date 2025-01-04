@@ -31,7 +31,7 @@ docker exec -i postgres_instance psql -U postgres -d db_palapa < ./sql/stored_pr
 ./python_scripts/populate_database.py
 ```
 
-6. Go to frontend and run
+6. Go to frontend and run locally
 ```bash
 cd ./frontend && npm run dev
 ```
