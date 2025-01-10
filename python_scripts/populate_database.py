@@ -39,12 +39,11 @@ if __name__ == "__main__":
     mission_status_list = query.access_endpoint(constants.MISSION_STATUS_ALL)
 
     # Populate mission table
-    for mission_name in [
+    for mission_name, status_name in zip([
         "Recover supplies",
         "Deliver supplies",
         "Build tents",
-    ]:
-        status_name = random.sample(mission_status_list, 1)[0]
+    ], mission_status_list):
         mission.add_to_database(mission_name, status_name)
     mission_list = query.access_endpoint(constants.MISSION_ALL)
 
