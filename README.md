@@ -23,7 +23,7 @@ docker exec -i postgres_instance psql -U postgres -d db_palapa < ./sql/stored_pr
 
 4. Run application.
 ```bash
-./mvnw spring-boot:run
+cd ./backend && ./mvnw spring-boot:run
 ```
 
 5. Add sample data
