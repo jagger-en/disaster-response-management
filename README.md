@@ -18,7 +18,7 @@ docker run --rm --name postgres_instance \
 
 3. Add stored procedures.
 ```bash
-docker exec -i postgres_instance psql -U postgres -d db_palapa < ./sql/stored_procedures.sql
+docker exec -i postgres_instance psql -U postgres -d db_palapa < ./resources/sql/stored_procedures.sql
 ```
 
 4. Run application.
@@ -28,7 +28,7 @@ cd ./backend && ./mvnw spring-boot:run
 
 5. Add sample data
 ```bash
-./python_scripts/populate_database.py
+./utilities/python_scripts/populate_database.py
 ```
 
 6. Go to frontend and run locally
