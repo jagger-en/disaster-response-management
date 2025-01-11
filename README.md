@@ -35,3 +35,7 @@ docker exec -i postgres_instance psql -U postgres -d db_palapa < ./sql/stored_pr
 ```bash
 cd ./frontend && npm run dev
 ```
+
+# Test
+Make sure to start the database server and add stored procedures before
+running `mvn test`.
