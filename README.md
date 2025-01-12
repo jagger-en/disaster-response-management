@@ -16,6 +16,12 @@ docker run --rm --name postgres_instance \
     docker.io/library/postgres:15.3
 ```
 
+You can also run with
+```
+./utilities/python_scripts/run_database.py
+```
+But make sure to have the `DOCKER_HOST` env set (e.g. `DOCKER_HOST=unix:///run/user/1000/docker.sock`) in case of a similar issue to https://github.com/abiosoft/colima/issues/468.
+
 3. Add stored procedures.
 ```bash
 docker exec -i postgres_instance psql -U postgres -d db_palapa < ./resources/sql/stored_procedures.sql
