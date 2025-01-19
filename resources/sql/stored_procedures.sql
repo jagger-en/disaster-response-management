@@ -1,9 +1,5 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-DROP FUNCTION get_all_mission_summaries();
-DROP FUNCTION get_all_mission_timeline_item();
-DROP FUNCTION get_all_mission_location_item();
-
 CREATE OR REPLACE FUNCTION get_all_mission_summaries()
 RETURNS TABLE (
     id BIGINT,
