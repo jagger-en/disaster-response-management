@@ -57,3 +57,4 @@ node_modules
 
 .sandbox
 sandbox.sql
+*.log
