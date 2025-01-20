@@ -2,20 +2,20 @@
 import random
 from lib.logger import create_stdout_logger
 from lib.data_sets import availability_status
-from lib.data_sets import employee
+from lib.data_sets import employee as emp
 from lib.data_sets import gender
-from lib.data_sets import job_title
-from lib.data_sets import location
+from lib.data_sets import job_title as jt
+from lib.data_sets import location as loc
 from lib.data_sets import mission_and_location
 from lib.data_sets import mission_and_status
 from lib.data_sets import mission_assignment
 from lib.data_sets import mission_status
-from lib.data_sets import mission
+from lib.data_sets import mission as mis
 from lib import constants
 from lib import query
 
 # The order matters!
-if __name__ == "__main__":
+def populate_database():
     logger = create_stdout_logger(__name__)
 
     logger.info("populating database")
@@ -27,7 +27,6 @@ if __name__ == "__main__":
         "UNAVAILABLE",
     ]:
         availability_status.add_to_database(status_name)
-    availability_status_list = query.access_endpoint(constants.AVAILABILITY_STATUS_ALL)
 
     # Populate mission_status table
     for status_name, status_background in [
@@ -44,7 +43,7 @@ if __name__ == "__main__":
         "Deliver supplies",
         "Build tents",
     ], mission_status_list):
-        mission.add_to_database(mission_name, status_name)
+        mis.add_to_database(mission_name, status_name)
     mission_list = query.access_endpoint(constants.MISSION_ALL)
 
     # Populate gender table
@@ -88,13 +87,13 @@ if __name__ == "__main__":
         "Psychosocial Support Officer",
         "Volunteer Coordinator"
     ]:
-        job_title.add_to_database(job_title_name)
+        jt.add_to_database(job_title_name)
     job_title_list = query.access_endpoint(constants.JOB_TITLE_ALL)
 
     # Populate employee table
     for _ in range(100):
         job_title = random.sample(job_title_list, 1)[0]
-        employee.add_to_database(job_title)
+        emp.add_to_database(job_title)
     employee_list = query.access_endpoint(constants.EMPLOYEE_ALL)
 
     # Populate location table
@@ -103,7 +102,7 @@ if __name__ == "__main__":
         ("River Base 77", "-120.6130", "38.5359"),
         ("Drop zone 45", "-120.6222", "38.5351"),
     ]:
-        location.add_to_database(name, latitude, longitude)
+        loc.add_to_database(name, latitude, longitude)
     location_list = query.access_endpoint(constants.LOCATION_ALL)
 
     # Populate mission and location table
@@ -121,3 +120,6 @@ if __name__ == "__main__":
             mission_assignment.add_to_database(mission, employee)
 
     logger.info("done populating database")
+
+if __name__ == "__main__":
+    populate_database()

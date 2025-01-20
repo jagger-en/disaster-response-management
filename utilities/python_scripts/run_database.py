@@ -8,6 +8,7 @@ import subprocess
 import os
 import threading
 import requests
+import populate_database as pdb
 
 logger = logging.getLogger(__name__)
 streamHandler = logging.StreamHandler(stream=sys.stdout)
@@ -116,6 +117,8 @@ def ctrl_c_handler(sig, frame):
     sys.exit(0)
 
 signal.signal(signal.SIGINT, ctrl_c_handler)
+
+pdb.populate_database()
 
 logger.info("listening...")
 while True:
