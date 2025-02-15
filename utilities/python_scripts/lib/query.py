@@ -34,8 +34,8 @@ def filter_by_firstname_query(name, endpoint):
         print(e)
     return result
 
-def check_status(status, info):
-    if status == 201:
+def check_status(result, info):
+    if result.status_code == 201:
         logger.info(f"successfully added {info}")
     else:
-        logger.error(f"failed to add {info}")
+        raise ValueError(f"Failed to add {info}: {result.json()}")

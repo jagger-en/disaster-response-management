@@ -15,4 +15,4 @@ def add_to_database(mission, status):
         "assignmentDate": assignment_date
     }
     result = query.send_to_endpoint(constants.MISSION_AND_STATUS_ADD, payload)
-    query.check_status(result.status_code, f"data: {payload}")
+    query.check_status(result, f"data: {payload}")

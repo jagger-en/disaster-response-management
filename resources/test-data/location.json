@@ -1,0 +1,23 @@
+[
+  {
+    "id": 143,
+    "name": "Round Mountain Peak",
+    "description": "no description",
+    "latitude": "-120.6169",
+    "longitude": "38.5385"
+  },
+  {
+    "id": 144,
+    "name": "River Base 77",
+    "description": "no description",
+    "latitude": "-120.6130",
+    "longitude": "38.5359"
+  },
+  {
+    "id": 145,
+    "name": "Drop zone 45",
+    "description": "no description",
+    "latitude": "-120.6222",
+    "longitude": "38.5351"
+  }
+]

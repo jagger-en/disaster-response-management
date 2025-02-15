@@ -1,0 +1,17 @@
+[
+  {
+    "id": 10,
+    "name": "male",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam ut odio sed eros fermentum egestas sit amet sed massa."
+  },
+  {
+    "id": 11,
+    "name": "female",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam ut odio sed eros fermentum egestas sit amet sed massa."
+  },
+  {
+    "id": 12,
+    "name": "other",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam ut odio sed eros fermentum egestas sit amet sed massa."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "AVAILABLE",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam ut odio sed eros fermentum egestas sit amet sed massa."
+  },
+  {
+    "id": 2,
+    "name": "UNKNOWN",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam ut odio sed eros fermentum egestas sit amet sed massa."
+  },
+  {
+    "id": 3,
+    "name": "UNAVAILABLE",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam ut odio sed eros fermentum egestas sit amet sed massa."
+  }
+]

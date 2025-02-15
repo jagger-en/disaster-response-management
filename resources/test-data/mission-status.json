@@ -1,0 +1,20 @@
+[
+  {
+    "id": 4,
+    "name": "PENDING",
+    "background": "warning.main",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam ut odio sed eros fermentum egestas sit amet sed massa."
+  },
+  {
+    "id": 5,
+    "name": "COMPLETED",
+    "background": "success.main",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam ut odio sed eros fermentum egestas sit amet sed massa."
+  },
+  {
+    "id": 6,
+    "name": "CANCELLED",
+    "background": "error.main",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam ut odio sed eros fermentum egestas sit amet sed massa."
+  }
+]

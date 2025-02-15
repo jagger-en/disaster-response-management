@@ -3,8 +3,8 @@ BOILER_PLATE_DESCRIPTION = ("Lorem ipsum dolor sit amet, consectetur "
     "adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam "
     "ut odio sed eros fermentum egestas sit amet sed massa.")
 
-AVAILABILITY_STATUS_ADD = "availabilityStatus/add"
-AVAILABILITY_STATUS_ALL = "availabilityStatus/all"
+AVAILABILITY_STATUS_ADD = "availability-status/add"
+AVAILABILITY_STATUS_ALL = "availability-status/all"
 
 EMPLOYEE_ADD = "employee/add"
 EMPLOYEE_ALL = "employee/all"

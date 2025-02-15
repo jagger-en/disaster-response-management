@@ -1,0 +1,26 @@
+[
+  {
+    "id": 7,
+    "missionName": "Recover supplies",
+    "missionDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam ut odio sed eros fermentum egestas sit amet sed massa.",
+    "statusName": "PENDING",
+    "statusBackground": "warning.main",
+    "assignmentDate": "2021-7-19T22:00:10"
+  },
+  {
+    "id": 8,
+    "missionName": "Deliver supplies",
+    "missionDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam ut odio sed eros fermentum egestas sit amet sed massa.",
+    "statusName": "COMPLETED",
+    "statusBackground": "success.main",
+    "assignmentDate": "2017-9-2T22:00:10"
+  },
+  {
+    "id": 9,
+    "missionName": "Build tents",
+    "missionDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim quam ut gravida volutpat. Nullam ut odio sed eros fermentum egestas sit amet sed massa.",
+    "statusName": "CANCELLED",
+    "statusBackground": "error.main",
+    "assignmentDate": "2012-6-13T22:00:10"
+  }
+]
