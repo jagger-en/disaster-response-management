@@ -121,5 +121,43 @@ def populate_database():
 
     logger.info("done populating database")
 
+# The order matters!
+def populate_database_with_test_data():
+    logger = create_stdout_logger(__name__)
+
+    logger.info("populating database for testing")
+
+    # Populate availability_status table
+    query.send_to_endpoint_from_file(constants.AVAILABILITY_STATUS_ADD, './resources/test-data/availability-status.json')
+
+    # Populate mission_status table
+    query.send_to_endpoint_from_file(constants.MISSION_STATUS_ADD, './resources/test-data/mission-status.json')
+
+    # Populate mission table
+    query.send_to_endpoint_from_file(constants.MISSION_ADD, './resources/test-data/mission.json')
+
+    # Populate gender table
+    query.send_to_endpoint_from_file(constants.GENDER_ADD, './resources/test-data/gender.json')
+
+    # Populate job title table
+    query.send_to_endpoint_from_file(constants.JOB_TITLE_ADD, './resources/test-data/job-title.json')
+
+    # Populate employee table
+    query.send_to_endpoint_from_file(constants.EMPLOYEE_ADD, './resources/test-data/employee.json')
+
+    # Populate location table
+    query.send_to_endpoint_from_file(constants.LOCATION_ADD, './resources/test-data/location.json')
+
+    # Populate mission and location table
+    query.send_to_endpoint_from_file(constants.MISSION_AND_LOCATION_ADD, './resources/test-data/mission-and-location.json')
+
+    # Populate mission and status table
+    query.send_to_endpoint_from_file(constants.MISSION_AND_STATUS_ADD, './resources/test-data/mission-and-status.json')
+
+    # Populate mission assignment
+    query.send_to_endpoint_from_file(constants.MISSION_ASSIGNMENT_ADD, './resources/test-data/mission-assignment.json')
+
+    logger.info("done populating database for testing")
+
 if __name__ == "__main__":
     populate_database()

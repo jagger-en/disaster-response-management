@@ -39,3 +39,10 @@ def check_status(result, info):
         logger.info(f"successfully added {info}")
     else:
         raise ValueError(f"Failed to add {info}: {result.json()}")
+
+def send_to_endpoint_from_file(endpoint, file_path):
+    with open(file_path, 'r') as f:
+        payloads = json.loads(f.read())
+        for payload in payloads:
+            result = send_to_endpoint(endpoint, payload)
+            check_status(result, f"{__name__}: {payload}")
