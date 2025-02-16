@@ -8,5 +8,4 @@ def add_to_database(name, latitude, longitude):
         "latitude": latitude,
         "longitude": longitude,
     }
-    result = query.send_to_endpoint(constants.LOCATION_ADD, payload)
-    query.check_status(result, f"{__name__}: {name}")
+    query.send_to_endpoint(constants.LOCATION_ADD, payload)

@@ -19,5 +19,4 @@ def add_to_database(name, mission_status):
         "startTime": start_time,
         "endTime": end_time,
     }
-    result = query.send_to_endpoint(constants.MISSION_ADD, payload)
-    query.check_status(result, f"data: {payload}")
+    query.send_to_endpoint(constants.MISSION_ADD, payload)

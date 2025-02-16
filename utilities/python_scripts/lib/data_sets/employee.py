@@ -32,5 +32,4 @@ def add_to_database(job_title):
         "gender": query.filter_by_name_query(gender, constants.GENDER_ALL),
         "jobTitle": job_title,
     }
-    result = query.send_to_endpoint(constants.EMPLOYEE_ADD, employee)
-    query.check_status(result, f"employee: {employee}")
+    query.send_to_endpoint(constants.EMPLOYEE_ADD, employee)

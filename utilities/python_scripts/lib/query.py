@@ -7,8 +7,10 @@ logger = create_stdout_logger(__name__)
 def send_to_endpoint(endpoint, payload):
     endpoint = f"http://localhost:8081/api/{endpoint}"
     headers = {'content-type': 'application/json', 'Host': 'myhost'}
-    r = requests.post(endpoint, json=payload, headers=headers)
-    return r
+    result = requests.post(endpoint, json=payload, headers=headers)
+    check_status(result, payload)
+
+    return result
 
 def access_endpoint(endpoint):
     endpoint = f"http://localhost:8081/api/{endpoint}"
